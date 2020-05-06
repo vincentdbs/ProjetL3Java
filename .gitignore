@@ -1,0 +1,13 @@
+/.idea/misc.xml
+/.idea/workflow.xml
+/.idea/workspace.xml
+*.idea
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+Projet.iml
+automate_git_push.sh
+pull_git.sh

@@ -39,6 +39,11 @@ public class QCM {
     // todo a voir si il faut interface graphique ailleurs
     @Override
     public String toString(){
-        return getTexte();
+        String toDisplay = "";
+        toDisplay += getTexte() + '\n';
+        for (int i = 0; i < reponses.length ; i++) {
+            toDisplay += i + " " + reponses[i] + "\n";
+        }
+        return toDisplay;
     }
 }

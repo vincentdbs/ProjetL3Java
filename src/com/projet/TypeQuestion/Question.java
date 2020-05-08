@@ -2,22 +2,19 @@ package com.projet.TypeQuestion;
 
 public class Question<T> {
     private static int numero = 0;
-    //todo add Theme
+    private String theme;
     private int niveauDifficulte;
     private T enonce;
 
-    public Question(int niveauDifficulte, T enonce) {
+    public Question(int niveauDifficulte, String theme, T enonce) {
         this.niveauDifficulte = niveauDifficulte;
         this.enonce = enonce;
+        this.theme = theme;
         numero++;
     }
 
     public static int getNumero() {
         return numero;
-    }
-
-    public static void setNumero(int numero) {
-        Question.numero = numero;
     }
 
     public int getNiveauDifficulte() {
@@ -36,4 +33,12 @@ public class Question<T> {
         this.enonce = enonce;
     }
 
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 }

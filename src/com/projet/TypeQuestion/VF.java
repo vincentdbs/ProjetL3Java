@@ -1,20 +1,20 @@
 package com.projet.TypeQuestion;
 
 public class VF {
-    private String tetxe;
+    private String texte;
     private boolean reponse;
 
-    public VF(String tetxe, boolean reponse) {
-        this.tetxe = tetxe;
+    public VF(String texte, boolean reponse) {
+        this.texte = texte;
         this.reponse = reponse;
     }
 
-    public String getTetxe() {
-        return tetxe;
+    public String getTexte() {
+        return texte;
     }
 
-    public void setTetxe(String tetxe) {
-        this.tetxe = tetxe;
+    public void setTexte(String texte) {
+        this.texte = texte;
     }
 
     public boolean isReponse() {
@@ -23,5 +23,13 @@ public class VF {
 
     public void setReponse(boolean reponse) {
         this.reponse = reponse;
+    }
+
+
+    //methode afficher dans sujet
+    // todo a voir si il faut interface graphique ailleurs
+    @Override
+    public String toString(){
+        return getTexte();
     }
 }

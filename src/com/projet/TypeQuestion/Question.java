@@ -13,6 +13,10 @@ public class Question<T> {
         numero++;
     }
 
+    public void afficher(){
+        System.out.println("Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + getEnonce().toString());
+    }
+
     public static int getNumero() {
         return numero;
     }
@@ -33,7 +37,6 @@ public class Question<T> {
         this.enonce = enonce;
     }
 
-
     public String getTheme() {
         return theme;
     }
@@ -41,4 +44,6 @@ public class Question<T> {
     public void setTheme(String theme) {
         this.theme = theme;
     }
+
+
 }

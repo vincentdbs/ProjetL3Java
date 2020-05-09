@@ -5,7 +5,7 @@ public class QCM {
     private int bonneReponse;
     private String texte;
 
-    public QCM(String[] reponses, int bonneReponse, String texte) {
+    public QCM(String texte, int bonneReponse,  String[] reponses) {
         this.reponses = reponses;
         this.bonneReponse = bonneReponse;
         this.texte = texte;

@@ -30,6 +30,6 @@ public class VF {
     // todo a voir si il faut interface graphique ailleurs
     @Override
     public String toString(){
-        return getTexte();
+        return getTexte() + "\nVrai\nFaux";
     }
 }

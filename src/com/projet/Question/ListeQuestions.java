@@ -1,4 +1,4 @@
-package com.projet.TypeQuestion;
+package com.projet.Question;
 
 import java.util.LinkedList;
 

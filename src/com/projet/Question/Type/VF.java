@@ -1,4 +1,4 @@
-package com.projet.TypeQuestion;
+package com.projet.Question.Type;
 
 public class VF {
     private String texte;

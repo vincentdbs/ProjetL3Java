@@ -1,6 +1,9 @@
 package com.projet;
 
-import com.projet.TypeQuestion.*;
+import com.projet.Question.*;
+import com.projet.Question.Type.QCM;
+import com.projet.Question.Type.RC;
+import com.projet.Question.Type.VF;
 
 import java.util.ArrayList;
 

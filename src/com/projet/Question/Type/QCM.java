@@ -1,4 +1,4 @@
-package com.projet.TypeQuestion;
+package com.projet.Question.Type;
 
 public class QCM {
     private String[] reponses;

@@ -1,4 +1,4 @@
-package com.projet.TypeQuestion;
+package com.projet.Question;
 
 public class Question<T> {
     private static int numero = 0;

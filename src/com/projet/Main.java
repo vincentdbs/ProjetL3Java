@@ -1,5 +1,6 @@
 package com.projet;
 
+import com.projet.Joueur.Joueur;
 import com.projet.Question.*;
 import com.projet.Question.Type.QCM;
 import com.projet.Question.Type.RC;

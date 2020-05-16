@@ -1,4 +1,4 @@
-package com.projet;
+package com.projet.Joueur;
 
 public class Joueur {
     private static int indexJoueur = 100;

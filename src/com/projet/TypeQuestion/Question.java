@@ -17,6 +17,11 @@ public class Question<T> {
         System.out.println("Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + getEnonce().toString());
     }
 
+    @Override
+    public String toString(){
+        return "Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + getEnonce().toString();
+    }
+
     public static int getNumero() {
         return numero;
     }

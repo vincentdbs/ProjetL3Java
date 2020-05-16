@@ -1,17 +1,14 @@
 package com.projet;
 
-import com.projet.TypeQuestion.QCM;
-import com.projet.TypeQuestion.Question;
-import com.projet.TypeQuestion.RC;
-import com.projet.TypeQuestion.VF;
+import com.projet.TypeQuestion.*;
 
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        testTheme();
-
+//        testTheme();
+        testListeQuestion();
 
     }
 
@@ -26,6 +23,7 @@ public class Main {
         list.add(new Question<>(1, "sport", a));
         list.add(new Question<>(2, "culture", b));
         list.add(new Question<>(3, "divertissement", c));
+
 
         for (Question<?> t: list) {
             t.afficher();
@@ -43,6 +41,20 @@ public class Main {
         themes.afficher();
         themes.modifierTheme("test", "coucou");
         themes.afficher();
+
+    }
+
+    public static void testListeQuestion(){
+        QCM a = new QCM("Question de test ", 2, new String[]{"vrai", "faux", "je sais pas"});
+        VF b = new VF("Jelloh", true);
+        RC c = new RC("Question courte", "ceci est la vonne réponse");
+
+        ListeQuestions listeQuestions = new ListeQuestions();
+        listeQuestions.ajouterQuestion(new Question<>(1,"Sport", a));
+        listeQuestions.ajouterQuestion(new Question<>(3,"Cinema", b));
+        listeQuestions.ajouterQuestion(new Question<>(2,"Art", c));
+
+        listeQuestions.afficherListe();
 
     }
 

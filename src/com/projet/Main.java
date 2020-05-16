@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 //        testTheme();
         testListeQuestion();
-
+        testJoueur();
     }
 
     //todo delete pour le rendu du projet
@@ -61,4 +61,14 @@ public class Main {
 
     }
 
+
+    public static void testJoueur(){
+        Joueur joueur = new Joueur("Vincent", "gagnant", 0);
+        Joueur joueur2 = new Joueur("Baptiste", "séléctionné");
+        Joueur joueur3 = new Joueur("Tristan");
+
+        joueur.afficher();
+        joueur2.afficher();
+        joueur3.afficher();
+    }
 }

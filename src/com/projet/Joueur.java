@@ -1,0 +1,89 @@
+package com.projet;
+
+public class Joueur {
+    private static int indexJoueur = 100;
+    private String nom, etat; //etat = sélectionné, gagnant, super gagnant, éliminé ou en attente
+    private int score, numero;
+
+    public Joueur(String nom, String etat, int score) {
+        this.nom = nom;
+        this.etat = etat;
+        this.score = score;
+        this.numero = indexJoueur;
+        indexJoueur += 10;
+    }
+
+    public Joueur(String nom, String etat) {
+        this.nom = nom;
+        this.etat = etat;
+        this.score = 0;
+        this.numero = indexJoueur;
+        indexJoueur += 10;
+    }
+
+    public Joueur(String nom) {
+        this.nom = nom;
+        this.etat = "sélectionné";
+        this.score = 0;
+        this.numero = indexJoueur;
+        indexJoueur += 10;
+    }
+
+    public void afficher(){
+        System.out.println("Joueur n°" + getNumero() + "(" + getEtat() +  "): " + getNom() + " a " + getScore() + " points\n");
+    }
+
+    @Override
+    public String toString(){
+        return "Joueur n°" + getNumero() + "(" + getEtat() +  "): " + getNom() + " a " + getScore() + " points\n";
+    }
+
+    public void saisir(){
+        //todo à implenter en fonction de saisie console ou interface graphique;
+    }
+
+    public void MAJScore(int score){
+        //todo à changer en fonction des besoins du jeu final
+        setScore(score);
+    }
+
+    public void changerEtat(String etat){
+        //todo à changer en fonction des besoins du jeu final
+        setEtat(etat);
+    }
+
+    /**
+     * Getter et setter
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    public  void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+}

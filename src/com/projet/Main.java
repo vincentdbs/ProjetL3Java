@@ -1,5 +1,6 @@
 package com.projet;
 
+import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
 import com.projet.Question.*;
 import com.projet.Question.Type.QCM;
@@ -11,12 +12,15 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-//        testTheme();
-        testListeQuestion();
-        testJoueur();
+        //todo fonction d'initialisation des questions et joueurs
+        //testTheme();
+//        testListeQuestion();
+//        testJoueur();
+        phase1();
     }
 
-    //todo delete pour le rendu du projet
+
+
     public static void testQuestion(){
         // exemple affichage + utilisation de la classe question
         QCM a = new QCM("Question de test ", 2, new String[]{"vrai", "faux", "je sais pas"});
@@ -71,5 +75,20 @@ public class Main {
         joueur.afficher();
         joueur2.afficher();
         joueur3.afficher();
+    }
+
+    public static void phase1(){
+        EnsJoueurs ensJoueurs = new EnsJoueurs();
+        ensJoueurs.creer();
+        ensJoueurs.afficher();
+
+        //todo gerer si plusieurs fois le même joueur qui est selectionné
+        ArrayList<Joueur> ensJoueurSelectionne = new ArrayList<>();
+        for (int i = 0; i < 4 ; i++) {
+            ensJoueurSelectionne.add(ensJoueurs.selectionnerJoueur());
+            ensJoueurSelectionne.get(i).changerEtat("selectionne");
+        }
+
+
     }
 }

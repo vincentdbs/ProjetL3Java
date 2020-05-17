@@ -23,7 +23,7 @@ public class Joueur {
 
     public Joueur(String nom) {
         this.nom = nom;
-        this.etat = "sélectionné";
+        this.etat = "en attente";
         this.score = 0;
         this.numero = indexJoueur;
         indexJoueur += 10;

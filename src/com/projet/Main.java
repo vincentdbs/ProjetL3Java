@@ -78,16 +78,28 @@ public class Main {
     }
 
     public static void phase1(){
+        //creation de la liste des joueurs
         EnsJoueurs ensJoueurs = new EnsJoueurs();
         ensJoueurs.creer();
         ensJoueurs.afficher();
 
+        //recuperation des 4 joueurs de la partie
         //todo gerer si plusieurs fois le même joueur qui est selectionné
         ArrayList<Joueur> ensJoueurSelectionne = new ArrayList<>();
         for (int i = 0; i < 4 ; i++) {
             ensJoueurSelectionne.add(ensJoueurs.selectionnerJoueur());
             ensJoueurSelectionne.get(i).changerEtat("selectionne");
         }
+
+        //creation des themes + selection du premier theme
+        Themes themes = new Themes();
+        themes.selectionnerTheme();
+
+        //todo remplir la liste des questions avec nos questions
+        ListeQuestions listeQuestions = new ListeQuestions();
+
+
+
 
 
     }

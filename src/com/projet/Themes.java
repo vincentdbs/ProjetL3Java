@@ -36,9 +36,13 @@ public class Themes {
     }
 
     public int selectionnerTheme(){
-        int tempo = getIndicateur();
         setIndicateur((int) (Math.random() * 10));
-        return tempo;
+        return getIndicateur();
+    }
+
+    public int selectionnerNextTheme(){
+        setIndicateur((getIndicateur()+1)%10);
+        return getIndicateur();
     }
 
     public int[] selectionnerCinqThemes(){

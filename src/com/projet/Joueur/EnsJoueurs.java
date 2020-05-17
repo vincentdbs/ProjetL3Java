@@ -17,7 +17,7 @@ public class EnsJoueurs {
     public void creer(){
         //todo changer pour que les joueurs aient tous des noms différents
         for (int i = 0; i < 20; i++) {
-            vectorJoueur.add(new Joueur("Joueur" + ((char) (i+65)))); //pour avoir les lettre de A à la 20e lettre
+            vectorJoueur.add(new Joueur(String.valueOf ((char) (i+65)))); //pour avoir les lettre de A à la 20e lettre
         }
     }
 

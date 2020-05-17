@@ -1,6 +1,8 @@
 package com.projet.Question;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListeQuestions {
     private LinkedList<Question> listeQuestion;
@@ -34,6 +36,33 @@ public class ListeQuestions {
     public void supprimerQuestion(int index){
         listeQuestion.remove(index);
     }
+
+    //todo à voir si il faut ordonnée par théme
+    public void afficherQuestionByLevel(int level){
+        listeQuestion.stream()
+                .filter(question -> question.getNiveauDifficulte() == level)
+                .forEach(question -> question.afficher());
+    }
+
+    public void afficherQuestionByTheme(String theme){
+        listeQuestion.stream()
+                .filter(question -> question.getTheme() == theme)
+                .forEach(question -> question.afficher());
+    }
+
+    //todo à voir si il faut ordonnée par théme
+    public List<Question> getQuestionByLevel(int level){
+        return listeQuestion.stream()
+                .filter(question -> question.getNiveauDifficulte() == level)
+                .collect(Collectors.toList());
+    }
+
+    public List<Question> getQuestionByTheme(String theme){
+        return listeQuestion.stream()
+                .filter(question -> question.getTheme().equals(theme))
+                .collect(Collectors.toList());
+    }
+
 
     /**
      * Getter et setter

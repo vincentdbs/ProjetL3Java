@@ -56,6 +56,12 @@ public class Themes {
         System.out.println("\nIndicateur = " + getIndicateur());
     }
 
+
+
+    /**
+     * getter/setter
+     * @return
+     */
     public int getIndicateur() {
         return indicateur;
     }

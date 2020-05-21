@@ -25,7 +25,6 @@ public class VF {
         this.reponse = reponse;
     }
 
-
     //methode afficher dans sujet
     // todo a voir si il faut interface graphique ailleurs
     @Override

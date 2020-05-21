@@ -19,7 +19,7 @@ public class Question<T> {
 
     @Override
     public String toString(){
-        return "Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + getEnonce().toString();
+        return "Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + enonce.toString();
     }
 
     public static int getNumero() {

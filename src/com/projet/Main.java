@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         //todo fonction d'initialisation des questions et joueurs
         //testTheme();
-//        testListeQuestion();
+        testListeQuestion();
 //        testJoueur();
         phase1();
     }

@@ -1,7 +1,15 @@
 package com.projet.Question;
 
+import com.projet.Question.Type.QCM;
+import com.projet.Question.Type.RC;
+import com.projet.Question.Type.VF;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ListeQuestions {
@@ -63,6 +71,58 @@ public class ListeQuestions {
                 .collect(Collectors.toList());
     }
 
+    private void getAllQcmFromFile(){
+        try {
+            Scanner scanner = new Scanner(new File("Textfile/questionQCM.txt"));
+            while (scanner.hasNextLine()){
+                int niveau = scanner.nextInt();
+                String theme = scanner.nextLine();
+                String texte = scanner.nextLine();
+                String[] answers = new String[3];
+                answers[0] = scanner.nextLine();
+                answers[1] = scanner.nextLine();
+                answers[2] = scanner.nextLine();
+                int goodAnswer = scanner.nextInt();
+                QCM qcm = new QCM(texte, goodAnswer, answers);
+                listeQuestion.add(new Question<>(niveau, theme, qcm));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("erreur de lecture");
+        }
+    }
+
+    private void getAllVfFromFile(){
+        try {
+            Scanner scanner = new Scanner(new File("Textfile/questionVF.txt"));
+            while (scanner.hasNextLine()){
+                int niveau = scanner.nextInt();
+                String theme = scanner.nextLine();
+                String texte = scanner.nextLine();
+                boolean goodAnswer = scanner.nextBoolean();
+                VF vf = new VF(texte, goodAnswer);
+                listeQuestion.add(new Question<>(niveau, theme, vf));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("erreur de lecture");
+        }
+    }
+
+
+    private void getAllRcFromFile(){
+        try {
+            Scanner scanner = new Scanner(new File("Textfile/questionRC.txt"));
+            while (scanner.hasNextLine()){
+                int niveau = scanner.nextInt();
+                String theme = scanner.nextLine();
+                String texte = scanner.nextLine();
+                String goodAnswer = scanner.nextLine();
+                RC rc = new RC(texte, goodAnswer);
+                listeQuestion.add(new Question<>(niveau, theme, rc));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("erreur de lecture");
+        }
+    }
 
     /**
      * Getter et setter

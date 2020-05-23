@@ -1,149 +1,149 @@
 1
 Sport
-Micheal Phelps est le plus titrer aux JO
+Micheal Phelps est le plus titrer aux JO ?
 true
 
 2
 Sport
-Vettel a gagner le grand prix d'allemagne en 2015
+Vettel a gagné le grand prix d'allemagne en 2015 ?
 false
 
 3
 Sport
-La France a gagner 10 médailles olympiques aux JO de 2015
+La France a gagné 10 médailles olympiques aux JO de 2015 ?
 true
 
 1
 Histoire
-La couleur de cheval blanc d'Henri est blanc
+La couleur de cheval blanc d'Henri est blanc ?
 true
 
 2
 Histoire
-Christophe Colombre a découvert l'Amérique en 1494
+Christophe Colomb a découvert l'Amérique en 1494 ?
 false
 
 3
 Histoire
-La Révolution francaise a eu lieu en 1896
+La Révolution francaise a eu lieu en 1896 ?
 false
 
 1
 Géographie
-La mer noire se situe à côté du Djibouti
+La mer noire se situe à côté du Djibouti ?
 false
 
 2
 Géographie
-Il y a 194 pays dans le monde
+Il y a 194 pays dans le monde ?
 true
 
 3
 Géographie
-Il y a 6 océans
+Il y a 6 océans ?
 false
 
 1
 Art
-Guernica a été peint en 1913
+Guernica a été peint en 1913 ?
 false
 
 2
 Art
-La Joconde est au Louvre
+La Joconde est au Louvre ?
 true
 
 3
 Art
-Le Faux est un mouvement d'Art
+Le Faux est un mouvement d'Art ?
 true
 
 1
 Sciences
-Le nom des espèces ont un nom latin
+Les noms des espèces ont des noms latins ?
 true
 
 2
 Sciences
-Le glucose et le fructose ont la meme formule chimique
+Le glucose et le fructose ont la meme formule chimique ?
 true
 
 3
 Sciences
-Titan est un satellite de Saturne
+Titan est un satellite de Saturne ?
 true
 
 1
 Cinema
-La trilogie a été réaliser par Nolan
+La trilogie The Dark Knight a été réalisée par Nolan ?
 true
 
 2
 Cinema
-Leonard DiCaprio a jouer dans Inception
+Leonard DiCaprio a joué dans Inception ?
 true
 
 3
 Cinema
-Il ya 22 films Marvel 
+Il ya 22 films Marvel  ?
 false
 
 1
 High-tech
-L'Iphone 1 est sorti en 2002
+L'Iphone 1 est sorti en 2002 ?
 false
 
 2
 High-tech
-La technologie RTX signifie ray-tracing
+La technologie RTX signifie ray-tracing ?
 true
 
 3
 High-tech
-Le s20 est sorti en mars
+Le s20 est sorti en mars ?
 false
 
 1
 Musique
-Daft Punk est un groupe francais
+Daft Punk est un groupe francais ?
 true
 
 2
 Musique
-Marshmello porte un casque
+Marshmello porte un casque ?
 true
 
 3
 Musique
-Kanye West est un musicien
+Kanye West est un musicien ?
 false
 
 1
 Divertissements
-Game of Thrones s'est arrêter à 9 saisons
+Game of Thrones s'est arrêté à 9 saisons ?
 false
 
 2
 Divertissements
-La série Breaking Bad est toujours en cours
+La série Breaking Bad est toujours en cours ?
 false
 
 3
 Divertissements
-The Walking Dead possède 10 saisons
+The Walking Dead possède 10 saisons ?
 true
 
 1
 Littérature
-La série GOT a été écrite par George RR Martin
+La série GOT a été écrite par George RR Martin ?
 true
 
 2
 Littérature
-La série Autre Monde a été écrite par Maxime Chattam
+La série Autre Monde a été écrite par Maxime Chattam ?
 true
 
 3
 Littérature
-J.k Rowling n'a pas écrit Harry Potter
+J.k Rowling n'a pas écrit Harry Potter ?
 false

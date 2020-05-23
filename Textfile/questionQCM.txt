@@ -1,31 +1,31 @@
 1
 Sport
-Combien de médailles à gagner Phelps aux JO de Rio
-5 0
-4 1
-6 2
+Combien de médailles à gagner Phelps aux JO de Rio ?
+5
+4
+6
 1
 
 2
 Sport
-Quelle est le nom du plus garnd nageur
-Michael Phelps 0
-Florent Manaudou 1 
-Joran Cielo 2
+Quelle est le nom du plus garnd nageur ?
+Michael Phelps
+Florent Manaudou
+Joran Cielo
 0
 
 3
 Sport
-Quelle pays a accueilli les JO en 2016
-Brésil 0
-Suède 1
-France 2
+Quelle pays a accueilli les JO en 2016 ?
+Brésil
+Suède
+France
 0
 
 1
 Histoire
-Quellle est la couleur du cheval blanc de Louis 14?
-noir 0
-blanc 1
-rouge 2
+Quellle est la couleur du cheval blanc de Louis 14 ?
+noir
+blanc
+rouge
 1

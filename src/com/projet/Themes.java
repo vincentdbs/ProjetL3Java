@@ -13,7 +13,7 @@ public class Themes {
 
     public Themes() {
         indicateur = 0;
-        this.arrayTheme = new String[]{"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Litterature"};
+        this.arrayTheme = new String[]{"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Littérature"};
     }
 
     /**

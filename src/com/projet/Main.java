@@ -112,8 +112,8 @@ public class Main {
         Themes themes = new Themes();
         themes.selectionnerTheme();
 
-        //todo remplir la liste des questions avec nos questions
         ListeQuestions listeQuestions = new ListeQuestions();
+
 
 
 

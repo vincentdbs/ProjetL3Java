@@ -45,7 +45,7 @@ public class ListeQuestions {
         listeQuestion.remove(index);
     }
 
-    //todo à voir si il faut ordonnée par théme
+    //  todo à voir si il faut ordonnée par théme
     public void afficherQuestionByLevel(int level){
         listeQuestion.stream()
                 .filter(question -> question.getNiveauDifficulte() == level)

@@ -20,18 +20,21 @@ public class ListeQuestions {
         this.listeQuestion = listeQuestion;
         this.indicateur = indicateur;
         getAllVfFromFile();
+        getAllQcmFromFile();
     }
 
     public ListeQuestions(int indicateur) {
         this.indicateur = indicateur;
         this.listeQuestion = new LinkedList<>();
         getAllVfFromFile();
+        getAllQcmFromFile();
     }
 
     public ListeQuestions() {
         this.indicateur = 0;
         this.listeQuestion = new LinkedList<>();
         getAllVfFromFile();
+        getAllQcmFromFile();
     }
 
     public void afficherListe(){
@@ -77,8 +80,9 @@ public class ListeQuestions {
     private void getAllQcmFromFile(){
         try {
             Scanner scanner = new Scanner(new File("Textfile/questionQCM.txt"));
-            while (scanner.hasNextLine()){
+            do {
                 int niveau = scanner.nextInt();
+                scanner.nextLine();
                 String theme = scanner.nextLine();
                 String texte = scanner.nextLine();
                 String[] answers = new String[3];
@@ -88,7 +92,8 @@ public class ListeQuestions {
                 int goodAnswer = scanner.nextInt();
                 QCM qcm = new QCM(texte, goodAnswer, answers);
                 listeQuestion.add(new Question<>(niveau, theme, qcm));
-            }
+                scanner.nextLine();
+            }while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");
         }

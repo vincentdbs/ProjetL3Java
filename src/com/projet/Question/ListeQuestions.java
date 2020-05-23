@@ -19,16 +19,19 @@ public class ListeQuestions {
     public ListeQuestions(LinkedList<Question> listeQuestion, int indicateur) {
         this.listeQuestion = listeQuestion;
         this.indicateur = indicateur;
+        getAllVfFromFile();
     }
 
     public ListeQuestions(int indicateur) {
         this.indicateur = indicateur;
         this.listeQuestion = new LinkedList<>();
+        getAllVfFromFile();
     }
 
     public ListeQuestions() {
         this.indicateur = 0;
         this.listeQuestion = new LinkedList<>();
+        getAllVfFromFile();
     }
 
     public void afficherListe(){
@@ -94,14 +97,15 @@ public class ListeQuestions {
     private void getAllVfFromFile(){
         try {
             Scanner scanner = new Scanner(new File("Textfile/questionVF.txt"));
-            while (scanner.hasNextLine()){
+            do {
                 int niveau = scanner.nextInt();
-                String theme = scanner.nextLine();
+                scanner.nextLine();
+                String theme =  scanner.nextLine();
                 String texte = scanner.nextLine();
-                boolean goodAnswer = scanner.nextBoolean();
+                boolean goodAnswer = Boolean.parseBoolean(scanner.nextLine());
                 VF vf = new VF(texte, goodAnswer);
                 listeQuestion.add(new Question<>(niveau, theme, vf));
-            }
+            } while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");
         }

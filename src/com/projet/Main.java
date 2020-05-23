@@ -77,10 +77,6 @@ public class Main {
         RC c = new RC("Question courte", "ceci est la vonne réponse");
 
         ListeQuestions listeQuestions = new ListeQuestions();
-        listeQuestions.ajouterQuestion(new Question<>(1,"Sport", a));
-        listeQuestions.ajouterQuestion(new Question<>(3,"Cinema", b));
-        listeQuestions.ajouterQuestion(new Question<>(2,"Art", c));
-
         listeQuestions.afficherListe();
 
     }

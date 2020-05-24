@@ -8,6 +8,16 @@ import com.projet.Themes;
 import java.util.ArrayList;
 
 public class Phase1 implements Phase {
+    private Themes theme;
+    private ListeQuestions listeQuestions;
+    private Joueur[] joueurs;
+
+    public Phase1(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs) {
+        this.theme = theme;
+        this.listeQuestions = listeQuestions;
+        this.joueurs = joueurs;
+    }
+
     @Override
     public void selectionnerJoueur() {
 
@@ -15,11 +25,9 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
+        int themePhase = theme.selectionnerTheme();
+
 
     }
 
-    @Override
-    public void phaseDeJeu(Joueur... joueurs) {
-
-    }
 }

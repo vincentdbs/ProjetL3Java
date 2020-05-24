@@ -114,11 +114,8 @@ public class Main {
             ensJoueurs.selectionnerJoueur();
         }
 
-        Phase1 phase1 = new Phase1();
-        phase1.phaseDeJeu(ensJoueurs.getJoueurSelectionne());
-
-
-
+        Phase1 phase1 = new Phase1(themes, listeQuestions, ensJoueurs.getJoueurSelectionne());
+        phase1.phaseDeJeu();
 
 
 

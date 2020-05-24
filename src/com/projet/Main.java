@@ -1,5 +1,6 @@
 package com.projet;
 
+import com.projet.Fenetre.Vf;
 import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
 import com.projet.Phase.Phase;
@@ -15,6 +16,14 @@ public class Main {
 
     public static void main(String[] args) {
         //todo fonction d'initialisation des questions et joueurs
+        //        Start start = new Start();
+//        ChoixNom choixNom = new ChoixNom();
+//        Theme1 theme1 = new Theme1();
+//        Scores scores = new Scores();
+//        Qcm qcm = new Qcm();
+//        Repcourte repcourte = new Repcourte();
+        Vf vf = new Vf();
+
 //        testQcm();
 //        testVf();
 //        testRc();
@@ -22,7 +31,7 @@ public class Main {
 //        testListeQuestion();
 //        testTheme();
 //        testJoueur();
-        jeu();
+//        jeu();
     }
 
     public static void testQcm(){

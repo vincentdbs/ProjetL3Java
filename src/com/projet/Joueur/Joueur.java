@@ -42,9 +42,8 @@ public class Joueur {
         //todo à implenter en fonction de saisie console ou interface graphique;
     }
 
-    public void MAJScore(int score){
-        //todo à changer en fonction des besoins du jeu final
-        setScore(score);
+    public void majScore(int score){
+        setScore(getScore() + score);
     }
 
     public void changerEtat(String etat){

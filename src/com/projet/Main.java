@@ -19,10 +19,10 @@ public class Main {
 //        testVf();
 //        testRc();
 //        testQuestion();
-//        testListeQuestion();
+        testListeQuestion();
 //        testTheme();
 //        testJoueur();
-        jeu();
+//        jeu();
     }
 
     public static void testQcm(){

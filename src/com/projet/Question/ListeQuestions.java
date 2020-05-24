@@ -19,22 +19,19 @@ public class ListeQuestions {
     public ListeQuestions(LinkedList<Question> listeQuestion, int indicateur) {
         this.listeQuestion = listeQuestion;
         this.indicateur = indicateur;
-        getAllVfFromFile();
-        getAllQcmFromFile();
+        getAllQuestions();
     }
 
     public ListeQuestions(int indicateur) {
         this.indicateur = indicateur;
         this.listeQuestion = new LinkedList<>();
-        getAllVfFromFile();
-        getAllQcmFromFile();
+        getAllQuestions();
     }
 
     public ListeQuestions() {
         this.indicateur = 0;
         this.listeQuestion = new LinkedList<>();
-        getAllVfFromFile();
-        getAllQcmFromFile();
+        getAllQuestions();
     }
 
     public void afficherListe(){
@@ -42,6 +39,7 @@ public class ListeQuestions {
             System.out.println(q + "\n");
         }
     }
+
 
     public void ajouterQuestion(Question question){
         listeQuestion.add(question);
@@ -81,6 +79,12 @@ public class ListeQuestions {
                 .filter(question -> question.getTheme().equals(theme))
                 .filter(question -> question.getNiveauDifficulte() == level)
                 .collect(Collectors.toList());
+    }
+
+    private void getAllQuestions(){
+        getAllQcmFromFile();
+        getAllVfFromFile();
+        getAllRcFromFile();
     }
 
     private void getAllQcmFromFile(){
@@ -125,15 +129,16 @@ public class ListeQuestions {
 
     private void getAllRcFromFile(){
         try {
-            Scanner scanner = new Scanner(new File("Textfile/questionRC.txt"));
-            while (scanner.hasNextLine()){
+            Scanner scanner = new Scanner(new File("Textfile/questionReponse.txt"));
+            do{
                 int niveau = scanner.nextInt();
+                scanner.nextLine();
                 String theme = scanner.nextLine();
                 String texte = scanner.nextLine();
                 String goodAnswer = scanner.nextLine();
                 RC rc = new RC(texte, goodAnswer);
                 listeQuestion.add(new Question<>(niveau, theme, rc));
-            }
+            } while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");
         }

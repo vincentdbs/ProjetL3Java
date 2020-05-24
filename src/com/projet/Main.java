@@ -2,6 +2,8 @@ package com.projet;
 
 import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
+import com.projet.Phase.Phase;
+import com.projet.Phase.Phase1;
 import com.projet.Question.*;
 import com.projet.Question.Type.QCM;
 import com.projet.Question.Type.RC;
@@ -13,14 +15,14 @@ public class Main {
 
     public static void main(String[] args) {
         //todo fonction d'initialisation des questions et joueurs
-        testQcm();
-        testVf();
-        testRc();
-        testQuestion();
-        testListeQuestion();
-        testTheme();
-        testJoueur();
-        phase1();
+//        testQcm();
+//        testVf();
+//        testRc();
+//        testQuestion();
+//        testListeQuestion();
+//        testTheme();
+//        testJoueur();
+        jeu();
     }
 
     public static void testQcm(){
@@ -94,30 +96,43 @@ public class Main {
     }
 
 
-    public static void phase1(){
+    public static void jeu(){
         //creation de la liste des joueurs
         EnsJoueurs ensJoueurs = new EnsJoueurs();
         ensJoueurs.creer();
         ensJoueurs.afficher();
 
-        //recuperation des 4 joueurs de la partie
-        //todo gerer si plusieurs fois le même joueur qui est selectionné
-        ArrayList<Joueur> ensJoueurSelectionne = new ArrayList<>();
-        for (int i = 0; i < 4 ; i++) {
-            ensJoueurSelectionne.add(ensJoueurs.selectionnerJoueur());
-            ensJoueurSelectionne.get(i).changerEtat("selectionne");
+        Joueur[] arrayJoueurs = new Joueur[4];
+        //todo add securité pour si 2fois le même joueuer
+        for (int i = 0; i < arrayJoueurs.length ; i++) {
+            arrayJoueurs[i] = ensJoueurs.selectionnerJoueur();
         }
+
+        ensJoueurs.afficher();
 
         //creation des themes + selection du premier theme
         Themes themes = new Themes();
         themes.selectionnerTheme();
 
+
+        Phase1 phase1 = new Phase1();
+        phase1.phaseDeJeu(arrayJoueurs);
+
+
+
+//        //recuperation des 4 joueurs de la partie
+//        ArrayList<Joueur> ensJoueurSelectionne = new ArrayList<>();
+//        for (int i = 0; i < 4 ; i++) {
+//            ensJoueurSelectionne.add(ensJoueurs.selectionnerJoueur());
+//            ensJoueurSelectionne.get(i).changerEtat("selectionne");
+//        }
+
+
+
+        //todo remplir la liste des questions avec nos questions
         ListeQuestions listeQuestions = new ListeQuestions();
 
 
-
-
-
-
     }
+
 }

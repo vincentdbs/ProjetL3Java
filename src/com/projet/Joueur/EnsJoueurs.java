@@ -26,8 +26,21 @@ public class EnsJoueurs {
         }
     }
 
+    /**
+     * Choisi un joueur pour joueur la partie et change son statut à "selectionné"
+     * @return
+     */
     public Joueur selectionnerJoueur(){
-        return vectorJoueur.get((int) (Math.random() * 20));
+        boolean retry = false;
+        int index;
+        do {
+            index = (int) (Math.random() * 20);
+            if (vectorJoueur.get(index).getEtat().equals("en attente")){
+                retry = true;
+            }
+        }while (!retry);
+        vectorJoueur.get(index).changerEtat("sélectionné");
+        return vectorJoueur.get(index);
     }
 
     /**

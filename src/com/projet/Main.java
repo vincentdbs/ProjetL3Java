@@ -97,40 +97,29 @@ public class Main {
 
 
     public static void jeu(){
-        //creation de la liste des joueurs
-        EnsJoueurs ensJoueurs = new EnsJoueurs();
-        ensJoueurs.creer();
-        ensJoueurs.afficher();
+        //creation de la liste des questions du jeu
+        ListeQuestions listeQuestions = new ListeQuestions();
 
-        Joueur[] arrayJoueurs = new Joueur[4];
-        //todo add securité pour si 2fois le même joueuer
-        for (int i = 0; i < arrayJoueurs.length ; i++) {
-            arrayJoueurs[i] = ensJoueurs.selectionnerJoueur();
-        }
-
-        ensJoueurs.afficher();
 
         //creation des themes + selection du premier theme
         Themes themes = new Themes();
         themes.selectionnerTheme();
 
+        //creation de la liste des joueurs
+        EnsJoueurs ensJoueurs = new EnsJoueurs();
+        ensJoueurs.creer();
+
+        //selection des 4 joueurs de la partie
+        for (int i = 0; i < 4; i++) {
+            ensJoueurs.selectionnerJoueur();
+        }
 
         Phase1 phase1 = new Phase1();
-        phase1.phaseDeJeu(arrayJoueurs);
+        phase1.phaseDeJeu(ensJoueurs.getJoueurSelectionne());
 
 
 
-//        //recuperation des 4 joueurs de la partie
-//        ArrayList<Joueur> ensJoueurSelectionne = new ArrayList<>();
-//        for (int i = 0; i < 4 ; i++) {
-//            ensJoueurSelectionne.add(ensJoueurs.selectionnerJoueur());
-//            ensJoueurSelectionne.get(i).changerEtat("selectionne");
-//        }
 
-
-
-        //todo remplir la liste des questions avec nos questions
-        ListeQuestions listeQuestions = new ListeQuestions();
 
 
     }

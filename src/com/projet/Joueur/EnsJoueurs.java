@@ -1,6 +1,7 @@
 package com.projet.Joueur;
 
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 public class EnsJoueurs {
 
@@ -28,9 +29,8 @@ public class EnsJoueurs {
 
     /**
      * Choisi un joueur pour joueur la partie et change son statut à "selectionné"
-     * @return
      */
-    public Joueur selectionnerJoueur(){
+    public void selectionnerJoueur(){
         boolean retry = false;
         int index;
         do {
@@ -40,7 +40,14 @@ public class EnsJoueurs {
             }
         }while (!retry);
         vectorJoueur.get(index).changerEtat("sélectionné");
-        return vectorJoueur.get(index);
+    }
+
+    public Joueur[] getJoueurSelectionne(){
+        Joueur[] a = (Joueur[]) vectorJoueur
+                .stream()
+                .filter(j -> j.getEtat().equals("sélectionné"))
+                .toArray(Joueur[]::new);
+        return a;
     }
 
     /**

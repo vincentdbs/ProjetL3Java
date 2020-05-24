@@ -33,8 +33,8 @@ public class Phase1 implements Phase {
     @Override
     public void phaseDeJeu() {
         int nbQuestion = listeQuestions.size();
+        int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
         for (int i = 0; i < joueurs.length ; i++) {
-            int numQuestionSelected = (int) (Math.random() * nbQuestion);
             System.out.println("----- C'est au joueur " + joueurs[i].getNom() + " de jouer." );
             System.out.println(listeQuestions.get(numQuestionSelected).toString());
             System.out.print("Votre réponse : ");
@@ -47,6 +47,7 @@ public class Phase1 implements Phase {
             else{
                 System.out.println("Mauvaise réponse +0 pts\n");
             }
+            numQuestionSelected = (numQuestionSelected+1)%nbQuestion;
         }
     }
 
@@ -78,5 +79,4 @@ public class Phase1 implements Phase {
         }
         return false;
     }
-
 }

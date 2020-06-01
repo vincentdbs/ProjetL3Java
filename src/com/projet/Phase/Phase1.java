@@ -13,7 +13,7 @@ import com.projet.Themes;
 import com.projet.Tools;
 
 import javax.swing.*;
-import java.util.List;
+import java.util.*;
 
 public class Phase1 implements Phase {
     private Themes theme;
@@ -37,6 +37,14 @@ public class Phase1 implements Phase {
     public void phaseDeJeu() {
         int nbQuestion = listeQuestions.size();
         int[][] tempsReponses = new int[4][4];
+
+        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur le thème : "
+                + theme.getArrayTheme()[theme.getIndicateur()] +
+                "\nChaque bonne réponse rapporte 2 points.\n" +
+                "Ordre : " + joueurs[0].getNom() + ", "
+                + joueurs[1].getNom() + ", "
+                + joueurs[2].getNom() + ", "
+                + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
 
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
@@ -69,6 +77,14 @@ public class Phase1 implements Phase {
                     break;
             }
         }
+
+        JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0][3] + "h" + tempsReponses[0][2] + "min" +  tempsReponses[0][1] + "s" + tempsReponses[0][0] + "s\n" +
+                joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1][3] + "h" + tempsReponses[1][2] + "min" +  tempsReponses[1][1] + "s" + tempsReponses[1][0] + "s\n" +
+                joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2][3] + "h" + tempsReponses[2][2] + "min" +  tempsReponses[2][1] + "s" + tempsReponses[2][0] + "s\n" +
+                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
+
+                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private boolean isGoodAnswer(Question question, String answer){
@@ -100,5 +116,18 @@ public class Phase1 implements Phase {
         return false;
     }
 
+//    private int getJoueurElimine(Joueur[] joueurs, int[] chrono){
+//        int index = -1;
+//        for (int i = 0; i < joueurs.length-1; i++) {
+//            if(joueurs[i].getScore() < joueurs[i+1].getScore()){
+//                index = i;
+//            }else if (joueurs[i].getScore() == joueurs[i+1].getScore()){
+//                if (chrono[i] < chrono[i+1]){
+//
+//                }
+//            }
+//        }
+//        return index;
+//    }
 
 }

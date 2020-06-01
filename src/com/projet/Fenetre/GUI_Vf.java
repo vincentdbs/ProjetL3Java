@@ -14,7 +14,8 @@ public class GUI_Vf extends JDialog {
     private JLabel jlQuestion;
     private JButton jbVrai, jbFaux;
     private String answer;
-    private Chronometre chronometre = new Chronometre("a");
+    private Chronometre chronometre = new Chronometre();
+    private int[] tempsReponse;
 
     public GUI_Vf(JFrame frame, String enonce){
         super(frame, true);
@@ -76,6 +77,7 @@ public class GUI_Vf extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 answer = "true";
                 chronometre.setState(false);
+                tempsReponse = chronometre.getTime();
                 dispose();
             }
         });
@@ -87,7 +89,7 @@ public class GUI_Vf extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 answer = "false";
                 chronometre.setState(false);
-                System.out.println(chronometre.toString());
+                tempsReponse = chronometre.getTime();
                 dispose();
             }
         });
@@ -97,5 +99,7 @@ public class GUI_Vf extends JDialog {
         return answer;
     }
 
-
+    public int[] getTempsReponse() {
+        return tempsReponse;
+    }
 }

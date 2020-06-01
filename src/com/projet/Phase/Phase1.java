@@ -36,7 +36,9 @@ public class Phase1 implements Phase {
     @Override
     public void phaseDeJeu() {
         int nbQuestion = listeQuestions.size();
+        int[][] tempsReponses = new int[4][4];
 
+        //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
             Question<?> q = listeQuestions.get(numQuestionSelected);
@@ -46,6 +48,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
+                    tempsReponses[i] = qcm.getTempsReponse();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
@@ -53,6 +56,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
+                    tempsReponses[i] = vf.getTempsReponse();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
@@ -60,6 +64,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }
+                    tempsReponses[i] = rc.getTempsReponse();
                     System.out.println(joueurs[i].getScore());
                     break;
             }

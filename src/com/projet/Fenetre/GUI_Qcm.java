@@ -1,5 +1,7 @@
 package com.projet.Fenetre;
 
+import com.projet.Chronometre;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,8 @@ public class GUI_Qcm extends JDialog{
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
     private String answer;
+    private Chronometre chronometre = new Chronometre();
+    private int[] tempsReponse;
 
     public GUI_Qcm(JFrame parent, String enonce, String... reponses){
         super(parent, true);
@@ -19,6 +23,7 @@ public class GUI_Qcm extends JDialog{
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        chronometre.start();
         initiate(enonce, reponses);
         getContentPane().add(placeAll());
 
@@ -27,6 +32,8 @@ public class GUI_Qcm extends JDialog{
 
         pack();
         setVisible(true);
+
+
 
     }
 
@@ -90,6 +97,8 @@ public class GUI_Qcm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 answer = String.valueOf(Integer.parseInt(jbRep1.getText())-1);
+                chronometre.setState(false);
+                tempsReponse = chronometre.getTime();
                 dispose();
             }
         });
@@ -97,5 +106,9 @@ public class GUI_Qcm extends JDialog{
 
     public String getAnswer() {
         return answer;
+    }
+
+    public int[] getTempsReponse() {
+        return tempsReponse;
     }
 }

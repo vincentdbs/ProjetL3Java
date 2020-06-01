@@ -1,5 +1,7 @@
 package com.projet.Fenetre;
 
+import com.projet.Chronometre;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,8 @@ public class GUI_Repcourte extends JDialog{
     private JTextField jtfRep;
     private JButton jbValider;
     private String answer;
+    private Chronometre chronometre = new Chronometre();
+    private int[] tempsReponse;
 
     public GUI_Repcourte(JFrame parent, String enonce){
         super(parent, true);
@@ -18,7 +22,7 @@ public class GUI_Repcourte extends JDialog{
         setTitle("Réponse courte");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        chronometre.start();
         initiate(enonce);
         getContentPane().add(placeAll());
 
@@ -27,6 +31,8 @@ public class GUI_Repcourte extends JDialog{
 
         pack();
         setVisible(true);
+
+
 
     }
 
@@ -67,6 +73,8 @@ public class GUI_Repcourte extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 answer = jtfRep.getText();
+                chronometre.setState(false);
+                tempsReponse = chronometre.getTime();
                 dispose();
             }
         });
@@ -74,5 +82,9 @@ public class GUI_Repcourte extends JDialog{
 
     public String getAnswer() {
         return answer;
+    }
+
+    public int[] getTempsReponse() {
+        return tempsReponse;
     }
 }

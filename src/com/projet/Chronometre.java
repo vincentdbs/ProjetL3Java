@@ -4,8 +4,8 @@ public class Chronometre extends  Thread {
     private int milisecond = 0, second = 0, minute =0, hour =0;
     private boolean state = true;
 
-    public Chronometre(String name){
-        super(name);
+    public Chronometre(){
+        super();
     }
 
     public void run(){

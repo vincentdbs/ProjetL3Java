@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Start extends JFrame {
+public class GUI_Start extends JFrame {
 
     private JLabel jlBienvenue;
     private JButton jbCommencer;
 
-    public Start(){
+    public GUI_Start(){
 
         setSize(300,200);
         setTitle("Start");
@@ -58,7 +58,7 @@ public class Start extends JFrame {
         jbCommencer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MenuPrincipal menuPrincipal = new MenuPrincipal();
+                GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
                 dispose();
             }
         });

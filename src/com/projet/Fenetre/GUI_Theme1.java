@@ -3,12 +3,12 @@ package com.projet.Fenetre;
 import javax.swing.*;
 import java.awt.*;
 
-public class Theme1 extends JFrame {
+public class GUI_Theme1 extends JFrame {
 
     private JLabel jlTheme, jlNomTheme, jlIntro;
     private JButton jbValider;
 
-    public Theme1(){
+    public GUI_Theme1(){
 
         setSize(300,200);
         setTitle("Thème");

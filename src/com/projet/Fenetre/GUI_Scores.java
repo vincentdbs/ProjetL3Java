@@ -3,13 +3,13 @@ package com.projet.Fenetre;
 import javax.swing.*;
 import java.awt.*;
 
-public class Scores extends JFrame {
+public class GUI_Scores extends JFrame {
 
     String[] entete = {"Nom du joueur","Scores du joueur"};
     String[][] joueurs = {{"tristan","20"},{"etienne","10"}};
     JTable jtTable;
 
-    public Scores(){
+    public GUI_Scores(){
 
         setSize(300,200);
         setTitle("Tableau des résultats");

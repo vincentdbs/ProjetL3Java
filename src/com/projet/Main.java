@@ -1,10 +1,7 @@
 package com.projet;
 
 import com.projet.Fenetre.*;
-import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
-import com.projet.Phase.Phase;
-import com.projet.Phase.Phase1;
 import com.projet.Question.*;
 import com.projet.Question.Type.QCM;
 import com.projet.Question.Type.RC;
@@ -106,7 +103,7 @@ public class Main {
 
 
     public static void jeu(){
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
 
 
     }

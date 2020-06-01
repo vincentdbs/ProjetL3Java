@@ -3,14 +3,14 @@ package com.projet.Fenetre;
 import javax.swing.*;
 import java.awt.*;
 
-public class ChoixNom extends JFrame {
+public class GUI_ChoixNom extends JFrame {
 
     JLabel jlChoixNom;
     JLabel jlNom1, jlNom2, jlNom3, jlNom4;
     JTextField jtfNom1, jtfNom2, jtfNom3, jtfNom4;
     JButton jbValider;
 
-    public ChoixNom(){
+    public GUI_ChoixNom(){
 
         setSize(300,200);
         setTitle("Choix des noms");

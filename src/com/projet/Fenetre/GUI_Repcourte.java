@@ -1,22 +1,21 @@
 package com.projet.Fenetre;
 
-import com.projet.Question.Type.VF;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Vf extends JDialog {
+public class GUI_Repcourte extends JDialog{
 
     private JLabel jlQuestion;
-    private JButton jbVrai, jbFaux;
+    private JTextField jtfRep;
+    private JButton jbValider;
     private String answer;
 
-    public Vf(JFrame frame, String enonce){
-        super(frame, true);
+    public GUI_Repcourte(JFrame parent, String enonce){
+        super(parent, true);
         setSize(300,200);
-        setTitle("Vrai-Faux");
+        setTitle("Réponse courte");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -35,11 +34,10 @@ public class Vf extends JDialog {
 
         jlQuestion = new JLabel(enonce);
 
-        jbVrai = new JButton("Vrai");
-        jbFaux = new JButton("Faux");
-        addListenerFalse();
-        addListenerTrue();
+        jtfRep = new JTextField(20);
 
+        jbValider = new JButton("Valider");
+        addListenerValider();
     }
 
 
@@ -49,36 +47,26 @@ public class Vf extends JDialog {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 30, 10, 30);
 
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        pan.add(jbVrai, gbc);
+        pan.add(jtfRep, gbc);
 
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        pan.add(jbFaux, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        pan.add(jbValider, gbc);
 
         return pan;
     }
 
-    public void addListenerTrue(){
-        jbVrai.addActionListener(new ActionListener() {
+    private void addListenerValider(){
+        jbValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                answer = "true";
-                dispose();
-            }
-        });
-    }
-
-    public void addListenerFalse(){
-        jbFaux.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                answer = "false";
+                answer = jtfRep.getText();
                 dispose();
             }
         });

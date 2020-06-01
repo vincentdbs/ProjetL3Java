@@ -1,21 +1,22 @@
 package com.projet.Fenetre;
 
+import com.projet.Question.Type.VF;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Repcourte extends JDialog{
+public class GUI_Vf extends JDialog {
 
     private JLabel jlQuestion;
-    private JTextField jtfRep;
-    private JButton jbValider;
+    private JButton jbVrai, jbFaux;
     private String answer;
 
-    public Repcourte(JFrame parent, String enonce){
-        super(parent, true);
+    public GUI_Vf(JFrame frame, String enonce){
+        super(frame, true);
         setSize(300,200);
-        setTitle("Réponse courte");
+        setTitle("Vrai-Faux");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -34,10 +35,11 @@ public class Repcourte extends JDialog{
 
         jlQuestion = new JLabel(enonce);
 
-        jtfRep = new JTextField(20);
+        jbVrai = new JButton("Vrai");
+        jbFaux = new JButton("Faux");
+        addListenerFalse();
+        addListenerTrue();
 
-        jbValider = new JButton("Valider");
-        addListenerValider();
     }
 
 
@@ -47,26 +49,36 @@ public class Repcourte extends JDialog{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 30, 10, 30);
 
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        pan.add(jtfRep, gbc);
+        pan.add(jbVrai, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        pan.add(jbValider, gbc);
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        pan.add(jbFaux, gbc);
 
         return pan;
     }
 
-    private void addListenerValider(){
-        jbValider.addActionListener(new ActionListener() {
+    public void addListenerTrue(){
+        jbVrai.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                answer = jtfRep.getText();
+                answer = "true";
+                dispose();
+            }
+        });
+    }
+
+    public void addListenerFalse(){
+        jbFaux.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer = "false";
                 dispose();
             }
         });

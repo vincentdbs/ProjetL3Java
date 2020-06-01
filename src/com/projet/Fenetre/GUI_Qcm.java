@@ -5,14 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Qcm extends JDialog{
+public class GUI_Qcm extends JDialog{
 
     private JLabel jlQuestion;
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
     private String answer;
 
-    public Qcm(JFrame parent, String enonce, String... reponses){
+    public GUI_Qcm(JFrame parent, String enonce, String... reponses){
         super(parent, true);
         setSize(300,200);
         setTitle("QCM");

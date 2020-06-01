@@ -2,21 +2,24 @@ package com.projet.Fenetre;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Qcm extends JDialog{
 
     private JLabel jlQuestion;
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
+    private String answer;
 
-    public Qcm(JFrame parent){
+    public Qcm(JFrame parent, String enonce, String... reponses){
         super(parent, true);
         setSize(300,200);
         setTitle("QCM");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        initiate();
+        initiate(enonce, reponses);
         getContentPane().add(placeAll());
 
         setResizable(false);
@@ -27,17 +30,20 @@ public class Qcm extends JDialog{
 
     }
 
-    private void initiate(){
+    private void initiate(String enonce, String[] reponses){
 
-        jlQuestion = new JLabel("la question est blablabla");
+        jlQuestion = new JLabel(enonce);
 
-        jlRep1 = new JLabel("Réponse 1");
-        jlRep2 = new JLabel("Réponse 2");
-        jlRep3 = new JLabel("Réponse 3");
+        jlRep1 = new JLabel("1 " + reponses[0]);
+        jlRep2 = new JLabel("2 " + reponses[1]);
+        jlRep3 = new JLabel("3 " + reponses[2]);
 
         jbRep1 = new JButton("1");
         jbRep2 = new JButton("2");
         jbRep3 = new JButton("3");
+        addListenerRep(jbRep1);
+        addListenerRep(jbRep2);
+        addListenerRep(jbRep3);
 
     }
 
@@ -77,5 +83,19 @@ public class Qcm extends JDialog{
         pan.add(jbRep3, gbc);
 
         return pan;
+    }
+
+    private void addListenerRep(JButton btn){
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer = String.valueOf(Integer.parseInt(jbRep1.getText())-1);
+                dispose();
+            }
+        });
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 }

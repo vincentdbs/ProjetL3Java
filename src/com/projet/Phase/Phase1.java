@@ -63,7 +63,12 @@ public class Phase1 implements Phase {
             Question<?> q = listeQuestions.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
-                    Qcm qcm = new Qcm(parent);
+                    Qcm qcm = new Qcm(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
+                    if (isGoodAnswer(q, qcm.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    qcm.dispose();
+                    System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
                     Vf vf = new Vf(parent, ((VF) q.getEnonce()).getTexte());

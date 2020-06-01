@@ -1,22 +1,26 @@
 package com.projet.Fenetre;
 
+import com.projet.Themes;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI_Theme1 extends JFrame {
 
     private JLabel jlTheme, jlNomTheme, jlIntro;
     private JButton jbValider;
 
-    public GUI_Theme1(){
+    public GUI_Theme1(Themes themes){
 
         setSize(300,200);
         setTitle("Thème");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         initiate();
-        getContentPane().add(placeAll());
+        getContentPane().add(placeAll(themes));
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -31,13 +35,19 @@ public class GUI_Theme1 extends JFrame {
         jlIntro = new JLabel("Total des thèmes abordés : ");
         jlTheme = new JLabel();
         jlNomTheme = new JLabel();
-        jbValider = new JButton("Valider");
+        jbValider = new JButton("Retour");
+        jbValider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
     }
 
 
 
-    private JPanel placeAll(){
+    private JPanel placeAll(Themes themes){
         JPanel pan = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 30, 10, 30);
@@ -46,7 +56,7 @@ public class GUI_Theme1 extends JFrame {
         gbc.gridy = 0;
         pan.add(jlIntro, gbc);
 
-        for (int i = 0; i<10; i++) {
+        for (int i = 0; i < themes.getArrayTheme().length; i++) {
 
             gbc.gridx = 0;
             gbc.gridy = i+1;
@@ -55,7 +65,7 @@ public class GUI_Theme1 extends JFrame {
 
             gbc.gridx = 2;
             gbc.gridy = i+1;
-            jlNomTheme = new JLabel("" + (i+1));
+            jlNomTheme = new JLabel(themes.getArrayTheme()[i]);
             pan.add(jlNomTheme, gbc);
 
         }

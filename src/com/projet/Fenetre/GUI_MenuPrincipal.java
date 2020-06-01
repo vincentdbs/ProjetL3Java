@@ -47,18 +47,15 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void initiate(){
         btnStart = new JButton("Jouer");
+        btnTheme = new JButton("Voir thèmes");
         addListenerStart();
+        addListenerTheme();
     }
 
     private JPanel placeAll(){
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-        cs.insets = new Insets(5,5,5,5);
-
-        cs.gridx = 0;
-        cs.gridy = 0;
-        panel.add(btnStart,cs);
-
+        JPanel panel = new JPanel();
+        panel.add(btnStart);
+        panel.add(btnTheme);
         return panel;
     }
 
@@ -68,6 +65,15 @@ public class GUI_MenuPrincipal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Phase1 phase1 = new Phase1(themes, listeQuestions, ensJoueurs.getJoueurSelectionne(), GUI_MenuPrincipal.this);
                 phase1.phaseDeJeu();
+            }
+        });
+    }
+
+    private void addListenerTheme(){
+        btnTheme.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI_Theme1 theme = new GUI_Theme1(themes);
             }
         });
     }

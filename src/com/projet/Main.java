@@ -1,6 +1,6 @@
 package com.projet;
 
-import com.projet.Fenetre.Vf;
+import com.projet.Fenetre.*;
 import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
 import com.projet.Phase.Phase;
@@ -16,13 +16,13 @@ public class Main {
 
     public static void main(String[] args) {
         //todo fonction d'initialisation des questions et joueurs
-        //        Start start = new Start();
+//            Start start = new Start();
 //        ChoixNom choixNom = new ChoixNom();
 //        Theme1 theme1 = new Theme1();
 //        Scores scores = new Scores();
 //        Qcm qcm = new Qcm();
 //        Repcourte repcourte = new Repcourte();
-        Vf vf = new Vf();
+//        Vf vf = new Vf();
 
 //        testQcm();
 //        testVf();
@@ -31,7 +31,7 @@ public class Main {
 //        testListeQuestion();
 //        testTheme();
 //        testJoueur();
-//        jeu();
+        jeu();
     }
 
     public static void testQcm(){
@@ -106,26 +106,7 @@ public class Main {
 
 
     public static void jeu(){
-        //creation de la liste des questions du jeu
-        ListeQuestions listeQuestions = new ListeQuestions();
-
-
-        //creation des themes + selection du premier theme
-        Themes themes = new Themes();
-        themes.selectionnerTheme();
-
-        //creation de la liste des joueurs
-        EnsJoueurs ensJoueurs = new EnsJoueurs();
-        ensJoueurs.creer();
-
-        //selection des 4 joueurs de la partie
-        for (int i = 0; i < 4; i++) {
-            ensJoueurs.selectionnerJoueur();
-        }
-
-        Phase1 phase1 = new Phase1(themes, listeQuestions, ensJoueurs.getJoueurSelectionne());
-        phase1.phaseDeJeu();
-
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
 
 
     }

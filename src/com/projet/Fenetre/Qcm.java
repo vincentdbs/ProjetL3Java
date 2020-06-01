@@ -3,18 +3,18 @@ package com.projet.Fenetre;
 import javax.swing.*;
 import java.awt.*;
 
-public class Qcm extends JFrame{
+public class Qcm extends JDialog{
 
     private JLabel jlQuestion;
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
 
-    public Qcm(){
-
+    public Qcm(JFrame parent){
+        super(parent, true);
         setSize(300,200);
         setTitle("QCM");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         initiate();
         getContentPane().add(placeAll());

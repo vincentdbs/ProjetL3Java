@@ -1,21 +1,26 @@
 package com.projet.Fenetre;
 
+import com.projet.Question.Type.VF;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Vf extends JFrame {
+public class Vf extends JDialog {
 
     private JLabel jlQuestion;
     private JButton jbVrai, jbFaux;
+    private String answer;
 
-    public Vf(){
-
+    public Vf(JFrame frame, String enonce){
+        super(frame, true);
         setSize(300,200);
         setTitle("Vrai-Faux");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        initiate();
+        initiate(enonce);
         getContentPane().add(placeAll());
 
         setResizable(false);
@@ -26,12 +31,14 @@ public class Vf extends JFrame {
 
     }
 
-    private void initiate(){
+    private void initiate(String enonce){
 
-        jlQuestion = new JLabel("la question est blablabla");
+        jlQuestion = new JLabel(enonce);
 
         jbVrai = new JButton("Vrai");
         jbFaux = new JButton("Faux");
+        addListenerFalse();
+        addListenerTrue();
 
     }
 
@@ -57,4 +64,27 @@ public class Vf extends JFrame {
         return pan;
     }
 
+    public void addListenerTrue(){
+        jbVrai.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer = "true";
+                dispose();
+            }
+        });
+    }
+
+    public void addListenerFalse(){
+        jbFaux.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer = "false";
+                dispose();
+            }
+        });
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
 }

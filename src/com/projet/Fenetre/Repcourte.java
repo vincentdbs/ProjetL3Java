@@ -2,21 +2,24 @@ package com.projet.Fenetre;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Repcourte extends JFrame{
+public class Repcourte extends JDialog{
 
     private JLabel jlQuestion;
     private JTextField jtfRep;
     private JButton jbValider;
+    private String answer;
 
-    public Repcourte(){
-
+    public Repcourte(JFrame parent, String enonce){
+        super(parent, true);
         setSize(300,200);
         setTitle("Réponse courte");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        initiate();
+        initiate(enonce);
         getContentPane().add(placeAll());
 
         setResizable(false);
@@ -27,14 +30,14 @@ public class Repcourte extends JFrame{
 
     }
 
-    private void initiate(){
+    private void initiate(String enonce){
 
-        jlQuestion = new JLabel("la question est blablabla");
+        jlQuestion = new JLabel(enonce);
 
         jtfRep = new JTextField(20);
 
         jbValider = new JButton("Valider");
-
+        addListenerValider();
     }
 
 
@@ -59,4 +62,17 @@ public class Repcourte extends JFrame{
         return pan;
     }
 
+    private void addListenerValider(){
+        jbValider.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                answer = jtfRep.getText();
+                dispose();
+            }
+        });
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
 }

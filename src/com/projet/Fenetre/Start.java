@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public class Start extends JFrame {
 
-    JLabel jlBienvenue;
-    JButton jbCommencer;
+    private JLabel jlBienvenue;
+    private JButton jbCommencer;
 
     public Start(){
 
@@ -58,7 +58,7 @@ public class Start extends JFrame {
         jbCommencer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ChoixNom choixNom = new ChoixNom();
+                MenuPrincipal menuPrincipal = new MenuPrincipal();
                 dispose();
             }
         });

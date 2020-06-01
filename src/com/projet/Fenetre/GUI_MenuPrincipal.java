@@ -1,6 +1,7 @@
 package com.projet.Fenetre;
 
 import com.projet.Joueur.EnsJoueurs;
+import com.projet.Joueur.Joueur;
 import com.projet.Phase.Phase1;
 import com.projet.Question.ListeQuestions;
 import com.projet.Themes;
@@ -47,15 +48,18 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void initiate(){
         btnStart = new JButton("Jouer");
-        btnTheme = new JButton("Voir thèmes");
+        btnTheme = new JButton("Afficher thèmes");
+        btnAfficherJoueurs = new JButton("Afficher joueurs");
         addListenerStart();
         addListenerTheme();
+        addListenerJoueur();
     }
 
     private JPanel placeAll(){
         JPanel panel = new JPanel();
         panel.add(btnStart);
         panel.add(btnTheme);
+        panel.add(btnAfficherJoueurs);
         return panel;
     }
 
@@ -74,6 +78,15 @@ public class GUI_MenuPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GUI_Theme1 theme = new GUI_Theme1(themes);
+            }
+        });
+    }
+
+    private void addListenerJoueur(){
+        btnAfficherJoueurs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI_Scores scores = new GUI_Scores(ensJoueurs);
             }
         });
     }

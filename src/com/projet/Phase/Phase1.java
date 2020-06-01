@@ -46,7 +46,6 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    qcm.dispose();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
@@ -54,7 +53,6 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    vf.dispose();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
@@ -62,7 +60,6 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    rc.dispose();
                     System.out.println(joueurs[i].getScore());
                     break;
             }

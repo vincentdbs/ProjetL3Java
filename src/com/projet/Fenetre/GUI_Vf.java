@@ -1,17 +1,20 @@
 package com.projet.Fenetre;
 
-import com.projet.Question.Type.VF;
+import com.projet.Chronometre;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.lang.Thread.sleep;
+
 public class GUI_Vf extends JDialog {
 
     private JLabel jlQuestion;
     private JButton jbVrai, jbFaux;
     private String answer;
+    private Chronometre chronometre = new Chronometre("a");
 
     public GUI_Vf(JFrame frame, String enonce){
         super(frame, true);
@@ -19,6 +22,10 @@ public class GUI_Vf extends JDialog {
         setTitle("Vrai-Faux");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+
+        chronometre.start();
 
         initiate(enonce);
         getContentPane().add(placeAll());
@@ -39,7 +46,6 @@ public class GUI_Vf extends JDialog {
         jbFaux = new JButton("Faux");
         addListenerFalse();
         addListenerTrue();
-
     }
 
 
@@ -69,6 +75,7 @@ public class GUI_Vf extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 answer = "true";
+                chronometre.setState(false);
                 dispose();
             }
         });
@@ -79,6 +86,8 @@ public class GUI_Vf extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 answer = "false";
+                chronometre.setState(false);
+                System.out.println(chronometre.toString());
                 dispose();
             }
         });
@@ -87,4 +96,6 @@ public class GUI_Vf extends JDialog {
     public String getAnswer() {
         return answer;
     }
+
+
 }

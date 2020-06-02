@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        //todo fonction d'initialisation des questions et joueurs
-//            Start start = new Start();
+        //fonction d'initialisation des questions et joueurs
+
+//        Start start = new Start();
 //        ChoixNom choixNom = new ChoixNom();
 //        Theme1 theme1 = new Theme1();
 //        Scores scores = new Scores();

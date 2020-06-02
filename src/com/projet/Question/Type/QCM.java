@@ -35,8 +35,6 @@ public class QCM {
         this.texte = texte;
     }
 
-    //methode afficher dans sujet
-    // todo a voir si il faut interface graphique ailleurs
     @Override
     public String toString(){
         StringBuilder toDisplay = new StringBuilder(getTexte());

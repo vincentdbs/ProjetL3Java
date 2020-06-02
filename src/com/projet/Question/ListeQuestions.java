@@ -49,7 +49,6 @@ public class ListeQuestions {
         listeQuestion.remove(index);
     }
 
-    //  todo à voir si il faut ordonnée par théme
     public void afficherQuestionByLevel(int level){
         listeQuestion.stream()
                 .filter(question -> question.getNiveauDifficulte() == level)
@@ -59,6 +58,13 @@ public class ListeQuestions {
     public void afficherQuestionByTheme(String theme){
         listeQuestion.stream()
                 .filter(question -> question.getTheme() == theme)
+                .forEach(question -> question.afficher());
+    }
+
+    public void afficherQuestionByThemeLevel(String theme, int level){
+        listeQuestion.stream()
+                .filter(question -> question.getTheme().equals(theme))
+                .filter(question -> question.getNiveauDifficulte() == level)
                 .forEach(question -> question.afficher());
     }
 

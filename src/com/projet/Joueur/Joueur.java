@@ -48,7 +48,6 @@ public class Joueur {
     }
 
     public void changerEtat(String etat){
-        //todo à changer en fonction des besoins du jeu final
         setEtat(etat);
     }
 

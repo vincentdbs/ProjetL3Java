@@ -55,7 +55,6 @@ public class Phase1 implements Phase {
                             joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
                             "Le joueur éliminé est " +  joueursElimine[0].getNom()
                     , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
-
         }else{ //sinon departager les joueurs au chrono
             Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list

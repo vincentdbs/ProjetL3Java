@@ -66,7 +66,7 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //todo creer une nouvelle liste de question theme et joueurs
+                //todo creer une nouvelle liste de question theme et joueurs à chaque relancement de partie
                 Phase1 phase1 = new Phase1(themes, listeQuestions, ensJoueurs.getJoueurSelectionne(), GUI_MenuPrincipal.this);
                 phase1.phaseDeJeu();
             }

@@ -9,9 +9,8 @@ import com.projet.Question.Type.VF;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Tools {
-    public Tools() {
-    }
+public final class Tools {
+    private Tools() {}
 
     /**
      * Renvoie le nom du type de la Question passée en paramètre
@@ -144,6 +143,9 @@ public class Tools {
                 .toArray(Joueur[]::new);
     }
 
+    /**
+     * Determine si le resultat à une question est bon ou faux
+     */
     public static boolean isGoodAnswer(Question question, String answer){
         switch (question.getEnonce().getClass().getName()){
             case "com.projet.Question.Type.QCM":{

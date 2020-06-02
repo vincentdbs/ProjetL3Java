@@ -40,45 +40,9 @@ public class Phase1 implements Phase {
         int nbQuestion = listeQuestions.size();
         Chronometre[]tempsReponses = new Chronometre[4];
 
-        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur le thème : "
-                + theme.getArrayTheme()[theme.getIndicateur()] +
-                "\nChaque bonne réponse rapporte 2 points.\n" +
-                "Ordre : " + joueurs[0].getNom() + ", "
-                + joueurs[1].getNom() + ", "
-                + joueurs[2].getNom() + ", "
-                + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
+        displayMessageRules();
 
-        //affichage des questions
-        for (int i = 0; i < joueurs.length ; i++) {
-            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
-            Question<?> q = listeQuestions.get(numQuestionSelected);
-            switch (Tools.getQuestionType(q)){
-                case "QCM" :
-                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
-                    if (Tools.isGoodAnswer(q, qcm.getAnswer())){
-                        joueurs[i].majScore(2);
-                    }
-                    tempsReponses[i] = qcm.getChronometre();
-                    System.out.println(joueurs[i].getScore());
-                    break;
-                case "VF":
-                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
-                    if (Tools.isGoodAnswer(q, vf.getAnswer())){
-                        joueurs[i].majScore(2);
-                    }
-                    tempsReponses[i] = vf.getChronometre();
-                    System.out.println(joueurs[i].getScore());
-                    break;
-                case "RC":
-                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
-                    if (Tools.isGoodAnswer(q, rc.getAnswer())){
-                        joueurs[i].majScore(2);
-                    }
-                    tempsReponses[i] = rc.getChronometre();
-                    System.out.println(joueurs[i].getScore());
-                    break;
-            }
-        }
+        askQuestionToPlayer(nbQuestion,tempsReponses);
 
 
         //Récuperation des joueurs avec le plus petit score
@@ -114,6 +78,50 @@ public class Phase1 implements Phase {
                 System.out.println("departage");
             }
         }
+    }
 
+    private void displayMessageRules(){
+        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur le thème : "
+                + theme.getArrayTheme()[theme.getIndicateur()] +
+                "\nChaque bonne réponse rapporte 2 points.\n" +
+                "Ordre : " + joueurs[0].getNom() + ", "
+                + joueurs[1].getNom() + ", "
+                + joueurs[2].getNom() + ", "
+                + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void askQuestionToPlayer(int nbQuestion, Chronometre[] tempsReponses){
+        /** Modification direct de temps de réponse car shallow copy**/
+        //affichage des questions
+        for (int i = 0; i < joueurs.length ; i++) {
+            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
+            Question<?> q = listeQuestions.get(numQuestionSelected);
+            switch (Tools.getQuestionType(q)){
+                case "QCM" :
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
+                    if (Tools.isGoodAnswer(q, qcm.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = qcm.getChronometre();
+                    System.out.println(joueurs[i].getScore());
+                    break;
+                case "VF":
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
+                    if (Tools.isGoodAnswer(q, vf.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = vf.getChronometre();
+                    System.out.println(joueurs[i].getScore());
+                    break;
+                case "RC":
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
+                    if (Tools.isGoodAnswer(q, rc.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = rc.getChronometre();
+                    System.out.println(joueurs[i].getScore());
+                    break;
+            }
+        }
     }
 }

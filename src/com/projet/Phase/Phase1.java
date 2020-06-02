@@ -1,9 +1,9 @@
 package com.projet.Phase;
 
 import com.projet.Chronometre;
-import com.projet.Fenetre.GUI_Qcm;
-import com.projet.Fenetre.GUI_Repcourte;
-import com.projet.Fenetre.GUI_Vf;
+import com.projet.Fenetre.Question.GUI_QCM;
+import com.projet.Fenetre.Question.GUI_RC;
+import com.projet.Fenetre.Question.GUI_VF;
 import com.projet.Joueur.Joueur;
 import com.projet.Question.ListeQuestions;
 import com.projet.Question.Question;
@@ -12,11 +12,9 @@ import com.projet.Question.Type.RC;
 import com.projet.Question.Type.VF;
 import com.projet.Themes;
 import com.projet.Tools;
-import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Phase1 implements Phase {
     private Themes theme;
@@ -56,7 +54,7 @@ public class Phase1 implements Phase {
             Question<?> q = listeQuestions.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
-                    GUI_Qcm qcm = new GUI_Qcm(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
                     if (isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
@@ -64,7 +62,7 @@ public class Phase1 implements Phase {
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
-                    GUI_Vf vf = new GUI_Vf(parent, ((VF) q.getEnonce()).getTexte());
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
                     if (isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
@@ -72,7 +70,7 @@ public class Phase1 implements Phase {
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
-                    GUI_Repcourte rc = new GUI_Repcourte(parent,((RC) q.getEnonce()).getTexte());
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
                     if (isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }

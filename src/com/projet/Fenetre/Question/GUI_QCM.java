@@ -1,19 +1,17 @@
-package com.projet.Fenetre;
-
-import com.projet.Chronometre;
+package com.projet.Fenetre.Question;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI_Qcm extends GUI_Question{
+public class GUI_QCM extends GUI_Question {
 
     private JLabel jlQuestion;
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
 
-    public GUI_Qcm(JFrame parent, String enonce, String... reponses){
+    public GUI_QCM(JFrame parent, String enonce, String... reponses){
         super(parent);
         setSize(300,200);
         setTitle("QCM");

@@ -1,4 +1,4 @@
-package com.projet.Fenetre;
+package com.projet.Fenetre.Question;
 
 import com.projet.Chronometre;
 

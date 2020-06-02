@@ -1,19 +1,19 @@
-package com.projet.Fenetre;
+package com.projet.Fenetre.Question;
 
-import com.projet.Chronometre;
+import com.projet.Fenetre.Question.GUI_Question;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI_Repcourte extends GUI_Question{
+public class GUI_RC extends GUI_Question {
 
     private JLabel jlQuestion;
     private JTextField jtfRep;
     private JButton jbValider;
 
-    public GUI_Repcourte(JFrame parent, String enonce){
+    public GUI_RC(JFrame parent, String enonce){
         super(parent);
         setSize(300,200);
         setTitle("Réponse courte");

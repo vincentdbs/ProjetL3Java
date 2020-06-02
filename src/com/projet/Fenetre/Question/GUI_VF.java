@@ -1,6 +1,6 @@
-package com.projet.Fenetre;
+package com.projet.Fenetre.Question;
 
-import com.projet.Chronometre;
+import com.projet.Fenetre.Question.GUI_Question;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
 
 import static java.lang.Thread.sleep;
 
-public class GUI_Vf extends GUI_Question {
+public class GUI_VF extends GUI_Question {
 
     private JLabel jlQuestion;
     private JButton jbVrai, jbFaux;
 
-    public GUI_Vf(JFrame frame, String enonce){
+    public GUI_VF(JFrame frame, String enonce){
         super(frame);
         setSize(200,200);
         setTitle("Vrai-Faux");

@@ -78,12 +78,15 @@ public class Phase1 implements Phase {
             }
         }
 
+//        if(getJoueurElimine(joueurs, tempsReponses) == -1){
+//
+//        }
+
         JOptionPane.showMessageDialog(null, "Résultat :\n" +
                 joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0][3] + "h" + tempsReponses[0][2] + "min" +  tempsReponses[0][1] + "s" + tempsReponses[0][0] + "s\n" +
                 joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1][3] + "h" + tempsReponses[1][2] + "min" +  tempsReponses[1][1] + "s" + tempsReponses[1][0] + "s\n" +
                 joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2][3] + "h" + tempsReponses[2][2] + "min" +  tempsReponses[2][1] + "s" + tempsReponses[2][0] + "s\n" +
                 joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
-
                 , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -116,18 +119,22 @@ public class Phase1 implements Phase {
         return false;
     }
 
-//    private int getJoueurElimine(Joueur[] joueurs, int[] chrono){
-//        int index = -1;
-//        for (int i = 0; i < joueurs.length-1; i++) {
-//            if(joueurs[i].getScore() < joueurs[i+1].getScore()){
-//                index = i;
-//            }else if (joueurs[i].getScore() == joueurs[i+1].getScore()){
-//                if (chrono[i] < chrono[i+1]){
-//
-//                }
-//            }
-//        }
-//        return index;
-//    }
+    private int getJoueurElimine(Joueur[] joueurs, int[] chrono){
+        int index = 0;
+        for (int i = 1; i < joueurs.length ; i++) {
+            if(joueurs[i].getScore() < joueurs[index].getScore()){
+                index = i;
+            }
+            else if(joueurs[i].getScore() == joueurs[index].getScore()){
+                if(chrono[i] > chrono[index]){
+                    index = i;
+                }
+                else if(chrono[i] == chrono[index]){
+                    index = -1;
+                }
+            }
+        }
+        return index;
+    }
 
 }

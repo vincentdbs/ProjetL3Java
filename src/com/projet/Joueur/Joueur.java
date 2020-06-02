@@ -5,6 +5,7 @@ public class Joueur {
     private String nom, etat; //etat = sélectionné, gagnant, super gagnant, éliminé ou en attente
     private int score, numero;
 
+
     public Joueur(String nom, String etat, int score) {
         this.nom = nom;
         this.etat = etat;

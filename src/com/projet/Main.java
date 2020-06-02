@@ -104,8 +104,6 @@ public class Main {
 
     public static void jeu(){
         GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
-
-
     }
 
 }

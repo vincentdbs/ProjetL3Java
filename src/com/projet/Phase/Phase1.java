@@ -111,8 +111,6 @@ public class Phase1 implements Phase {
                                 joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
                                 "Le joueur éliminé est " +  joueursElimine[0].getNom()
                         , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
-
-
             }else{
                 //todo lancer phase de departage des joueurs
                 System.out.println("departage");
@@ -149,25 +147,4 @@ public class Phase1 implements Phase {
         }
         return false;
     }
-
-    private int getJoueurElimine(Joueur[] joueurs, int[] chrono){
-        int index = 0;
-        for (int i = 1; i < joueurs.length ; i++) {
-            if(joueurs[i].getScore() < joueurs[index].getScore()){
-                index = i;
-            }
-            else if(joueurs[i].getScore() == joueurs[index].getScore()){
-                if(chrono[i] > chrono[index]){
-                    index = i;
-                }
-                else if(chrono[i] == chrono[index]){
-                    index = -1;
-                }
-            }
-        }
-        return index;
-    }
-
-
-
 }

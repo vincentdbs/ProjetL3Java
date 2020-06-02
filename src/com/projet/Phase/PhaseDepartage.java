@@ -15,13 +15,13 @@ import com.projet.Tools;
 import javax.swing.*;
 import java.util.List;
 
-public class PhaseDerpartage implements Phase {
+public class PhaseDepartage implements Phase {
     private Themes theme;
     private List<Question> listeQuestions;
     private Joueur[] joueurs;
     private JFrame parent;
 
-    public PhaseDerpartage(Themes theme, ListeQuestions listeQuestions,  JFrame parent, Joueur... joueurs) {
+    public PhaseDepartage(Themes theme, ListeQuestions listeQuestions, JFrame parent, Joueur... joueurs) {
         this.theme = theme;
         theme.selectionnerTheme();
         this.listeQuestions = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);

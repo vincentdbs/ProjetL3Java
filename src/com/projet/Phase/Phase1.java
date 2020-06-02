@@ -55,7 +55,7 @@ public class Phase1 implements Phase {
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
-                    if (isGoodAnswer(q, qcm.getAnswer())){
+                    if (Tools.isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = qcm.getChronometre();
@@ -63,7 +63,7 @@ public class Phase1 implements Phase {
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
-                    if (isGoodAnswer(q, vf.getAnswer())){
+                    if (Tools.isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = vf.getChronometre();
@@ -71,7 +71,7 @@ public class Phase1 implements Phase {
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
-                    if (isGoodAnswer(q, rc.getAnswer())){
+                    if (Tools.isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = rc.getChronometre();
@@ -115,34 +115,5 @@ public class Phase1 implements Phase {
             }
         }
 
-    }
-
-    private boolean isGoodAnswer(Question question, String answer){
-        switch (question.getEnonce().getClass().getName()){
-            case "com.projet.Question.Type.QCM":{
-                QCM enonce = (QCM) question.getEnonce();
-                if(enonce.getBonneReponse() == Integer.parseInt(answer)){
-                    return true;
-                }
-                break;
-            }
-            case "com.projet.Question.Type.VF":{
-                VF enonce = (VF) question.getEnonce();
-                if(enonce.isReponse() == Boolean.parseBoolean(answer)){
-                    return true;
-                }
-                break;
-            }
-            case "com.projet.Question.Type.RC":{
-                RC enonce = (RC) question.getEnonce();
-                if(enonce.getBonneReponse().equals(answer)){
-                    return true;
-                }
-                break;
-            }
-            default:
-                break;
-        }
-        return false;
     }
 }

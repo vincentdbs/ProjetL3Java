@@ -86,7 +86,6 @@ public class Phase1 implements Phase {
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            System.out.println("departagé au score");
             JOptionPane.showMessageDialog(null, "Résultat :\n" +
                             joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
                             joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
@@ -96,8 +95,7 @@ public class Phase1 implements Phase {
                     , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
 
         }else{ //sinon departager les joueurs au chrono
-            //todo pb car detemrinatiopn du lowest et pas greatest
-            Chronometre lowestChrono = Tools.getLowestChronometer(tempsReponses); //recuperation du plus petit chrono
+            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
             for (int i = 0; i < tempsReponses.length ; i++) {
                 if (!(tempsReponses[i].equals(lowestChrono))){
@@ -106,7 +104,6 @@ public class Phase1 implements Phase {
             }
             joueursElimine = list.toArray(new Joueur[list.size()]);
             if(joueursElimine.length == 1){
-                System.out.println("departagé au chrono");
                 JOptionPane.showMessageDialog(null, "Résultat :\n" +
                                 joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
                                 joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +

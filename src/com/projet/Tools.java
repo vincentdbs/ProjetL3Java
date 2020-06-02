@@ -72,6 +72,44 @@ public class Tools {
     }
 
     /**
+     * Renvoie le chronomètre le plus grand parmi le tableau en paramètre
+     */
+    public static Chronometre getGreatestChronometer(Chronometre[] chronometres){
+        return Arrays.stream(chronometres)
+                .min(new Comparator<Chronometre>() {
+                    @Override
+                    public int compare(Chronometre o1, Chronometre o2) {
+                        if(o1.getHour() < o2.getHour()){
+                            return 1;
+                        }else if (o1.getHour() > o2.getHour()){
+                            return -1;
+                        }else{
+                            if (o1.getMinute() < o2.getMinute()){
+                                return  11;
+                            }else if(o1.getMinute() > o2.getMinute()){
+                                return -1;
+                            }else{
+                                if (o1.getSecond()< o2.getSecond()){
+                                    return  1;
+                                }else if(o1.getSecond() > o2.getSecond()){
+                                    return -1;
+                                }else{
+                                    if (o1.getMilisecond() < o2.getMilisecond()){
+                                        return  1;
+                                    }else if(o1.getMilisecond()> o2.getMilisecond()){
+                                        return -1;
+                                    }else{
+                                        return 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                })
+                .get();
+    }
+
+    /**
      * Renvoie le ou les joueurs ayant le plus petit score parmi le tableau en paramètre
      */
     public static Joueur[] getJoueursLowestScore(Joueur[] joueurs){

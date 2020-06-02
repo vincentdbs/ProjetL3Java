@@ -102,4 +102,8 @@ public class GUI_Vf extends JDialog {
     public int[] getTempsReponse() {
         return tempsReponse;
     }
+
+    public Chronometre getChronometre() {
+        return chronometre;
+    }
 }

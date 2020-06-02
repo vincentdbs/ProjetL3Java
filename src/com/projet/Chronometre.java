@@ -1,6 +1,6 @@
 package com.projet;
 
-public class Chronometre extends  Thread {
+public class Chronometre extends  Thread implements Comparable {
     private int milisecond = 0, second = 0, minute =0, hour =0;
     private boolean state = true;
 
@@ -42,5 +42,36 @@ public class Chronometre extends  Thread {
 
     public String toString(){
         return hour + "h" + minute + "min" + second + "s" + milisecond + "ms";
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        Chronometre c = (Chronometre) o;
+        if(hour < c.hour){
+            return -1;
+        }else if (hour > c.hour){
+            return 1;
+        }else{
+            if (minute < c.minute){
+                return  -1;
+            }else if(minute > c.minute){
+                return 1;
+            }else{
+                if (second < c.second){
+                    return  -1;
+                }else if(second > c.second){
+                    return 1;
+                }else{
+                    if (milisecond < c.milisecond){
+                        return  -1;
+                    }else if(milisecond > c.milisecond){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }
+            }
+        }
     }
 }

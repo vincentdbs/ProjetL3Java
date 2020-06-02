@@ -87,4 +87,8 @@ public class GUI_Repcourte extends JDialog{
     public int[] getTempsReponse() {
         return tempsReponse;
     }
+
+    public Chronometre getChronometre() {
+        return chronometre;
+    }
 }

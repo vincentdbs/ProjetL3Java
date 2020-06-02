@@ -111,4 +111,8 @@ public class GUI_Qcm extends JDialog{
     public int[] getTempsReponse() {
         return tempsReponse;
     }
+
+    public Chronometre getChronometre() {
+        return chronometre;
+    }
 }

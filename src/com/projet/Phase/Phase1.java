@@ -1,5 +1,6 @@
 package com.projet.Phase;
 
+import com.projet.Chronometre;
 import com.projet.Fenetre.GUI_Qcm;
 import com.projet.Fenetre.GUI_Repcourte;
 import com.projet.Fenetre.GUI_Vf;
@@ -36,7 +37,7 @@ public class Phase1 implements Phase {
     @Override
     public void phaseDeJeu() {
         int nbQuestion = listeQuestions.size();
-        int[][] tempsReponses = new int[4][4];
+        Chronometre[]tempsReponses = new Chronometre[4];
 
         JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur le thème : "
                 + theme.getArrayTheme()[theme.getIndicateur()] +
@@ -56,7 +57,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    tempsReponses[i] = qcm.getTempsReponse();
+                    tempsReponses[i] = qcm.getChronometre();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
@@ -64,7 +65,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    tempsReponses[i] = vf.getTempsReponse();
+                    tempsReponses[i] = vf.getChronometre();
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
@@ -72,7 +73,7 @@ public class Phase1 implements Phase {
                     if (isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }
-                    tempsReponses[i] = rc.getTempsReponse();
+                    tempsReponses[i] = rc.getChronometre();
                     System.out.println(joueurs[i].getScore());
                     break;
             }
@@ -81,13 +82,26 @@ public class Phase1 implements Phase {
 //        if(getJoueurElimine(joueurs, tempsReponses) == -1){
 //
 //        }
+//
+//        JOptionPane.showMessageDialog(null, "Résultat :\n" +
+//                joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0][3] + "h" + tempsReponses[0][2] + "min" +  tempsReponses[0][1] + "s" + tempsReponses[0][0] + "s\n" +
+//                joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1][3] + "h" + tempsReponses[1][2] + "min" +  tempsReponses[1][1] + "s" + tempsReponses[1][0] + "s\n" +
+//                joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2][3] + "h" + tempsReponses[2][2] + "min" +  tempsReponses[2][1] + "s" + tempsReponses[2][0] + "s\n" +
+//                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
+//                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
 
-        JOptionPane.showMessageDialog(null, "Résultat :\n" +
-                joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0][3] + "h" + tempsReponses[0][2] + "min" +  tempsReponses[0][1] + "s" + tempsReponses[0][0] + "s\n" +
-                joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1][3] + "h" + tempsReponses[1][2] + "min" +  tempsReponses[1][1] + "s" + tempsReponses[1][0] + "s\n" +
-                joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2][3] + "h" + tempsReponses[2][2] + "min" +  tempsReponses[2][1] + "s" + tempsReponses[2][0] + "s\n" +
-                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
-                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+        int elimine = getJoueurElimine(joueurs, tempsReponses);
+        if(elimine != -1){
+            JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                            joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
+                            joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
+                            joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
+                            joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
+                            "Le joueur éliminé est " +  joueurs[elimine].getNom()
+                    , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
     }
 
     private boolean isGoodAnswer(Question question, String answer){
@@ -130,6 +144,25 @@ public class Phase1 implements Phase {
                     index = i;
                 }
                 else if(chrono[i] == chrono[index]){
+                    index = -1;
+                }
+            }
+        }
+        return index;
+    }
+
+
+    private int getJoueurElimine(Joueur[] joueurs, Chronometre[] chrono){
+        int index = 0;
+        for (int i = 1; i < joueurs.length ; i++) {
+            if(joueurs[i].getScore() < joueurs[index].getScore()){
+                index = i;
+            }
+            else if(joueurs[i].getScore() == joueurs[index].getScore()){
+                if(chrono[i].compareTo(chrono[index]) > 0){
+                    index = i;
+                }
+                else if(chrono[i].compareTo(chrono[index]) == 0){
                     index = -1;
                 }
             }

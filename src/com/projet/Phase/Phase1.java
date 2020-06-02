@@ -27,6 +27,7 @@ public class Phase1 implements Phase {
         theme.selectionnerTheme();
         this.listeQuestions = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
+        this.parent = parent;
     }
 
     @Override
@@ -90,15 +91,19 @@ public class Phase1 implements Phase {
 //                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
 //                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
 
-        int elimine = getJoueurElimine(joueurs, tempsReponses);
-        if(elimine != -1){
+        ArrayList<Integer> elimine = getJoueurElimine(joueurs, tempsReponses);
+        if(elimine.size() == 1){ //si taille 1 = un seul joueur à éliminé
             JOptionPane.showMessageDialog(null, "Résultat :\n" +
                             joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
                             joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
                             joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
                             joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
-                            "Le joueur éliminé est " +  joueurs[elimine].getNom()
+                            "Le joueur éliminé est " +  joueurs[elimine.get(0)].getNom()
                     , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+        }else{ //sinon plusieurs joueurs à départager
+
+
+            System.out.println("test");
         }
 
 
@@ -152,7 +157,9 @@ public class Phase1 implements Phase {
     }
 
 
-    private int getJoueurElimine(Joueur[] joueurs, Chronometre[] chrono){
+    private ArrayList<Integer> getJoueurElimine(Joueur[] joueurs, Chronometre[] chrono){
+        //todo corriger le cas où le joueur d'index 0 est à éliminer
+        ArrayList<Integer> joueursEliminie = new ArrayList<>();
         int index = 0;
         for (int i = 1; i < joueurs.length ; i++) {
             if(joueurs[i].getScore() < joueurs[index].getScore()){
@@ -163,11 +170,11 @@ public class Phase1 implements Phase {
                     index = i;
                 }
                 else if(chrono[i].compareTo(chrono[index]) == 0){
-                    index = -1;
+                    joueursEliminie.add(i);
                 }
             }
         }
-        return index;
+        return joueursEliminie;
     }
 
 }

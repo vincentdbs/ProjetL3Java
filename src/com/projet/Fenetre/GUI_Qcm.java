@@ -7,34 +7,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUI_Qcm extends JDialog{
+public class GUI_Qcm extends GUI_Question{
 
     private JLabel jlQuestion;
     private JLabel jlRep1, jlRep2, jlRep3;
     private JButton jbRep1, jbRep2, jbRep3;
-    private String answer;
-    private Chronometre chronometre = new Chronometre();
-    private int[] tempsReponse;
 
     public GUI_Qcm(JFrame parent, String enonce, String... reponses){
-        super(parent, true);
+        super(parent);
         setSize(300,200);
         setTitle("QCM");
-
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        chronometre.start();
         initiate(enonce, reponses);
         getContentPane().add(placeAll());
-
-        setResizable(false);
-        setLocationRelativeTo(null);
-
         pack();
         setVisible(true);
-
-
-
     }
 
     private void initiate(String enonce, String[] reponses){
@@ -96,23 +82,10 @@ public class GUI_Qcm extends JDialog{
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                answer = String.valueOf(Integer.parseInt(jbRep1.getText())-1);
-                chronometre.setState(false);
-                tempsReponse = chronometre.getTime();
+                setAnswer(String.valueOf(Integer.parseInt(jbRep1.getText())-1));
+                stopChronometre();
                 dispose();
             }
         });
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public int[] getTempsReponse() {
-        return tempsReponse;
-    }
-
-    public Chronometre getChronometre() {
-        return chronometre;
     }
 }

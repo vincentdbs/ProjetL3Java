@@ -24,7 +24,6 @@ public class GUI_MenuPrincipal extends JFrame {
 
         //creation des themes + selection du premier theme
         themes = new Themes();
-        themes.selectionnerTheme();
 
         //creation de la liste des joueurs
         ensJoueurs = new EnsJoueurs();

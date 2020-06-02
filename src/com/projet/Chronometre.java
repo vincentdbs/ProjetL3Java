@@ -1,5 +1,7 @@
 package com.projet;
 
+import java.util.Objects;
+
 public class Chronometre extends  Thread implements Comparable {
     private int milisecond = 0, second = 0, minute =0, hour =0;
     private boolean state = true;
@@ -58,6 +60,18 @@ public class Chronometre extends  Thread implements Comparable {
 
     public String toString(){
         return hour + "h" + minute + "min" + second + "s" + milisecond + "ms";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Chronometre that = (Chronometre) o;
+        return milisecond == that.milisecond &&
+                second == that.second &&
+                minute == that.minute &&
+                hour == that.hour &&
+                state == that.state;
     }
 
 

@@ -39,6 +39,7 @@ public class Themes {
         int index;
         do {
             index = (int) (Math.random() * 10);
+            System.out.println("theme "  + index);
         }while (index == getIndicateur());
         setIndicateur(index);
         return indicateur;

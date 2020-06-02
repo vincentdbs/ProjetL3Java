@@ -12,9 +12,11 @@ import com.projet.Question.Type.RC;
 import com.projet.Question.Type.VF;
 import com.projet.Themes;
 import com.projet.Tools;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Phase1 implements Phase {
     private Themes theme;
@@ -91,21 +93,33 @@ public class Phase1 implements Phase {
 //                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3][3] + "h" + tempsReponses[3][2] + "min" +  tempsReponses[3][1] + "s" + tempsReponses[3][0] + "s\n"
 //                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
 
-        ArrayList<Integer> elimine = getJoueurElimine(joueurs, tempsReponses);
-        if(elimine.size() == 1){ //si taille 1 = un seul joueur à éliminé
+//        ArrayList<Integer> elimine = getJoueurElimine(joueurs, tempsReponses);
+//        if(elimine.size() == 1){ //si taille 1 = un seul joueur à éliminé
+//            JOptionPane.showMessageDialog(null, "Résultat :\n" +
+//                            joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
+//                            joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
+//                            joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
+//                            joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
+//                            "Le joueur éliminé est " +  joueurs[elimine.get(0)].getNom()
+//                    , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+//        }else{ //sinon plusieurs joueurs à départager
+//        }
+
+        System.out.println(Tools.getLowestChronometer(tempsReponses));
+        Arrays.stream(tempsReponses).forEach(chronometre -> System.out.println(chronometre.toString()));
+
+        Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
+        if(joueursElimine.length == 1){
             JOptionPane.showMessageDialog(null, "Résultat :\n" +
                             joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
                             joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
                             joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
                             joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
-                            "Le joueur éliminé est " +  joueurs[elimine.get(0)].getNom()
+                            "Le joueur éliminé est " +  joueursElimine[0].getNom()
                     , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
-        }else{ //sinon plusieurs joueurs à départager
-
-
-            System.out.println("test");
+        }else{
+            Arrays.stream(joueursElimine).forEach(Joueur::afficher);
         }
-
 
     }
 
@@ -157,24 +171,5 @@ public class Phase1 implements Phase {
     }
 
 
-    private ArrayList<Integer> getJoueurElimine(Joueur[] joueurs, Chronometre[] chrono){
-        //todo corriger le cas où le joueur d'index 0 est à éliminer
-        ArrayList<Integer> joueursEliminie = new ArrayList<>();
-        int index = 0;
-        for (int i = 1; i < joueurs.length ; i++) {
-            if(joueurs[i].getScore() < joueurs[index].getScore()){
-                index = i;
-            }
-            else if(joueurs[i].getScore() == joueurs[index].getScore()){
-                if(chrono[i].compareTo(chrono[index]) > 0){
-                    index = i;
-                }
-                else if(chrono[i].compareTo(chrono[index]) == 0){
-                    joueursEliminie.add(i);
-                }
-            }
-        }
-        return joueursEliminie;
-    }
 
 }

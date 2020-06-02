@@ -1,9 +1,16 @@
 package com.projet.Phase;
 
+import com.projet.Fenetre.GUI_Qcm;
+import com.projet.Fenetre.GUI_Repcourte;
+import com.projet.Fenetre.GUI_Vf;
 import com.projet.Joueur.Joueur;
 import com.projet.Question.ListeQuestions;
 import com.projet.Question.Question;
+import com.projet.Question.Type.QCM;
+import com.projet.Question.Type.RC;
+import com.projet.Question.Type.VF;
 import com.projet.Themes;
+import com.projet.Tools;
 
 import javax.swing.*;
 import java.util.List;

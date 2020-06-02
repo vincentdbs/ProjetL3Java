@@ -32,6 +32,22 @@ public class Chronometre extends  Thread implements Comparable {
         }
     }
 
+    public int getMilisecond() {
+        return milisecond;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
     public int[] getTime(){
         return new int[]{milisecond, second, minute, hour};
     }

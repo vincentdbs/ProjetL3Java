@@ -6,6 +6,22 @@ Combien de médailles à gagner Phelps aux JO de Rio ?
 6
 1
 
+1
+Sport
+Où se déroulait l'avant dernière finale de Coupe du monde de Handball ?
+France
+USA
+Croatie
+2
+
+2
+Sport
+Qui sont les deux derniers champions du monde de 100m ?
+Yoann Black et Usain Bolt
+Usain Bolt et Christophe Lemaître
+Yoann Black et Christophe Lemaître
+0
+
 2
 Sport
 Quelle est le nom du plus garnd nageur ?
@@ -13,6 +29,14 @@ Michael Phelps
 Florent Manaudou
 Joran Cielo
 0
+
+3
+Sport
+Comment appelle-t-on le maillot de meilleur spinteur au Tour de France ?
+Maillot blanc à pois rouges
+Maillot rouge
+Maillot vert
+2
 
 3
 Sport
@@ -29,3 +53,94 @@ noir
 blanc
 rouge
 1
+
+1
+Histoire
+Lequel de ces pays a envahi l'Ethiopie en 1935 - 1936 ?
+Espagne
+Royaume-Uni
+Italie
+2
+
+2
+Histoire
+Que désignait le 'S T O' durant une certaine période du XXème siècle ?
+Service du travail obligatoire
+Sécurité du territoire ouest
+Service technique ouvrier
+0
+
+2
+Histoire
+A votre avis, que désigne le terme 'protohistoire' ?
+La transition entre la Préhistoire et l'Histoire
+La période de la Préhistoire précédant l'apparition d'Homo Sapiens
+La période précédant la Préhistoire
+0
+
+3
+Histoire
+Comment les premières années après la première guerre mondiale sont-elles appelées en France ?
+La belle époque
+Les cinq glorieuses
+Les années folles
+2
+
+3
+Histoire
+La coalition qui gouverna la France entre 1919 et 1924 est surnommée ?
+Le Cartel des Gauches
+La Troisième Force
+Le Bloc National
+2
+
+1
+Géographie
+Laquelle de ces villes n'est pas une capitale ?
+Skopje
+Tirana
+Almaty
+2
+
+1
+Géographie
+Quelle langue parle-t-on au Chili ?
+Italien
+Portugais
+Espagnol
+2
+
+2
+Géographie
+Quel océan borde La Réunion ?
+L'océan Atlantique
+L'océan Pacifique
+L'océan Indien
+2
+
+2
+Géographie
+Sur quel continent se situe le Sri Lanka ?
+En Afrique
+En Océanie
+En Asie
+2
+
+3
+Géographie
+Savez-vous quelle est la capitale constitutionnelle de la Bolivie ?
+Bogota
+Sucre
+La Paz
+1
+
+3
+Géographie
+De quel pays le Pérou est-il devenu indépendant le 28 juillet 1821 ?
+Le Portugal
+L'Italie
+L'Espagne
+2
+
+
+

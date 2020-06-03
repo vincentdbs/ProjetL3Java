@@ -24,7 +24,7 @@ public class GUI_Question extends JDialog {
     }
 
     public Chronometre getChronometre() {
-        return new Chronometre();
+        return chronometre;
     }
 
     public String getAnswer() {

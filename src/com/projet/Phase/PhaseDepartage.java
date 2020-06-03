@@ -88,18 +88,27 @@ public class PhaseDepartage implements Phase {
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
                     if (Tools.isGoodAnswer(q, qcm.getAnswer())){
                         score[i] += 1;
+                        System.out.println("Bonne rép");
+                    }else{
+                        System.out.println("Mauvaise rép");
                     }
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
                     if (Tools.isGoodAnswer(q, vf.getAnswer())){
                         score[i] += 1;
+                        System.out.println("Bonne rép");
+                    }else{
+                        System.out.println("Mauvaise rép");
                     }
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
                     if (Tools.isGoodAnswer(q, rc.getAnswer())){
                         score[i] += 1;
+                        System.out.println("Bonne rép");
+                    }else{
+                        System.out.println("Mauvaise rép");
                     }
                     break;
             }

@@ -49,9 +49,11 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart = new JButton("Jouer");
         btnTheme = new JButton("Afficher thèmes");
         btnAfficherJoueurs = new JButton("Afficher joueurs");
+        btnQuitter = new JButton("Quitter");
         addListenerStart();
         addListenerTheme();
         addListenerJoueur();
+        addListenerQuitter();
     }
 
     private JPanel placeAll(){
@@ -59,6 +61,7 @@ public class GUI_MenuPrincipal extends JFrame {
         panel.add(btnStart);
         panel.add(btnTheme);
         panel.add(btnAfficherJoueurs);
+        panel.add(btnQuitter);
         return panel;
     }
 
@@ -87,6 +90,15 @@ public class GUI_MenuPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GUI_Scores scores = new GUI_Scores(ensJoueurs);
+            }
+        });
+    }
+
+    private void addListenerQuitter(){
+        btnQuitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }

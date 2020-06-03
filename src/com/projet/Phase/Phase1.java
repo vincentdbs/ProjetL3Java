@@ -18,14 +18,16 @@ import java.util.*;
 
 public class Phase1 implements Phase {
     private Themes theme;
-    private List<Question> listeQuestions;
+    private List<Question> listeQuestionsPhase;
+    private ListeQuestions listeQuestionsAll;
     private Joueur[] joueurs;
     private JFrame parent;
 
     public Phase1(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs, JFrame parent) {
         this.theme = theme;
         theme.selectionnerTheme();
-        this.listeQuestions = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
+        this.listeQuestionsAll = listeQuestions;
+        this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
         this.parent = parent;
     }
@@ -37,7 +39,7 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
-        int nbQuestion = listeQuestions.size();
+        int nbQuestion = listeQuestionsPhase.size();
         Chronometre[]tempsReponses = new Chronometre[4];
 
         displayMessageRules();
@@ -48,33 +50,21 @@ public class Phase1 implements Phase {
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            JOptionPane.showMessageDialog(null, "Résultat :\n" +
-                            joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
-                            joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
-                            joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
-                            joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
-                            "Le joueur éliminé est " +  joueursElimine[0].getNom()
-                    , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+            displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
         }else{ //sinon departager les joueurs au chrono
-            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
+            Chronometre greatestChronometer = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
             for (int i = 0; i < tempsReponses.length ; i++) {
-                if (!(tempsReponses[i].equals(lowestChrono))){
-                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
+                if (!(tempsReponses[i].equals(greatestChronometer))){
+                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus grand
                 }
             }
             joueursElimine = list.toArray(new Joueur[list.size()]);
             if(joueursElimine.length == 1){
-                JOptionPane.showMessageDialog(null, "Résultat :\n" +
-                                joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
-                                joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
-                                joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
-                                joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
-                                "Le joueur éliminé est " +  joueursElimine[0].getNom()
-                        , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+                displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
             }else{
-                //todo lancer phase de departage des joueurs
-                System.out.println("departage");
+                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, joueursElimine);
+                phaseDepartage.phaseDeJeu();
             }
         }
     }
@@ -89,12 +79,22 @@ public class Phase1 implements Phase {
                 + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
+        JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                        joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
+                        joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
+                        joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
+                        joueurs[3].getNom() + " " + joueurs[3].getScore() + " points en " + tempsReponses[3].toString() + "\n" +
+                        "Le joueur éliminé est " +  elimine
+                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     private void askQuestionToPlayer(int nbQuestion, Chronometre[] tempsReponses){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
-            Question<?> q = listeQuestions.get(numQuestionSelected);
+            Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());

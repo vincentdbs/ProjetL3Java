@@ -10,14 +10,16 @@ import java.util.List;
 
 public class PhaseDepartage implements Phase {
     private Themes theme;
-    private List<Question> listeQuestions;
+    private List<Question> listeQuestionsPhase;
+    private ListeQuestions listeQuestionsAll;
     private Joueur[] joueurs;
     private JFrame parent;
 
     public PhaseDepartage(Themes theme, ListeQuestions listeQuestions, JFrame parent, Joueur... joueurs) {
         this.theme = theme;
         theme.selectionnerTheme();
-        this.listeQuestions = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
+        this.listeQuestionsAll = listeQuestions;
+        this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
         this.parent = parent;
     }

@@ -1,6 +1,8 @@
 package com.projet;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Themes {
     private String[] arrayTheme;
@@ -44,6 +46,7 @@ public class Themes {
         return indicateur;
     }
 
+
     public int selectionnerNextTheme(){
         setIndicateur((getIndicateur()+1)%10);
         return getIndicateur();
@@ -53,9 +56,38 @@ public class Themes {
         int[] indicateur = new int[5];
         for (int i = 0; i < indicateur.length; i++) {
             indicateur[i] = (int) (Math.random() * 10);
+
         }
+
         return indicateur;
     }
+
+    public int[] selectionnerSixThemes(){
+        int[] indicateur = new int[6];
+        ArrayList<Integer> doublon = new ArrayList<>();
+        int random;
+
+
+        for (int i = 0; i < indicateur.length; i++) {
+
+            boolean end = false;
+
+            while(end == false){
+                random = (int) (Math.random() *10);
+                System.out.println(random);
+                if(!doublon.contains(random)){
+                    indicateur[i] = random;
+                    doublon.add(random);
+                    end = true;
+                }
+            }
+
+        }
+
+        return indicateur;
+    }
+
+
 
     public void afficher(){
         for (String theme : arrayTheme) {

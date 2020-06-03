@@ -13,21 +13,25 @@ public class GUI_VF extends GUI_Question {
 
     private JLabel jlQuestion;
     private JButton jbVrai, jbFaux;
+    private JLabel jlTheme;
+    private JLabel jlJoueur;
 
-    public GUI_VF(JFrame frame, String enonce){
+    public GUI_VF(JFrame frame, String enonce, String theme, String joueur){
         super(frame);
         setSize(200,200);
         setTitle("Vrai-Faux");
-        initiate(enonce);
+        initiate(enonce, theme, joueur);
         getContentPane().add(placeAll());
         pack();
         setVisible(true);
     }
 
-    private void initiate(String enonce){
+    private void initiate(String enonce, String theme, String joueur){
         jlQuestion = new JLabel(enonce);
         jbVrai = new JButton("Vrai");
         jbFaux = new JButton("Faux");
+        jlTheme = new JLabel("Thème : " +theme);
+        jlJoueur = new JLabel("Joueur : " + joueur);
         addListenerFalse();
         addListenerTrue();
     }
@@ -39,13 +43,21 @@ public class GUI_VF extends GUI_Question {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         pan.add(jbVrai, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        pan.add(jlTheme, gbc);
+
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        pan.add(jlJoueur, gbc);
 
         gbc.gridx = 2;
         gbc.gridy = 1;

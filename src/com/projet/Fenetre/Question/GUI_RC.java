@@ -1,6 +1,7 @@
 package com.projet.Fenetre.Question;
 
 import com.projet.Fenetre.Question.GUI_Question;
+import com.projet.Joueur.Joueur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,24 +13,30 @@ public class GUI_RC extends GUI_Question {
     private JLabel jlQuestion;
     private JTextField jtfRep;
     private JButton jbValider;
+    private JLabel jlTheme;
+    private JLabel jlJoueur;
 
-    public GUI_RC(JFrame parent, String enonce){
+    public GUI_RC(JFrame parent, String enonce, String theme, String joueur){
         super(parent);
         setSize(300,200);
         setTitle("Réponse courte");
-        initiate(enonce);
+        initiate(enonce, theme, joueur);
         getContentPane().add(placeAll());
         pack();
         setVisible(true);
     }
 
-    private void initiate(String enonce){
+    private void initiate(String enonce, String theme, String joueur){
 
         jlQuestion = new JLabel(enonce);
 
         jtfRep = new JTextField(20);
 
         jbValider = new JButton("Valider");
+
+        jlTheme = new JLabel("Thème : " +theme);
+        jlJoueur = new JLabel("Joueur : " + joueur);
+
         addListenerValider();
     }
 
@@ -43,6 +50,14 @@ public class GUI_RC extends GUI_Question {
         gbc.gridx = 0;
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        pan.add(jlTheme, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        pan.add(jlJoueur, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;

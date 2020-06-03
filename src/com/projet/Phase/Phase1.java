@@ -18,15 +18,15 @@ import java.util.*;
 
 public class Phase1 implements Phase {
     private Themes theme;
-    private List<Question> listeQuestionsPhase;
     private ListeQuestions listeQuestionsAll;
+    private List<Question> listeQuestionsPhase;
     private Joueur[] joueurs;
     private JFrame parent;
 
     public Phase1(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs, JFrame parent) {
         this.theme = theme;
         theme.selectionnerTheme();
-        this.listeQuestionsAll = listeQuestions;
+        listeQuestionsAll = listeQuestions;
         this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
         this.parent = parent;
@@ -39,6 +39,7 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
+
         Chronometre[]tempsReponses = new Chronometre[4];
 
         displayMessageRules();
@@ -46,28 +47,61 @@ public class Phase1 implements Phase {
         askQuestionToPlayer(listeQuestionsPhase.size(),tempsReponses);
 
 
+
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
             displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
+
+            int k=0;
+            Joueur[] listeJoueurPhase2 = new Joueur[3];
+            for(int i=0;i<4;i++){
+                if(!joueursElimine[0].getNom().equals(joueurs[i].getNom())){
+                    listeJoueurPhase2[k] = joueurs[i];
+                    k++;
+                }
+            }
+
+
+            ListeQuestions ListePhase2 = new ListeQuestions();
+            Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
+            phase2.phaseDeJeu();
+
+
         }else{ //sinon departager les joueurs au chrono
-            //todo corriger => il faut recuperer le plus grand chrono parmi les chronos des joueurs ayant le score le plus bas
-            Chronometre greatestChronometer = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus grand chrono
+            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
             for (int i = 0; i < tempsReponses.length ; i++) {
-                if (!(tempsReponses[i].equals(greatestChronometer))){
-                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus grand
+                if (!(tempsReponses[i].equals(lowestChrono))){
+                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
                 }
             }
             joueursElimine = list.toArray(new Joueur[list.size()]);
             if(joueursElimine.length == 1){
+
                 displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
+
+
+                int k=0;
+                Joueur[] listeJoueurPhase2 = new Joueur[3];
+                for(int i=0;i<4;i++){
+                    if(!joueursElimine[0].getNom().equals(joueurs[i].getNom())){
+                        listeJoueurPhase2[k] = joueurs[i];
+                        k++;
+                    }
+                }
+
+                ListeQuestions ListePhase2 = new ListeQuestions();
+                Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
+                phase2.phaseDeJeu();
+
+
             }else{
-                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
-                phaseDepartage.phaseDeJeu();
-                //todo recuperartion du joueur elimine
+               PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
+               phaseDepartage.phaseDeJeu();
             }
         }
+
     }
 
     private void displayMessageRules(){
@@ -99,7 +133,7 @@ public class Phase1 implements Phase {
             Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
-                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (Tools.isGoodAnswer(q, qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
@@ -107,7 +141,7 @@ public class Phase1 implements Phase {
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
-                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
                     if (Tools.isGoodAnswer(q, vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
@@ -115,7 +149,7 @@ public class Phase1 implements Phase {
                     System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
-                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
                     if (Tools.isGoodAnswer(q, rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }

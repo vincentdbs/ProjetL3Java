@@ -85,7 +85,7 @@ public class PhaseDepartage implements Phase {
             Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
-                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), ((QCM) q.getEnonce()).getReponses());
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (Tools.isGoodAnswer(q, qcm.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");
@@ -94,7 +94,7 @@ public class PhaseDepartage implements Phase {
                     }
                     break;
                 case "VF":
-                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte());
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
                     if (Tools.isGoodAnswer(q, vf.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");
@@ -103,7 +103,7 @@ public class PhaseDepartage implements Phase {
                     }
                     break;
                 case "RC":
-                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte());
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
                     if (Tools.isGoodAnswer(q, rc.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");

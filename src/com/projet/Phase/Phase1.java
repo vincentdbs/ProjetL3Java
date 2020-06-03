@@ -39,12 +39,11 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
-        int nbQuestion = listeQuestionsPhase.size();
         Chronometre[]tempsReponses = new Chronometre[4];
 
         displayMessageRules();
 
-        askQuestionToPlayer(nbQuestion,tempsReponses);
+        askQuestionToPlayer(listeQuestionsPhase.size(),tempsReponses);
 
 
         //Récuperation des joueurs avec le plus petit score
@@ -65,6 +64,7 @@ public class Phase1 implements Phase {
             }else{
                 PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, joueursElimine);
                 phaseDepartage.phaseDeJeu();
+                //todo recuperartion du joueur elimine
             }
         }
     }
@@ -90,6 +90,7 @@ public class Phase1 implements Phase {
     }
 
     private void askQuestionToPlayer(int nbQuestion, Chronometre[] tempsReponses){
+        //todo delete les system.out
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {

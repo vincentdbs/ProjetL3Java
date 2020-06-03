@@ -51,7 +51,8 @@ public class Phase1 implements Phase {
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
             displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
         }else{ //sinon departager les joueurs au chrono
-            Chronometre greatestChronometer = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
+            //todo corriger => il faut recuperer le plus grand chrono parmi les chronos des joueurs ayant le score le plus bas
+            Chronometre greatestChronometer = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus grand chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
             for (int i = 0; i < tempsReponses.length ; i++) {
                 if (!(tempsReponses[i].equals(greatestChronometer))){
@@ -62,7 +63,7 @@ public class Phase1 implements Phase {
             if(joueursElimine.length == 1){
                 displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
             }else{
-                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, joueursElimine);
+                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
                 phaseDepartage.phaseDeJeu();
                 //todo recuperartion du joueur elimine
             }

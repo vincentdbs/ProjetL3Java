@@ -23,8 +23,10 @@ public class PhaseDepartage implements Phase {
     private Joueur[] joueurs;
     private Joueur joueurElimine;
     private JFrame parent;
+    private int level;
 
     public PhaseDepartage(Themes theme, ListeQuestions listeQuestions, JFrame parent, Joueur... joueurs) {
+        this.level = 1;
         this.theme = theme;
         theme.selectionnerTheme();
         this.listeQuestionsAll = listeQuestions;
@@ -33,6 +35,17 @@ public class PhaseDepartage implements Phase {
         this.parent = parent;
     }
 
+    public PhaseDepartage(Themes theme, ListeQuestions listeQuestions, JFrame parent, int numPhase, Joueur... joueurs) {
+        this.level = numPhase;
+        this.theme = theme;
+        theme.selectionnerTheme();
+        this.listeQuestionsAll = listeQuestions;
+        this.listeQuestionsPhase = listeQuestions.getQuestionByLevel(numPhase); //les questions proviennent de n'importe quel thème de niveau équivalent à la phase;
+        this.joueurs = joueurs;
+        this.parent = parent;
+    }
+
+
     @Override
     public void selectionnerJoueur() {
 
@@ -40,9 +53,12 @@ public class PhaseDepartage implements Phase {
 
     @Override
     public void phaseDeJeu() {
+        //todo supprimer du tableau de joueur les joueurs ayant bien répondu pour la phase suivante
         int round = 0;
         boolean end = false;
         int[] score = new int[joueurs.length];
+
+        displayMessageRules();
         do {
             //init des scores
             for (int i: score) { score[i] = 0;}
@@ -53,6 +69,9 @@ public class PhaseDepartage implements Phase {
             if (!(loser == -1)){
                 joueurElimine = joueurs[loser];
                 end = true;
+                JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
             }
             round++;
         }while (((round != 3) || !end));
@@ -105,6 +124,16 @@ public class PhaseDepartage implements Phase {
         }else{
             return lose;
         }
+    }
+
+    private void displayMessageRules(){
+        String message = "Phase de départages \nLes joueurs jouent à tour de rôle sur des questions de niveau  " + level +
+                "\nLe joueur éliminé est celui répondant mal lors d'un round (max 3)\n" +
+                "Ordre : ";
+        for (Joueur j: joueurs) {
+            message += j.getNom() + " ";
+        }
+        JOptionPane.showMessageDialog(null, message, "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public Joueur getJoueurElimine() {

@@ -142,5 +142,52 @@ L'Italie
 L'Espagne
 2
 
+1
+Art
+Qui a dit que "nous avons l'art pour ne pas mourir de la vérité" ?
+Platon
+De Vinci
+Nietzsche
+2
+
+1
+Art
+Quel philosophe pense qu'en imitant la réalité, l'artiste détourne l'homme de la vérité ?
+Platon
+Sénèque
+Nietzsche
+0
+
+2
+Art
+Kant a dit...?
+Le beau plaît universellement et sans concept
+L'homme est la mesure de toute chose
+Le beau se distingue toujours
+0
+
+2
+Art
+Quel philosophe pense que l'art peut nous consoler de l'existence ?
+Kierkegaard
+Leibniz
+Schopenhauer
+2
+
+3
+Art
+Quel poète a écrit "Curiosités esthétiques" ?
+Rimbaud
+Homère
+Baudelaire
+2
+
+3
+Art
+Qui a dit : "l'homme est la mesure de toute chose" ?
+Épicure
+Picasso
+Protagoras
+2
 
 

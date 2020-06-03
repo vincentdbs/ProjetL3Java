@@ -190,4 +190,45 @@ Picasso
 Protagoras
 2
 
+1
+Sciences
+Quel nom donne-t-on à l'espèce humaine actuelle ?
+Homo sapiens
+Homo erectus
+Homo syphilis
+0
 
+1
+Sciences
+À quel ordre les humains appartiennent-ils ?
+Primates
+Félins
+Canidés
+0
+
+2
+Sciences
+Quels caractères dérivés ne sont pas propres aux primates ?
+Présence du pouce opposable
+Vision binoculaire
+Présence de quatre membres
+2
+
+2
+Sciences
+Trouvez le caractère dérivé du taxon des hominoïdes.
+Absence de tête
+Absence de queue
+Présence d'un index opposable
+1
+
+3
+Sciences
+Comment un caractère peut-il être dans le cadre d'une utilisation dans un arbre phylogénétique ?
+Vieux / Jeune
+Ancestral / Dérivé
+Affamé / Mignon
+1
+
+3
+Sciences

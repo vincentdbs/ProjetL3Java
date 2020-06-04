@@ -39,35 +39,16 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
-
         Chronometre[]tempsReponses = new Chronometre[4];
-
         displayMessageRules();
 
+        //affichage des questions aux joueurs
         askQuestionToPlayer(listeQuestionsPhase.size(),tempsReponses);
 
-
-
-        //todo à simplifier dans des fonctions
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
-            int k=0;
-            Joueur[] listeJoueurPhase2 = new Joueur[3];
-            for(int i=0;i<4;i++){
-                if(!joueursElimine[0].getNom().equals(joueurs[i].getNom())){
-                    listeJoueurPhase2[k] = joueurs[i];
-                    k++;
-                }
-            }
-
-
-            ListeQuestions ListePhase2 = new ListeQuestions();
-            Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
-            phase2.phaseDeJeu();
-
-
+            lancementPhase2(tempsReponses, joueursElimine[0]);
         }else{ //sinon departager les joueurs au chrono
             Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
@@ -78,43 +59,30 @@ public class Phase1 implements Phase {
             }
             joueursElimine = list.toArray(new Joueur[list.size()]);
             if(joueursElimine.length == 1){
-
-                displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
-
-
-                int k=0;
-                Joueur[] listeJoueurPhase2 = new Joueur[3];
-                for(int i=0;i<4;i++){
-                    if(!joueursElimine[0].getNom().equals(joueurs[i].getNom())){
-                        listeJoueurPhase2[k] = joueurs[i];
-                        k++;
-                    }
-                }
-
-                ListeQuestions ListePhase2 = new ListeQuestions();
-                Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
-                phase2.phaseDeJeu();
-
-
+                lancementPhase2(tempsReponses, joueursElimine[0]);
             }else{
                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
                phaseDepartage.phaseDeJeu();
-
-                int k=0;
-                Joueur[] listeJoueurPhase2 = new Joueur[3];
-                for(int i=0;i<4;i++){
-                    if(!phaseDepartage.getJoueurElimine().getNom().equals(joueurs[i].getNom())){
-                        listeJoueurPhase2[k] = joueurs[i];
-                        k++;
-                    }
-                }
-                ListeQuestions ListePhase2 = new ListeQuestions();
-                Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
-                phase2.phaseDeJeu();
+               lancementPhase2(tempsReponses, phaseDepartage.getJoueurElimine());
 
             }
         }
 
+    }
+
+    private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
+        displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
+        int k=0;
+        Joueur[] listeJoueurPhase2 = new Joueur[3];
+        for(int i=0;i<4;i++){
+            if(!jElimine.getNom().equals(joueurs[i].getNom())){
+                listeJoueurPhase2[k] = joueurs[i];
+                k++;
+            }
+        }
+        ListeQuestions ListePhase2 = new ListeQuestions();
+        Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
+        phase2.phaseDeJeu();
     }
 
     private void displayMessageRules(){

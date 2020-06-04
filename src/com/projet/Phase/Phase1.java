@@ -50,6 +50,7 @@ public class Phase1 implements Phase {
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
             lancementPhase2(tempsReponses, joueursElimine[0]);
         }else{ //sinon departager les joueurs au chrono
+            //todo corriger recuperation des joueurs
             Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
             for (int i = 0; i < tempsReponses.length ; i++) {
@@ -99,21 +100,21 @@ public class Phase1 implements Phase {
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
-                    if (Tools.isGoodAnswer(q, qcm.getAnswer())){
+                    if (q.saisir(qcm.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = qcm.getChronometre();
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
-                    if (Tools.isGoodAnswer(q, vf.getAnswer())){
+                    if (q.saisir(vf.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = vf.getChronometre();
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
-                    if (Tools.isGoodAnswer(q, rc.getAnswer())){
+                    if (q.saisir(rc.getAnswer())){
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = rc.getChronometre();

@@ -67,22 +67,6 @@ public class Phase1 implements Phase {
 
             }
         }
-
-    }
-
-    private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
-        displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
-        int k=0;
-        Joueur[] listeJoueurPhase2 = new Joueur[3];
-        for(int i=0;i<4;i++){
-            if(!jElimine.getNom().equals(joueurs[i].getNom())){
-                listeJoueurPhase2[k] = joueurs[i];
-                k++;
-            }
-        }
-        ListeQuestions ListePhase2 = new ListeQuestions();
-        Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
-        phase2.phaseDeJeu();
     }
 
     private void displayMessageRules(){
@@ -119,7 +103,6 @@ public class Phase1 implements Phase {
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = qcm.getChronometre();
-                    System.out.println(joueurs[i].getScore());
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
@@ -127,7 +110,6 @@ public class Phase1 implements Phase {
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = vf.getChronometre();
-                    System.out.println(joueurs[i].getScore());
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
@@ -135,9 +117,23 @@ public class Phase1 implements Phase {
                         joueurs[i].majScore(2);
                     }
                     tempsReponses[i] = rc.getChronometre();
-                    System.out.println(joueurs[i].getScore());
                     break;
             }
         }
+    }
+
+    private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
+        displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
+        int k=0;
+        Joueur[] listeJoueurPhase2 = new Joueur[3];
+        for(int i=0;i<4;i++){
+            if(!jElimine.getNom().equals(joueurs[i].getNom())){
+                listeJoueurPhase2[k] = joueurs[i];
+                k++;
+            }
+        }
+        ListeQuestions ListePhase2 = new ListeQuestions();
+        Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
+        phase2.phaseDeJeu();
     }
 }

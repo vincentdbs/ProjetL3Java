@@ -229,3 +229,108 @@ Vieux / Jeune
 Ancestral / Dérivé
 Affamé / Mignon
 1
+
+3
+Sciences
+A quoi corrrespondent des neutrons ?
+un arbre
+un avion
+particule
+2
+
+1
+Cinema
+Classé deuxième sur les cent meilleurs, ce film de Jean-Pierre Jeunet ?
+Le Fabuleux destin d'Amélie Poulain.
+Alien, la résurrection.
+Casino Royale.
+0
+
+1
+Cinema
+Film hispano-mexicain de Guillermo del Toro, sorti en 2006 ?
+Sa Majesté Minor.
+Les Rivières pourpres.
+Le Labyrinthe de Pan.
+2
+
+2
+Cinema
+Plébiscité par la critique, ce film de 1954 , qui inspira John Sturges ?
+Tora, Tora, Tora.
+Les Sept samouraïs.
+La Voie du sabre.
+1
+
+2
+Cinema
+1957, affrontement sanglant entre les paras français et le FNL ?
+La Bataille d'Alger.
+Le Coup de sirocco.
+Le Vent des Aurès.
+0
+
+3
+Cinema
+Film de 1972, relatant l'épopée du conquistador espagnol Don Lope de Aguirre ?
+Mission.
+Apocalypto.
+Aguirre, la colère de Dieu.
+2
+
+3
+Cinema
+Film italien de 1960, qui aborde comme thème le scandale, sous toutes ses formes ?
+Les Chemises rouges.
+Le Voleur de bicyclette.
+La Dolce vita.
+2
+
+1
+High-tech
+Une question facile pour commencer : que veut dire PC ?
+Portable Computer
+Personal Computer
+Computer pocket
+1
+
+1
+High-tech
+Un "hacker" est synonyme de "pirate informatique" mais quelle définition , parmi celles-ci, lui correspond le mieux ?
+Personne passionnée par la compréhension du fonctionnement des réseaux informatiques
+Personne qui contrôle les systèmes informatiques
+Personne ayant fait des études informatiques
+0
+
+2
+High-tech
+Quel nom de gâteau porte les petits fichiers que les sites web mettent sur le disque dur de votre ordinateur lors de votre première visite ?
+Les brownies
+Les cookies
+Les sablés
+1
+
+2
+High-tech
+Quel format de disque enregistrable n'existe pas ?
+CD-RW
+DVD-R
+CVD-RR
+2
+
+3
+High-tech
+Nous avons tous une adresse IP (Internet Protocol), mais de combien de chiffres au maximum se compose cette adresse ?
+10 chiffres
+11 chiffres
+12 chiffres
+2
+
+3
+High-tech
+Comment traduit-on "bug" en français ?
+Bogue
+Beugne
+Bêtise
+0
+

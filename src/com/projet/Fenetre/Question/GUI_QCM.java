@@ -94,7 +94,7 @@ public class GUI_QCM extends GUI_Question {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setAnswer(String.valueOf(Integer.parseInt(jbRep1.getText())-1));
+                setAnswer(String.valueOf(Integer.parseInt(btn.getText())-1));
                 stopChronometre();
                 dispose();
             }

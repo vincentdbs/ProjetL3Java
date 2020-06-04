@@ -33,13 +33,12 @@ public class Phase2 implements Phase{
 
 
         this.themeListe = new Themes(selectionThemes(theme));
-        themeListe.afficher();
         listeQuestionsAll = listeQuestions;
         for(int i=0; i<6; i++){
         listeQuestionstest.put(themeListe.getArrayTheme()[i], listeQuestions.getQuestionByThemeLevel(themeListe.getArrayTheme()[i], 2));
         }
 
-       // this.listeQuestions = listeQuestions.getQuestionByThemeLevel(themeListe.getArrayTheme()[themeListe.getIndicateur()], 2);
+
         this.joueurs = joueurs;
         this.parent = null;
     }
@@ -92,17 +91,9 @@ public class Phase2 implements Phase{
 
         int nbQuestion = 2; //Modification nécessaire quand on aura plus de questions
 
-        System.out.println(listeQuestionstest.size());
-
-
-
-        listeTheme.entrySet().forEach(entry->{
-            System.out.println(entry.getKey() + " " + entry.getValue());
-        });
-
         Chronometre[]tempsReponses = new Chronometre[3];
         ArrayList<String> theme = new ArrayList<>();
-        int k = 0;
+
         //affichage des questions
         for(int j=0; j<2; j++){ //Deux tours dans la phase 2
             for (int i = 0; i < joueurs.length ; i++) {
@@ -117,11 +108,7 @@ public class Phase2 implements Phase{
 
                         List<Question> values = parcours.getValue();
                         listeQuestions = values;
-
-
                     }
-
-
 
                 }
 
@@ -135,7 +122,6 @@ public class Phase2 implements Phase{
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = qcm.getChronometre();
-                        //System.out.println(joueurs[i].getScore());
                         break;
                     case "VF":
                         GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),  theme.get(j), joueurs[i].getNom());
@@ -143,7 +129,6 @@ public class Phase2 implements Phase{
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = vf.getChronometre();
-                        //System.out.println(joueurs[i].getScore());
                         break;
                     case "RC":
                         GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom());
@@ -151,7 +136,6 @@ public class Phase2 implements Phase{
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = rc.getChronometre();
-                        //System.out.println(joueurs[i].getScore());
                         break;
                 }
             }
@@ -159,19 +143,7 @@ public class Phase2 implements Phase{
 
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            JOptionPane.showMessageDialog(null, "Résultat :\n" +
-                            joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
-                            joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
-                            joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
-                            "Le joueur éliminé est " +  joueursElimine[0].getNom()
-                    , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
-
-
-
-
-
-
-
+            lancementPhase3(tempsReponses, joueursElimine[0]);
         }else{ //sinon departager les joueurs au chrono
             Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
             ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
@@ -182,27 +154,36 @@ public class Phase2 implements Phase{
             }
             joueursElimine = list.toArray(new Joueur[list.size()]);
             if(joueursElimine.length == 1){
-                JOptionPane.showMessageDialog(null, "Résultat :\n" +
-                                joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
-                                joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
-                                joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
-
-                                "Le joueur éliminé est " +  joueursElimine[0].getNom()
-                        , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
-
-
-
-
-
-
-
-
-
-
+                lancementPhase3(tempsReponses, joueursElimine[0]);
             }else{
                 //Phase de départage
             }
         }
 
     }
+
+    private static void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
+        JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                        joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
+                        joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
+                        joueurs[2].getNom() + " " + joueurs[2].getScore() + " points en " + tempsReponses[2].toString() + "\n" +
+                        "Le joueur éliminé est " +  elimine
+                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
+    private static void lancementPhase3(Chronometre[] tempsReponses, Joueur jElimine) {
+        displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
+        int k=0;
+        Joueur[] listeJoueurPhase3 = new Joueur[2];
+        for(int i=0;i<3;i++){
+            if(!jElimine.getNom().equals(joueurs[i].getNom())){
+                listeJoueurPhase3[k] = joueurs[i];
+                k++;
+            }
+        }
+        ListeQuestions ListePhase3 = new ListeQuestions();
+        //Phase 3 à lancer
+    }
+
 }

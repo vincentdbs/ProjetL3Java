@@ -74,7 +74,6 @@ public class Themes {
 
             while(end == false){
                 random = (int) (Math.random() *10);
-                System.out.println(random);
                 if(!doublon.contains(random)){
                     indicateur[i] = random;
                     doublon.add(random);

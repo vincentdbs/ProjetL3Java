@@ -48,6 +48,7 @@ public class Phase1 implements Phase {
 
 
 
+        //todo à simplifier dans des fonctions
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
@@ -98,6 +99,19 @@ public class Phase1 implements Phase {
             }else{
                PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
                phaseDepartage.phaseDeJeu();
+
+                int k=0;
+                Joueur[] listeJoueurPhase2 = new Joueur[3];
+                for(int i=0;i<4;i++){
+                    if(!phaseDepartage.getJoueurElimine().getNom().equals(joueurs[i].getNom())){
+                        listeJoueurPhase2[k] = joueurs[i];
+                        k++;
+                    }
+                }
+                ListeQuestions ListePhase2 = new ListeQuestions();
+                Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
+                phase2.phaseDeJeu();
+
             }
         }
 

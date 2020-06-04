@@ -53,7 +53,7 @@ public class PhaseDepartage implements Phase {
 
     @Override
     public void phaseDeJeu() {
-        //todo supprimer du tableau de joueur les joueurs ayant bien répondu pour la phase suivante
+        //todo supprimer du tableau de joueur les joueurs ayant bien répondu pour le round suivant
         int round = 0;
         boolean end = false;
         int[] score = new int[joueurs.length];

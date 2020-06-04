@@ -66,7 +66,7 @@ public class PhaseDepartage implements Phase {
             askQuestionToPlayer(listeQuestionsPhase.size(), score);
             //analyse des scores
             int loser = whoLost(score);
-            if (!(loser == -1)){
+            if ((loser != -1)){
                 joueurElimine = joueurs[loser];
                 end = true;
                 JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
@@ -74,7 +74,7 @@ public class PhaseDepartage implements Phase {
                 JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
             }
             round++;
-        }while (((round != 3) || !end));
+        }while (((round != 3) && !end));
     }
 
     private void askQuestionToPlayer(int nbQuestion, int[] score){

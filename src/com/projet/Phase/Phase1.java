@@ -52,7 +52,6 @@ public class Phase1 implements Phase {
         Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
         if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
             displayMessageJoueurElimine(joueursElimine[0].getNom(), tempsReponses);
-
             int k=0;
             Joueur[] listeJoueurPhase2 = new Joueur[3];
             for(int i=0;i<4;i++){

@@ -1,6 +1,52 @@
 package com.projet.Phase;
 
+import com.projet.Chronometre;
+import com.projet.Fenetre.Question.GUI_QCM;
+import com.projet.Fenetre.Question.GUI_RC;
+import com.projet.Fenetre.Question.GUI_VF;
+import com.projet.Joueur.Joueur;
+import com.projet.Question.ListeQuestions;
+import com.projet.Question.Question;
+import com.projet.Question.Type.QCM;
+import com.projet.Question.Type.RC;
+import com.projet.Question.Type.VF;
+import com.projet.Themes;
+import com.projet.Tools;
+
+import javax.swing.*;
+import java.util.*;
+
 public class Phase3 implements Phase {
+
+    private Themes listeTroisThemes;
+    private Joueur[] joueurs;
+
+    private static List<Question> listeQuestions;
+    private HashMap<String, List<Question>> listeQuestionsPhase = new HashMap<>();
+
+    private JFrame parent = null;
+
+    public Phase3(ListeQuestions listeQuestions, Joueur[] tabJoueurs){
+
+        this.listeTroisThemes = new Themes(selectionThemesPhase3()); //On stocke les trois thèmes qu'on a choisi
+        this.joueurs = tabJoueurs;
+
+        for(int i=0; i<3; i++){
+          listeQuestionsPhase.put(listeTroisThemes.getArrayTheme()[i], listeQuestions.getQuestionByThemeLevel(listeTroisThemes.getArrayTheme()[i], 3));
+          //On stocke les questions associées à chaque thème
+        }
+
+    }
+
+    public String[] selectionThemesPhase3(){
+        String[] troisThemes = new String[3]; //Sélection des trois thèmes.
+        troisThemes[0] = "Histoire";
+        troisThemes[1] = "Sciences";
+        troisThemes[2] = "Divertissements";
+
+        return troisThemes;
+    }
+
     @Override
     public void selectionnerJoueur() {
 
@@ -8,6 +54,94 @@ public class Phase3 implements Phase {
 
     @Override
     public void phaseDeJeu() {
+        Chronometre[]tempsReponses = new Chronometre[2];
+        displayMessageRulesPhase3();
 
+        for(int j=0;j<3;j++){
+        askQuestionToPlayerPhase3(2, tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
+
+        Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
+        if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
+            displayMessageJoueurEliminePhase3(joueursElimine[0].getNom(), tempsReponses);
+        }else{ //sinon departager les joueurs au chrono
+            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
+            ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
+            for (int i = 0; i < tempsReponses.length ; i++) {
+                if (!(tempsReponses[i].equals(lowestChrono))){
+                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
+                }
+            }
+            joueursElimine = list.toArray(new Joueur[list.size()]);
+            if(joueursElimine.length == 1){
+                displayMessageJoueurEliminePhase3(joueursElimine[0].getNom(), tempsReponses);
+            }else{
+                //Phase de départage
+            }
+        }
+    }
+
+    private void displayMessageRulesPhase3(){
+        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur les thèmes suivants : Histoire, Divertissements, Sciences"
+                +
+                "\nChaque bonne réponse rapporte 5 points.\n" +
+                "Ordre : " + joueurs[0].getNom() + ", "
+                + joueurs[1].getNom(), "Règles de la phase", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void displayMessageJoueurEliminePhase3(String elimine, Chronometre[] tempsReponses){
+        JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                        joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
+                        joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
+                        "Le joueur éliminé est " +  elimine
+                , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void askQuestionToPlayerPhase3(int nbQuestion, Chronometre[] tempsReponses, int j){
+        //todo delete les system.out
+        /** Modification direct de temps de réponse car shallow copy**/
+        //affichage des questions
+        for (int i = 0; i < joueurs.length ; i++) {
+
+
+            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
+
+
+            for (Map.Entry<String, List<Question>> parcours : listeQuestionsPhase.entrySet()) { //On sélectionne les questions du thème en cours : (Histoire puis Sciences puis Divertissements)
+
+                String key = parcours.getKey();
+                if(key.equals(listeQuestionsPhase.keySet().toArray()[j])){
+
+                    List<Question> values = parcours.getValue();
+                    listeQuestions = values;
+                }
+
+            }
+
+
+            Question<?> q = listeQuestions.get(numQuestionSelected);
+            switch (Tools.getQuestionType(q)){
+                case "QCM" :
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
+                    if (q.saisir(qcm.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = qcm.getChronometre();
+                    break;
+                case "VF":
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
+                    if (q.saisir(vf.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = vf.getChronometre();
+                    break;
+                case "RC":
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
+                    if (q.saisir(rc.getAnswer())){
+                        joueurs[i].majScore(2);
+                    }
+                    tempsReponses[i] = rc.getChronometre();
+                    break;
+            }
+        }
     }
 }

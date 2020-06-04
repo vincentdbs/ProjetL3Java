@@ -183,6 +183,8 @@ public class Phase2 implements Phase{
             }
         }
         ListeQuestions ListePhase3 = new ListeQuestions();
+        Phase3 phase3 = new Phase3(ListePhase3, listeJoueurPhase3);
+        phase3.phaseDeJeu();
         //Phase 3 à lancer
     }
 

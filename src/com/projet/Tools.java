@@ -143,36 +143,4 @@ public final class Tools {
                 .toArray(Joueur[]::new);
     }
 
-    /**
-     * Determine si le resultat à une question est bon ou faux
-     */
-    public static boolean isGoodAnswer(Question question, String answer){
-        switch (question.getEnonce().getClass().getName()){
-            case "com.projet.Question.Type.QCM":{
-                QCM enonce = (QCM) question.getEnonce();
-                if(enonce.getBonneReponse() == Integer.parseInt(answer)){
-                    return true;
-                }
-                break;
-            }
-            case "com.projet.Question.Type.VF":{
-                VF enonce = (VF) question.getEnonce();
-                if(enonce.isReponse() == Boolean.parseBoolean(answer)){
-                    return true;
-                }
-                break;
-            }
-            case "com.projet.Question.Type.RC":{
-                RC enonce = (RC) question.getEnonce();
-                if(enonce.getBonneReponse().equals(answer)){
-                    return true;
-                }
-                break;
-            }
-            default:
-                break;
-        }
-        return false;
-    }
-
 }

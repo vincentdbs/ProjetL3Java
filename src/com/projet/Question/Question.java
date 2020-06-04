@@ -1,5 +1,9 @@
 package com.projet.Question;
 
+import com.projet.Question.Type.QCM;
+import com.projet.Question.Type.RC;
+import com.projet.Question.Type.VF;
+
 public class Question<T> {
     private static int numero = 0;
     private String theme;
@@ -15,6 +19,35 @@ public class Question<T> {
 
     public void afficher(){
         System.out.println("Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + getEnonce().toString());
+    }
+
+    public boolean saisir(String answer){
+        switch (getEnonce().getClass().getName()){
+            case "com.projet.Question.Type.QCM":{
+                QCM enonce = (QCM) getEnonce();
+                if(enonce.getBonneReponse() == Integer.parseInt(answer)){
+                    return true;
+                }
+                break;
+            }
+            case "com.projet.Question.Type.VF":{
+                VF enonce = (VF) getEnonce();
+                if(enonce.isReponse() == Boolean.parseBoolean(answer)){
+                    return true;
+                }
+                break;
+            }
+            case "com.projet.Question.Type.RC":{
+                RC enonce = (RC) getEnonce();
+                if(enonce.getBonneReponse().equals(answer)){
+                    return true;
+                }
+                break;
+            }
+            default:
+                break;
+        }
+        return false;
     }
 
     @Override

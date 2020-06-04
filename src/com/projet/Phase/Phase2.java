@@ -118,21 +118,21 @@ public class Phase2 implements Phase{
                 switch (Tools.getQuestionType(q)){
                     case "QCM" :
                         GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
-                        if (Tools.isGoodAnswer(q, qcm.getAnswer())){
+                        if (q.saisir(qcm.getAnswer())){
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = qcm.getChronometre();
                         break;
                     case "VF":
                         GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),  theme.get(j), joueurs[i].getNom());
-                        if (Tools.isGoodAnswer(q, vf.getAnswer())){
+                        if (q.saisir(vf.getAnswer())){
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = vf.getChronometre();
                         break;
                     case "RC":
                         GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom());
-                        if (Tools.isGoodAnswer(q, rc.getAnswer())){
+                        if (q.saisir(rc.getAnswer())){
                             joueurs[i].majScore(3);
                         }
                         tempsReponses[i] = rc.getChronometre();

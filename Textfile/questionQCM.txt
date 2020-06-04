@@ -334,3 +334,146 @@ Beugne
 Bêtise
 0
 
+1
+Musique
+Qui est la chanteuse de "Empire States of Mind" ?
+Rihanna
+Estelle
+Alicia Keys
+2
+
+1
+Musique
+Qui chante "No me mirès màs" ?
+Soprano
+Maître Gims
+Kendji Girac
+0
+
+2
+Musique
+Qui est l'auteur(e) de "La foule" ?
+France Gall
+Edith Piaf
+Céline Dion
+1
+
+2
+Musique
+De quel groupe faisait partie M. Pokora ?
+Linkup
+Maroon 5
+Linkin Park
+0
+
+3
+Musique
+Qui chante "In the Name of Love" ?
+Martin Garrix
+Rita Ora
+Bebe Rexha
+2
+
+3
+Musique
+Quelle chanson française Shakira a-t-elle reprise ?
+La foule
+Je l'aime à mourir
+Je t'aime
+1
+
+1
+Divertissements
+Quels jeux sont considérés comme des jeux "survival horror" ?
+Dead Island
+Prey
+Mass Effect
+0
+
+1
+Divertissements
+Quel est le jeu ayant eu le plus de récompenses en titre de jeu de l'année ?
+Red Dead Redemption
+Dishonored
+The Witcher 3
+2
+
+2
+Divertissements
+Lequel de ces jeux a été totalement écrasé par son concurrent ''Overwatch'' à sa sortie ?
+Battlefield 1
+Battleborn
+Destiny
+1
+
+2
+Divertissements
+Le(s)quel(s) de ces jeux n'est/ne sont pas une/des exclusivité(s) ?
+The Witcher (premier du nom)
+World of Final Fantasy
+SoulCalibur IV
+2
+
+3
+Divertissements
+Combien de titres ''Silent Hill'' sont sortis depuis le premier ?
+8
+9
+10
+1
+
+3
+Divertissements
+Dans quelle série de jeux de combat peut-on incarner ce personnage ?
+Tekken
+Street Fighter
+Mortal Kombat
+2
+
+1
+Littérature
+Qui, Roland, le héros de la chanson de geste qui lui doit son nom, doit-il épouser ?
+Aude
+Iseut
+Morgane
+0
+
+1
+Littérature
+Qui était Guillaume Budé ?
+Un philologue
+Un poète
+Un théologien
+0
+
+2
+Littérature
+Qui a écrit L'Heptaméron ?
+Joachim Du Bellay
+Clément Marot
+Marguerite de Navarre
+2
+
+2
+Littérature
+Qui a évoqué ainsi une célèbre amitié "Parce que c'était lui, parce que c'était moi" ?
+La Boétie
+Montaigne
+Verlaine
+1
+
+3
+Littérature
+Initialement, comment s'appelait la Pléiade ?
+La brigade
+La brimade
+La grenade
+0
+
+3
+Littérature
+Quel écrivain du XVIe siècle a fait l'éloge de la langue française et a recommandé d'enrichir la langue de mots nouveaux ?
+Du Bellay
+Rabelais
+Ronsard
+1

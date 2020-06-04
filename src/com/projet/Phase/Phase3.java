@@ -123,21 +123,21 @@ public class Phase3 implements Phase {
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (q.saisir(qcm.getAnswer())){
-                        joueurs[i].majScore(2);
+                        joueurs[i].majScore(5);
                     }
                     tempsReponses[i] = qcm.getChronometre();
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
                     if (q.saisir(vf.getAnswer())){
-                        joueurs[i].majScore(2);
+                        joueurs[i].majScore(5);
                     }
                     tempsReponses[i] = vf.getChronometre();
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
                     if (q.saisir(rc.getAnswer())){
-                        joueurs[i].majScore(2);
+                        joueurs[i].majScore(5);
                     }
                     tempsReponses[i] = rc.getChronometre();
                     break;

@@ -14,7 +14,9 @@ import com.projet.Themes;
 import com.projet.Tools;
 
 import javax.swing.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PhaseDepartage implements Phase {
     private Themes theme;
@@ -57,37 +59,52 @@ public class PhaseDepartage implements Phase {
         int round = 0;
         boolean end = false;
         int[] score = new int[joueurs.length];
+        for (int i: score) { score[i] = 0;}
+        Joueur[] joueurADepartager = joueurs.clone();
 
         displayMessageRules();
         do {
-            //init des scores
-            for (int i: score) { score[i] = 0;}
             //ask questions to each player
-
-            askQuestionToPlayer(listeQuestionsPhase.size(), score);
+            askQuestionToPlayer(listeQuestionsPhase.size(), score, joueurADepartager);
             //analyse des scores
-            int loser = whoLost(score);
-            if ((loser != -1)){
-                joueurElimine = joueurs[loser];
+            joueurADepartager = whoLost(score, joueurADepartager).clone();
+            if (joueurADepartager.length == 1){
+                joueurElimine = joueurADepartager[0];
                 end = true;
                 JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
             }
+            //Init des scores
+            score = new int[joueurADepartager.length];
+            for (int i: score) { score[i] = 0;}
+
+
+//
+//            if ((joueur.length != -1)){
+//                joueurElimine = joueur[0];
+//                end = true;
+//                JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
+//            }else{
+//                JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
+//            }
             round++;
         }while (((round != 3) && !end));
+
+        if(joueurElimine == null){
+            joueurElimine = joueurADepartager[(int) (Math.random()*joueurADepartager.length)];
+        }
     }
 
-    private void askQuestionToPlayer(int nbQuestion, int[] score){
+    private void askQuestionToPlayer(int nbQuestion, int[] score, Joueur[] joueurADepartager){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
-        System.out.println("eee " + joueurs.length);
-        for (int i = 0; i < joueurs.length ; i++) {
+        for (int i = 0; i < joueurADepartager.length ; i++) {
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
             Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
-                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (q.saisir(qcm.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");
@@ -96,7 +113,7 @@ public class PhaseDepartage implements Phase {
                     }
                     break;
                 case "VF":
-                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom());
                     if (q.saisir(vf.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");
@@ -105,7 +122,7 @@ public class PhaseDepartage implements Phase {
                     }
                     break;
                 case "RC":
-                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom());
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom());
                     if (q.saisir(rc.getAnswer())){
                         score[i] += 1;
                         System.out.println("Bonne rép");
@@ -117,23 +134,28 @@ public class PhaseDepartage implements Phase {
         }
     }
 
-    /**
-     * Renvoie -1 si pas de perdant
-     * Renvoie l'index du perdant sinon
-     */
-    private int whoLost(int[] score){
+    private Joueur[] whoLost(int[] score, Joueur[] joueurs){
         int lose = 0;
         int nbLoser = 0;
+
+
         for (int i = 0; i < score.length; i++) {
             if(score[i] == 0){
-                lose = i;
                 nbLoser++;
             }
         }
-        if(nbLoser != 1){
-            return -1;
+        if(nbLoser != 0){
+            Joueur[] loser = new Joueur[nbLoser];
+            int index = 0;
+            for (int i = 0; i < joueurs.length ; i++) {
+                if(score[i] == 0){
+                    loser[index] = joueurs[i]; //todo clone
+                    index++;
+                }
+            }
+            return loser;
         }else{
-            return lose;
+            return joueurs;
         }
     }
 

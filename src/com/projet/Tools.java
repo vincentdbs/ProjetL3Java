@@ -6,6 +6,7 @@ import com.projet.Question.Type.QCM;
 import com.projet.Question.Type.RC;
 import com.projet.Question.Type.VF;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -141,6 +142,28 @@ public final class Tools {
         return (Joueur[]) Arrays.stream(joueurs)
                 .filter(j -> j.getScore() == finalScoreMin)
                 .toArray(Joueur[]::new);
+    }
+
+    public static int getLowestScore(Joueur[] joueurs){
+        int scoreMin = joueurs[0].getScore();
+        for (int i = 1; i < joueurs.length; i++) {
+            if(joueurs[i].getScore() < scoreMin){
+                scoreMin = joueurs[i].getScore();
+            }
+        }
+        return scoreMin;
+    }
+
+    public static Joueur[] getJoueurElimine(Chronometre[] chrono, Joueur[] joueurs){
+        ArrayList<Joueur> list = new ArrayList<>();
+        int lowestScore = Tools.getLowestScore(joueurs);
+        Chronometre highestChrono = Tools.getGreatestChronometer(chrono);
+        for (int i = 0; i < joueurs.length ; i++) { //ajout des joueurs dont le score est le plus bas et le chrono le plus haut
+            if((chrono[i].equals(highestChrono)) && (joueurs[i].getScore() == lowestScore)){
+                list.add(joueurs[i]);
+            }
+        }
+        return list.toArray(new Joueur[list.size()]);
     }
 
 }

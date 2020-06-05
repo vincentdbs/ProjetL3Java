@@ -39,6 +39,7 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
+        //todo changer de theme à chaque joueur
         Chronometre[]tempsReponses = new Chronometre[4];
         displayMessageRules();
 
@@ -46,27 +47,13 @@ public class Phase1 implements Phase {
         askQuestionToPlayer(listeQuestionsPhase.size(),tempsReponses);
 
         //Récuperation des joueurs avec le plus petit score
-        Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
-        if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            lancementPhase2(tempsReponses, joueursElimine[0]);
-        }else{ //sinon departager les joueurs au chrono
-            //todo corriger recuperation des joueurs
-            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
-            ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
-            for (int i = 0; i < tempsReponses.length ; i++) {
-                if (!(tempsReponses[i].equals(lowestChrono))){
-                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
-                }
-            }
-            joueursElimine = list.toArray(new Joueur[list.size()]);
-            if(joueursElimine.length == 1){
-                lancementPhase2(tempsReponses, joueursElimine[0]);
-            }else{
-               PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueursElimine);
-               phaseDepartage.phaseDeJeu();
-               lancementPhase2(tempsReponses, phaseDepartage.getJoueurElimine());
-
-            }
+        Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
+        if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres
+            lancementPhase2(tempsReponses, joueurElimine[0]);
+        }else{ //sinon phase de departages avec les autres
+            PhaseDepartage phaseDepartage = new PhaseDepartage(theme, listeQuestionsAll, parent, 1, joueurElimine);
+            phaseDepartage.phaseDeJeu();
+            lancementPhase2(tempsReponses, phaseDepartage.getJoueurElimine());
         }
     }
 
@@ -91,7 +78,6 @@ public class Phase1 implements Phase {
     }
 
     private void askQuestionToPlayer(int nbQuestion, Chronometre[] tempsReponses){
-        //todo delete les system.out
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {

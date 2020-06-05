@@ -20,7 +20,7 @@ public class Phase3 implements Phase {
 
     private Themes listeTroisThemes;
     private Joueur[] joueurs;
-
+    private ListeQuestions listeQuestionsAll;
     private static List<Question> listeQuestions;
     private HashMap<String, List<Question>> listeQuestionsPhase = new HashMap<>();
 
@@ -30,7 +30,7 @@ public class Phase3 implements Phase {
 
         this.listeTroisThemes = new Themes(selectionThemesPhase3()); //On stocke les trois thèmes qu'on a choisi
         this.joueurs = tabJoueurs;
-
+        this.listeQuestionsAll = listeQuestions;
         for(int i=0; i<3; i++){
           listeQuestionsPhase.put(listeTroisThemes.getArrayTheme()[i], listeQuestions.getQuestionByThemeLevel(listeTroisThemes.getArrayTheme()[i], 3));
           //On stocke les questions associées à chaque thème
@@ -60,23 +60,14 @@ public class Phase3 implements Phase {
         for(int j=0;j<3;j++){
         askQuestionToPlayerPhase3(2, tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
 
-        Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
-        if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            displayMessageJoueurEliminePhase3(joueursElimine[0].getNom(), tempsReponses);
-        }else{ //sinon departager les joueurs au chrono
-            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
-            ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
-            for (int i = 0; i < tempsReponses.length ; i++) {
-                if (!(tempsReponses[i].equals(lowestChrono))){
-                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
-                }
-            }
-            joueursElimine = list.toArray(new Joueur[list.size()]);
-            if(joueursElimine.length == 1){
-                displayMessageJoueurEliminePhase3(joueursElimine[0].getNom(), tempsReponses);
-            }else{
-                //Phase de départage
-            }
+        Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
+        if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres
+            annonceGagnant(tempsReponses, joueurElimine[0]);
+        }else{ //sinon phase de departages avec les autres
+            Themes themedepartage = new Themes();
+            PhaseDepartage phaseDepartage = new PhaseDepartage(themedepartage, listeQuestionsAll, parent, 3, joueurElimine);
+            phaseDepartage.phaseDeJeu();
+            annonceGagnant(tempsReponses, phaseDepartage.getJoueurElimine());
         }
     }
 
@@ -144,4 +135,17 @@ public class Phase3 implements Phase {
             }
         }
     }
+
+    private void annonceGagnant(Chronometre[] tempsReponses, Joueur jElimine){
+        displayMessageJoueurEliminePhase3(jElimine.getNom(), tempsReponses);
+
+        for(int i=0;i<2;i++){
+            if(!jElimine.getNom().equals(joueurs[i].getNom())){
+                JOptionPane.showMessageDialog(null, "Résultat :\n" +
+                                "Le joueur gagnant est " +  joueurs[i].getNom() + " avec un total de " + joueurs[i].getScore() + " points \n"
+                        , "Gagnant du jeu", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
 }
+

@@ -141,23 +141,14 @@ public class Phase2 implements Phase{
             }
         }
 
-        Joueur[] joueursElimine = Tools.getJoueursLowestScore(joueurs);
-        if(joueursElimine.length == 1){ //si il y en a un seul => fin de la phase
-            lancementPhase3(tempsReponses, joueursElimine[0]);
-        }else{ //sinon departager les joueurs au chrono
-            Chronometre lowestChrono = Tools.getGreatestChronometer(tempsReponses); //recuperation du plus petit chrono
-            ArrayList<Joueur> list = new ArrayList<>(Arrays.asList(joueursElimine)); //conversion du tab en list
-            for (int i = 0; i < tempsReponses.length ; i++) {
-                if (!(tempsReponses[i].equals(lowestChrono))){
-                    list.remove(joueurs[i]); //suppression de tout les élèment dont le chrono n'est pas le plus petit
-                }
-            }
-            joueursElimine = list.toArray(new Joueur[list.size()]);
-            if(joueursElimine.length == 1){
-                lancementPhase3(tempsReponses, joueursElimine[0]);
-            }else{
-                //Phase de départage
-            }
+        Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
+        if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres
+            lancementPhase3(tempsReponses, joueurElimine[0]);
+        }else{ //sinon phase de departages avec les autres
+            Themes themedepartage = new Themes();
+            PhaseDepartage phaseDepartage = new PhaseDepartage(themedepartage, listeQuestionsAll, parent, 2, joueurElimine);
+            phaseDepartage.phaseDeJeu();
+            lancementPhase3(tempsReponses, phaseDepartage.getJoueurElimine());
         }
 
     }
@@ -170,6 +161,7 @@ public class Phase2 implements Phase{
                         "Le joueur éliminé est " +  elimine
                 , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
+
 
 
     private static void lancementPhase3(Chronometre[] tempsReponses, Joueur jElimine) {

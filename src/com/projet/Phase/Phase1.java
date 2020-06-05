@@ -67,6 +67,8 @@ public class Phase1 implements Phase {
                 + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+
     private void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
         JOptionPane.showMessageDialog(null, "Résultat :\n" +
                         joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +

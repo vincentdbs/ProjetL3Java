@@ -156,13 +156,37 @@ public final class Tools {
 
     public static Joueur[] getJoueurElimine(Chronometre[] chrono, Joueur[] joueurs){
         ArrayList<Joueur> list = new ArrayList<>();
+        Chronometre highestChrono = new Chronometre();
+
         int lowestScore = Tools.getLowestScore(joueurs);
-        Chronometre highestChrono = Tools.getGreatestChronometer(chrono);
+
+        ArrayList<Chronometre> listeChrono = new ArrayList<>();
+
+        //Il faut récupérer le plus grand chrono parmi les joueurs qui ont le plus petit score
+        for(int i=0; i<joueurs.length; i++){
+
+            if(joueurs[i].getScore() == lowestScore){
+
+               listeChrono.add(chrono[i]); //On ajoute à la liste des chronos à comparer tous ceux des joueurs qui ont le plus petit score
+
+            }
+
+        }
+
+        Chronometre[] chronoComparer = new Chronometre[listeChrono.size()];
+        for(int i=0; i<listeChrono.size(); i++){
+            chronoComparer[i] = listeChrono.get(i); //On met les chronos à comparer dans un nouveau tableau de Chronometres
+        }
+
+        highestChrono = getGreatestChronometer(chronoComparer);
+
+
         for (int i = 0; i < joueurs.length ; i++) { //ajout des joueurs dont le score est le plus bas et le chrono le plus haut
             if((chrono[i].equals(highestChrono)) && (joueurs[i].getScore() == lowestScore)){
                 list.add(joueurs[i]);
             }
         }
+
         return list.toArray(new Joueur[list.size()]);
     }
 

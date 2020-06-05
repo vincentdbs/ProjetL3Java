@@ -63,6 +63,7 @@ public class PhaseDepartage implements Phase {
             //init des scores
             for (int i: score) { score[i] = 0;}
             //ask questions to each player
+
             askQuestionToPlayer(listeQuestionsPhase.size(), score);
             //analyse des scores
             int loser = whoLost(score);
@@ -80,6 +81,7 @@ public class PhaseDepartage implements Phase {
     private void askQuestionToPlayer(int nbQuestion, int[] score){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
+        System.out.println("eee " + joueurs.length);
         for (int i = 0; i < joueurs.length ; i++) {
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
             Question<?> q = listeQuestionsPhase.get(numQuestionSelected);

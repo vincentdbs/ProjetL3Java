@@ -55,7 +55,6 @@ public class PhaseDepartage implements Phase {
 
     @Override
     public void phaseDeJeu() {
-        //todo supprimer du tableau de joueur les joueurs ayant bien répondu pour le round suivant
         int round = 0;
         boolean end = false;
         int[] score = new int[joueurs.length];
@@ -73,21 +72,12 @@ public class PhaseDepartage implements Phase {
                 end = true;
                 JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs" +
+                        "", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
             }
-            //Init des scores
+            //Init des scores pour le round d'après
             score = new int[joueurADepartager.length];
             for (int i: score) { score[i] = 0;}
-
-
-//
-//            if ((joueur.length != -1)){
-//                joueurElimine = joueur[0];
-//                end = true;
-//                JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
-//            }else{
-//                JOptionPane.showMessageDialog(null, "Aucune joueur éliminé, il reste " + (2-round) + " rounds pour départager les joueurs", "Round suivant", JOptionPane.INFORMATION_MESSAGE);
-//            }
             round++;
         }while (((round != 3) && !end));
 
@@ -107,27 +97,18 @@ public class PhaseDepartage implements Phase {
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (q.saisir(qcm.getAnswer())){
                         score[i] += 1;
-                        System.out.println("Bonne rép");
-                    }else{
-                        System.out.println("Mauvaise rép");
                     }
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom());
                     if (q.saisir(vf.getAnswer())){
                         score[i] += 1;
-                        System.out.println("Bonne rép");
-                    }else{
-                        System.out.println("Mauvaise rép");
                     }
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurADepartager[i].getNom());
                     if (q.saisir(rc.getAnswer())){
                         score[i] += 1;
-                        System.out.println("Bonne rép");
-                    }else{
-                        System.out.println("Mauvaise rép");
                     }
                     break;
             }
@@ -135,26 +116,23 @@ public class PhaseDepartage implements Phase {
     }
 
     private Joueur[] whoLost(int[] score, Joueur[] joueurs){
-        int lose = 0;
         int nbLoser = 0;
-
-
         for (int i = 0; i < score.length; i++) {
             if(score[i] == 0){
                 nbLoser++;
             }
         }
-        if(nbLoser != 0){
+        if(nbLoser != 0){// si au moins un loser => renvoie ces joueurs pour le round d'après
             Joueur[] loser = new Joueur[nbLoser];
             int index = 0;
             for (int i = 0; i < joueurs.length ; i++) {
                 if(score[i] == 0){
-                    loser[index] = joueurs[i]; //todo clone
+                    loser[index] = joueurs[i]; //todo clone ?
                     index++;
                 }
             }
             return loser;
-        }else{
+        }else{ //si que des bonnes réponses => renvoie le tableau original
             return joueurs;
         }
     }

@@ -40,7 +40,7 @@ public class Joueur {
     }
 
     public void saisir(){
-        //todo à implenter en fonction de saisie console ou interface graphique;
+        //aucne utilité car saisir dans Question (cf FAQ Prof de java)
     }
 
     public void majScore(int score){

@@ -28,7 +28,7 @@ public class EnsJoueurs {
     }
 
     /**
-     * Choisi un joueur pour joueur la partie et change son statut à "selectionné"
+     * Choisi un joueur pour jouer la partie et change son statut à "selectionné"
      */
     public void selectionnerJoueur(){
         boolean retry = false;

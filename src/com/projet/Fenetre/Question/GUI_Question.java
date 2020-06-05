@@ -12,7 +12,7 @@ public class GUI_Question extends JDialog {
 
     public GUI_Question(Frame parent) {
         super(parent, true);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         chronometre.start();

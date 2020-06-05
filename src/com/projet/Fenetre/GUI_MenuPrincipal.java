@@ -16,7 +16,7 @@ public class GUI_MenuPrincipal extends JFrame {
     private JButton btnTheme, btnQuestion, btnAjouteQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
     private ListeQuestions listeQuestions;
     private Themes themes;
-    private EnsJoueurs ensJoueurs;
+
 
     public GUI_MenuPrincipal() {
         //creation de la liste des questions du jeu
@@ -25,14 +25,7 @@ public class GUI_MenuPrincipal extends JFrame {
         //creation des themes + selection du premier theme
         themes = new Themes();
 
-        //creation de la liste des joueurs
-        ensJoueurs = new EnsJoueurs();
-        ensJoueurs.creer();
 
-        //selection des 4 joueurs de la partie
-        for (int i = 0; i < 4; i++) {
-            ensJoueurs.selectionnerJoueur();
-        }
 
 
         setSize(300,200);
@@ -69,8 +62,9 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //todo creer une nouvelle liste de question theme et joueurs à chaque relancement de partie
-                Phase1 phase1 = new Phase1(themes, listeQuestions, ensJoueurs.getJoueurSelectionne(), GUI_MenuPrincipal.this);
+
+
+                Phase1 phase1 = new Phase1(themes, listeQuestions, createEnsJoueur().getJoueurSelectionne(), GUI_MenuPrincipal.this);
                 phase1.phaseDeJeu();
             }
         });
@@ -89,7 +83,7 @@ public class GUI_MenuPrincipal extends JFrame {
         btnAfficherJoueurs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GUI_Scores scores = new GUI_Scores(ensJoueurs);
+                GUI_Scores scores = new GUI_Scores(createEnsJoueur());
             }
         });
     }
@@ -101,5 +95,16 @@ public class GUI_MenuPrincipal extends JFrame {
                 dispose();
             }
         });
+    }
+
+    private EnsJoueurs createEnsJoueur(){
+        //creation de la liste des joueurs
+        EnsJoueurs ensJoueurs = new EnsJoueurs();
+        ensJoueurs.creer();
+        //selection des 4 joueurs de la partie
+        for (int i = 0; i < 4; i++) {
+            ensJoueurs.selectionnerJoueur();
+        }
+        return ensJoueurs;
     }
 }

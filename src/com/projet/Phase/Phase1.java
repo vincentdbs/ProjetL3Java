@@ -19,7 +19,7 @@ import java.util.*;
 public class Phase1 implements Phase {
     private Themes theme;
     private ListeQuestions listeQuestionsAll;
-    private List<Question> listeQuestionsPhase;
+//    private List<Question> listeQuestionsPhase;
     private Joueur[] joueurs;
     private JFrame parent;
 
@@ -27,7 +27,7 @@ public class Phase1 implements Phase {
         this.theme = theme;
         theme.selectionnerTheme();
         listeQuestionsAll = listeQuestions;
-        this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
+//        this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
         this.parent = parent;
     }
@@ -39,12 +39,11 @@ public class Phase1 implements Phase {
 
     @Override
     public void phaseDeJeu() {
-        //todo changer de theme à chaque joueur
         Chronometre[]tempsReponses = new Chronometre[4];
         displayMessageRules();
 
         //affichage des questions aux joueurs
-        askQuestionToPlayer(listeQuestionsPhase.size(),tempsReponses);
+        askQuestionToPlayer(tempsReponses);
 
         //Récuperation des joueurs avec le plus petit score
         Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
@@ -58,16 +57,13 @@ public class Phase1 implements Phase {
     }
 
     private void displayMessageRules(){
-        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur le thème : "
-                + theme.getArrayTheme()[theme.getIndicateur()] +
+        JOptionPane.showMessageDialog(null, "Phase 1 :\nQuestion de niveau 1." +
                 "\nChaque bonne réponse rapporte 2 points.\n" +
                 "Ordre : " + joueurs[0].getNom() + ", "
                 + joueurs[1].getNom() + ", "
                 + joueurs[2].getNom() + ", "
                 + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
-
-
 
     private void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
         JOptionPane.showMessageDialog(null, "Résultat :\n" +
@@ -79,12 +75,12 @@ public class Phase1 implements Phase {
                 , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void askQuestionToPlayer(int nbQuestion, Chronometre[] tempsReponses){
+    private void askQuestionToPlayer(Chronometre[] tempsReponses){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
-            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
-            Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
+            List<Question> listeQuestionsJoueuri = listeQuestionsAll.getQuestionByThemeLevel(theme.getArrayTheme()[theme.selectionnerNextTheme()], 1); //recuperation de la liste des questions de niveau 1 du théme donné
+            Question<?> q = listeQuestionsJoueuri.get((int) ((Math.random() * listeQuestionsJoueuri.size())%listeQuestionsJoueuri.size())); //récupération d'une question aléatoirement parmi les questions
             switch (Tools.getQuestionType(q)){
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
@@ -115,7 +111,7 @@ public class Phase1 implements Phase {
         displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
         int k=0;
         Joueur[] listeJoueurPhase2 = new Joueur[3];
-        for(int i=0;i<4;i++){
+        for(int i=0;i<4;i++){ //recuperation des 3 joueurs pour la phase 2
             if(!jElimine.getNom().equals(joueurs[i].getNom())){
                 listeJoueurPhase2[k] = joueurs[i];
                 k++;

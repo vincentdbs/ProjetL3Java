@@ -23,7 +23,7 @@ public class Phase3 implements Phase {
     private Joueur vainqueur;
     private ListeQuestions listeQuestionsAll;
     private static List<Question> listeQuestions;
-    private HashMap<String, List<Question>> listeQuestionsPhase = new HashMap<>();
+    private LinkedHashMap<String, List<Question>> listeQuestionsPhase = new LinkedHashMap<>();
 
     private JFrame parent = null;
 
@@ -59,7 +59,7 @@ public class Phase3 implements Phase {
         displayMessageRulesPhase3();
 
         for(int j=0;j<3;j++){
-        askQuestionToPlayerPhase3(2, tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
+        askQuestionToPlayerPhase3(3, tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
 
         Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
         if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres

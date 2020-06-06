@@ -93,19 +93,59 @@ Géographie
 La mer noire se situe à côté du Djibouti ?
 false
 
+1
+Géographie
+Katmandu au Népal est la plus haute capitale du monde ?
+false
+
+1
+Géographie
+Il y a trois langues officielles en Belgique ?
+true
+
 2
 Géographie
 Il y a 194 pays dans le monde ?
 true
+
+2
+Géographie
+La Norvège, le Suède et la Finlande ont toutes les trois pour monnaie la couronne ?
+false
+
+2
+Géographie
+La couleur bleue sur le drapeau français symbolise la royauté ?
+false
 
 3
 Géographie
 Il y a 6 océans ?
 false
 
+3
+Géographie
+Le drapeau suisse est carré ?
+true
+
+3
+Géographie
+Il y a plus de 20 langues officielles en Inde ?
+true
+
 1
 Art
 Guernica a été peint en 1913 ?
+false
+
+1
+Art
+Vincent Van Gogh a exercé le métier de mineur pendant près de deux ans dans le Borinage en Belgique ?
+false
+
+1
+Art
+Négociant en art, Théo Van Gogh était le frère ainé de Vincent ?
 false
 
 2
@@ -113,14 +153,44 @@ Art
 La Joconde est au Louvre ?
 true
 
+2
+Art
+C'est lors de son séjour à Amsterdam en 1882, qu'il rencontre Sien, une prostituée, qui devient son modèle et sa compagne ?
+false
+
+2
+Art
+Vincent Van Gogh a peint très peu de nus, n'ayant pas les moyens se se payer des modèles?
+true
+
 3
 Art
 Le Faux est un mouvement d'Art ?
 true
 
+3
+Art
+Est-ce une nature morte peinte par Vincent Van Gogh ?
+true
+
+3
+Art
+Le 23 décembre 1888, après une dispute avec Gauguin dans son atelier, Van Gogh se mutile l'oreille droite avec un rasoir ?
+false
+
 1
 Sciences
 Les noms des espèces ont des noms latins ?
+true
+
+1
+Sciences
+L'année-lumière est une unité mesurant uniquement le temps ?
+false
+
+1
+Sciences
+Dans la célèbre formule E=mc2, c représente la vitesse de la lumière ?
 true
 
 2
@@ -128,9 +198,29 @@ Sciences
 Le glucose et le fructose ont la meme formule chimique ?
 true
 
+2
+Sciences
+"Australopithecus afarensis" est une espèce éteinte plus connue sous le nom de "Lucy" ?
+true
+
+2
+Sciences
+L'écholocalisation est utilisée uniquement par les mammifères du type Cétacés, comme le dauphin ?
+false
+
 3
 Sciences
 Titan est un satellite de Saturne ?
+true
+
+3
+Sciences
+L'Amanite printanière est un champignon comestible ?
+false
+
+3
+Sciences
+En 2007, lors d'essais, le TGV a effectué une pointe à 574, 8 km/h ?
 true
 
 1

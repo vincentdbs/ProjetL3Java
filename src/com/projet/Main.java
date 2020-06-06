@@ -1,6 +1,7 @@
 package com.projet;
 
 import com.projet.Fenetre.*;
+import com.projet.Fenetre.Question.GUI_QCM;
 import com.projet.Joueur.Joueur;
 import com.projet.Question.*;
 import com.projet.Question.Type.QCM;
@@ -30,6 +31,7 @@ public class Main {
 //        testListeQuestion();
 //        testTheme();
 //        testJoueur();
+
         jeu();
     }
 
@@ -37,6 +39,7 @@ public class Main {
         QCM a = new QCM("Question QCM ", 2, new String[]{"bonjour", "hello", "hola"});
         System.out.println(a.toString());
         System.out.println("La bonne réponse est : " + a.getBonneReponse() + "\n");
+        GUI_QCM test = new GUI_QCM(null, a.getTexte(), "Sport", "Joueur", "rep 1", "rep 2", "rep 3");
     }
 
     public static void testVf(){

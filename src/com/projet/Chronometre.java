@@ -73,7 +73,6 @@ public class Chronometre extends  Thread implements Comparable {
                 state == that.state;
     }
 
-
     @Override
     public int compareTo(Object o) {
         Chronometre c = (Chronometre) o;

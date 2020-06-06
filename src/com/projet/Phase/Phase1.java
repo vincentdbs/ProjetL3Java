@@ -19,7 +19,6 @@ import java.util.*;
 public class Phase1 implements Phase {
     private Themes theme;
     private ListeQuestions listeQuestionsAll;
-//    private List<Question> listeQuestionsPhase;
     private Joueur[] joueurs;
     private JFrame parent;
 
@@ -27,7 +26,6 @@ public class Phase1 implements Phase {
         this.theme = theme;
         theme.selectionnerTheme();
         listeQuestionsAll = listeQuestions;
-//        this.listeQuestionsPhase = listeQuestions.getQuestionByThemeLevel(theme.getArrayTheme()[theme.getIndicateur()], 1);
         this.joueurs = joueurs;
         this.parent = parent;
     }

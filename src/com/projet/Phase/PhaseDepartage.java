@@ -67,7 +67,7 @@ public class PhaseDepartage implements Phase {
             askQuestionToPlayer(listeQuestionsPhase.size(), score, joueurADepartager);
             //analyse des scores
             joueurADepartager = whoLost(score, joueurADepartager).clone();
-            if (joueurADepartager.length == 1){
+            if (joueurADepartager.length == 1){ //si une seul joueur n'ayant pas bien répondu
                 joueurElimine = joueurADepartager[0];
                 end = true;
                 JOptionPane.showMessageDialog(null, "Le joueur " + joueurElimine.getNom() + " est éliminé !", "Elimination", JOptionPane.INFORMATION_MESSAGE);
@@ -127,7 +127,7 @@ public class PhaseDepartage implements Phase {
             int index = 0;
             for (int i = 0; i < joueurs.length ; i++) {
                 if(score[i] == 0){
-                    loser[index] = joueurs[i]; //todo clone ?
+                    loser[index] = joueurs[i];
                     index++;
                 }
             }

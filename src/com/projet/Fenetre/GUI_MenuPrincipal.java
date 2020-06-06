@@ -44,6 +44,7 @@ public class GUI_MenuPrincipal extends JFrame {
     private void initiate(){
         btnStart = new JButton("Jouer");
         btnTheme = new JButton("Afficher thèmes");
+        btnQuestion = new JButton("Afficher questions");
         btnAfficherJoueurs = new JButton("Afficher joueurs");
         btnGrandJeu = new JButton("Grand Jeu");
         btnQuitter = new JButton("Quitter");
@@ -52,6 +53,7 @@ public class GUI_MenuPrincipal extends JFrame {
         addListenerJoueur();
         addListenerQuitter();
         addListenerGrandJeu();
+        addListenerAfficherQuestion();
 
     }
 
@@ -60,6 +62,7 @@ public class GUI_MenuPrincipal extends JFrame {
         panel.add(btnStart);
         panel.add(btnGrandJeu);
         panel.add(btnTheme);
+        panel.add(btnQuestion);
         panel.add(btnAfficherJoueurs);
         panel.add(btnQuitter);
         return panel;
@@ -133,6 +136,15 @@ public class GUI_MenuPrincipal extends JFrame {
                 Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
                 phase3.phaseDeJeu();
                 JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+    }
+
+    private void addListenerAfficherQuestion(){
+        btnQuestion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUI_AfficherQuestion gui_afficherQuestion = new GUI_AfficherQuestion();
             }
         });
     }

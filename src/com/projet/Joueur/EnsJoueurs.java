@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class EnsJoueurs {
 
     private Vector<Joueur> vectorJoueur;
+    private int index = 0;//index du dernier joueur selectionné
 
     public EnsJoueurs(Vector<Joueur> vectorJoueur) {
         this.vectorJoueur = vectorJoueur;
@@ -39,6 +40,7 @@ public class EnsJoueurs {
                 retry = true;
             }
         }while (!retry);
+        this.index = index;
         vectorJoueur.get(index).changerEtat("sélectionné");
     }
 
@@ -48,6 +50,10 @@ public class EnsJoueurs {
                 .filter(j -> j.getEtat().equals("sélectionné"))
                 .toArray(Joueur[]::new);
         return a;
+    }
+
+    public Joueur getLastJoueurSelectionne(){
+        return vectorJoueur.get(index);
     }
 
     /**

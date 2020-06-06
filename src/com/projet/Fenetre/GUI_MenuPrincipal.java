@@ -106,7 +106,17 @@ public class GUI_MenuPrincipal extends JFrame {
         btnGrandJeu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                EnsJoueurs ensJoueurs = new EnsJoueurs();
+                ensJoueurs.creer();
+                for (int i = 0; i < 3 ; i++) {
+                    System.out.println("Partie " + i);
+                    for (Joueur s: getFourJoueur(ensJoueurs)) {
+                        System.out.println(s);
+                    }
+                }
+
 //                EnsJoueurs ensJoueurs = new EnsJoueurs();
+//                ensJoueurs.creer();
 //                Joueur[] vainqueurs = new Joueur[3];
 //                //lancement de 4 parties
 //                for (int i = 0; i < 3; i++) {
@@ -140,10 +150,12 @@ public class GUI_MenuPrincipal extends JFrame {
     }
 
     private Joueur[] getFourJoueur(EnsJoueurs ensJoueurs){
+        Joueur[] joueur = new Joueur[4];
         //selection des 4 joueurs de la partie
         for (int i = 0; i < 4; i++) {
             ensJoueurs.selectionnerJoueur();
+            joueur[i] = ensJoueurs.getLastJoueurSelectionne();
         }
-        return ensJoueurs.getJoueurSelectionne();
+        return joueur;
     }
 }

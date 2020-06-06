@@ -3,9 +3,29 @@ Sport
 Micheal Phelps est le plus titrer aux JO ?
 true
 
+1
+Sport
+Un match de football dure 90 minutes ?
+true
+
+1
+Sport
+Un match de basket se déroule en 4 périodes de 15 minutes ?
+false
+
 2
 Sport
 Vettel a gagné le grand prix d'allemagne en 2015 ?
+false
+
+2
+Sport
+Le footballeur Raymond Kopa était surnommé "Atchoum" en raison de sa petite taille ?
+false
+
+2
+Sport
+Au ping-pong, on joue maximum 3 manches ?
 false
 
 3
@@ -13,19 +33,59 @@ Sport
 La France a gagné 10 médailles olympiques aux JO de 2015 ?
 true
 
+3
+Sport
+Le plus jeune nageur médaillé d'or de l'histoire des Jeux olympiques avait 14 ans ?
+true
+
+3
+Sport
+Une mi-temps de rugby dure 40 minutes ?
+true
+
 1
 Histoire
 La couleur de cheval blanc d'Henri est blanc ?
 true
+
+1
+Histoire
+L'Église a fait un procès à Galilée car il affirmait que la Terre était ronde ?
+false
+
+1
+Histoire
+Les hommes préhistoriques allumaient du feu en frottant deux silex ?
+false
 
 2
 Histoire
 Christophe Colomb a découvert l'Amérique en 1494 ?
 false
 
+2
+Histoire
+Diogène de Sinope, philosophe cynique, dormait dans un tonneau?
+false
+
+2
+Histoire
+Charlemagne a inventé l'école ?
+false
+
 3
 Histoire
 La Révolution francaise a eu lieu en 1896 ?
+false
+
+3
+Histoire
+À Roncevaux, Roland a été tué par des Sarrazins (musulmans) ?
+false
+
+3
+Histoire
+Il n'y a jamais eu de papes homosexuels ?
 false
 
 1

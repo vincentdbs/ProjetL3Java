@@ -20,6 +20,7 @@ public class Phase1 implements Phase {
     private Themes theme;
     private ListeQuestions listeQuestionsAll;
     private Joueur[] joueurs;
+    private Joueur[] vainqueurs;
     private JFrame parent;
 
     public Phase1(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs, JFrame parent) {
@@ -28,6 +29,7 @@ public class Phase1 implements Phase {
         listeQuestionsAll = listeQuestions;
         this.joueurs = joueurs;
         this.parent = parent;
+        vainqueurs = new Joueur[3];
     }
 
     @Override
@@ -114,6 +116,9 @@ public class Phase1 implements Phase {
                     break;
             }
         }
+        for (Chronometre c : tempsReponses) {
+            System.out.println(c.toString());
+        }
     }
 
     /**
@@ -122,15 +127,15 @@ public class Phase1 implements Phase {
     private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
         displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
         int k=0;
-        Joueur[] listeJoueurPhase2 = new Joueur[3];
         for(int i=0;i<4;i++){ //recuperation des 3 joueurs pour la phase 2
             if(!jElimine.getNom().equals(joueurs[i].getNom())){
-                listeJoueurPhase2[k] = joueurs[i];
+                vainqueurs[k] = joueurs[i];
                 k++;
             }
         }
-        ListeQuestions ListePhase2 = new ListeQuestions();
-        Phase2 phase2 = new Phase2(theme, ListePhase2, listeJoueurPhase2);
-        phase2.phaseDeJeu();
+    }
+
+    public Joueur[] getVainqueurs() {
+        return vainqueurs;
     }
 }

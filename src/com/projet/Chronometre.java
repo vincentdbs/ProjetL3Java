@@ -21,6 +21,7 @@ public class Chronometre extends  Thread implements Comparable {
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
+            fin = System.currentTimeMillis();
             setAllTime();
         }
     }

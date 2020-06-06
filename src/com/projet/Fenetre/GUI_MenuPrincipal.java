@@ -69,8 +69,14 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Phase1 phase1 = new Phase1(themes, listeQuestions, createEnsJoueur().getJoueurSelectionne(), GUI_MenuPrincipal.this);
+                EnsJoueurs ensJoueurs = new EnsJoueurs();
+                ensJoueurs.creer();
+                Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
                 phase1.phaseDeJeu();
+                Phase2 phase2 = new Phase2(themes, listeQuestions, phase1.getVainqueurs());
+                phase2.phaseDeJeu();
+                Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
+                phase3.phaseDeJeu();
             }
         });
     }
@@ -106,25 +112,25 @@ public class GUI_MenuPrincipal extends JFrame {
         btnGrandJeu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                EnsJoueurs ensJoueurs = new EnsJoueurs();
-//                ensJoueurs.creer();
-//                Joueur[] vainqueurs = new Joueur[3];
-//                //lancement de 4 parties
-//                for (int i = 0; i < 3; i++) {
-//                    Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
-//                    phase1.phaseDeJeu();
-//                    Phase2 phase2 = new Phase2();
-//                    phase2.phaseDeJeu();
-//                    Phase3 phase3 = new Phase3();
-//                    phase3.phaseDeJeu();
-//                    vainqueurs[i] = phase3.getVainqueur();
-//                }
-//                //lancement d'une phase 2 puis 3 à partir des gagnants
-//                Phase2 phase2 = new Phase2();
-//                phase2.phaseDeJeu();
-//                Phase3 phase3 = new Phase3();
-//                phase3.phaseDeJeu();
-//                JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
+                EnsJoueurs ensJoueurs = new EnsJoueurs();
+                ensJoueurs.creer();
+                Joueur[] vainqueurs = new Joueur[3];
+                //lancement de 4 parties
+                for (int i = 0; i < 3; i++) {
+                    Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
+                    phase1.phaseDeJeu();
+                    Phase2 phase2 = new Phase2(themes, listeQuestions, phase1.getVainqueurs());
+                    phase2.phaseDeJeu();
+                    Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
+                    phase3.phaseDeJeu();
+                    vainqueurs[i] = phase3.getVainqueur();
+                }
+                //lancement d'une phase 2 puis 3 à partir des gagnants
+                Phase2 phase2 = new Phase2(themes, listeQuestions, vainqueurs);
+                phase2.phaseDeJeu();
+                Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
+                phase3.phaseDeJeu();
+                JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

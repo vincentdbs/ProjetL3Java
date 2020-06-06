@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 
-public class GUI_ThemeSelection extends JFrame{
+public class GUI_ThemeSelection extends JDialog{
 
     private JLabel jlTheme, jlIntro, jlJoueur;
     private JButton[] tabBouton = new JButton[6];
@@ -26,15 +26,15 @@ public class GUI_ThemeSelection extends JFrame{
 
 
 
-    public GUI_ThemeSelection(Themes themes, Joueur[] joueur){
-
+    public GUI_ThemeSelection(Themes themes, Joueur[] joueur, JFrame parent){
+        super(parent, true );
         setSize(300,200);
         setTitle("Thème");
 
         this.tabjoueur = joueur;
         this.theme = themes;
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         initiate(joueur);
 
@@ -68,7 +68,7 @@ public class GUI_ThemeSelection extends JFrame{
 
 
 
-               Phase2.questions(themeJoueur); //On lance la phase 2 avec la TreeMap contenant le nom du joueur avec les deux thèmes qu'il a choisi
+//               Phase2.questions(themeJoueur); //On lance la phase 2 avec la TreeMap contenant le nom du joueur avec les deux thèmes qu'il a choisi
                dispose();
 
             }
@@ -178,6 +178,7 @@ public class GUI_ThemeSelection extends JFrame{
         return pan;
     }
 
-
-
+    public TreeMap<String, ArrayList<String>> getThemeJoueur() {
+        return themeJoueur;
+    }
 }

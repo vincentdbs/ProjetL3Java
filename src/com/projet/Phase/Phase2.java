@@ -21,13 +21,14 @@ import java.util.*;
 public class Phase2 implements Phase{
 
     private Themes themeListe;
-    private static ListeQuestions listeQuestionsAll;
-    private  static Themes themeActuel;
-    private static HashMap<String, ArrayList<String>> ThemeParParticipant;
-    private static List<Question> listeQuestions;
-    private static HashMap<String, List<Question>> listeQuestionstest = new HashMap<>();
-    private static Joueur[] joueurs;
-    private static JFrame parent;
+    private ListeQuestions listeQuestionsAll;
+    private Themes themeActuel;
+    private HashMap<String, ArrayList<String>> ThemeParParticipant;
+    private List<Question> listeQuestions;
+    private HashMap<String, List<Question>> listeQuestionstest = new HashMap<>();
+    private Joueur[] joueurs;
+    private Joueur[] vainqueurs;
+    private JFrame parent;
 
     public Phase2(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs) {
 
@@ -38,7 +39,7 @@ public class Phase2 implements Phase{
         listeQuestionstest.put(themeListe.getArrayTheme()[i], listeQuestions.getQuestionByThemeLevel(themeListe.getArrayTheme()[i], 2));
         }
 
-
+        this.vainqueurs = new Joueur[2];
         this.joueurs = joueurs;
         this.parent = null;
     }
@@ -83,11 +84,11 @@ public class Phase2 implements Phase{
     }
 
     public void choixThemesJoueur(){
-        GUI_ThemeSelection theme = new GUI_ThemeSelection(themeListe, joueurs);
-        
+        GUI_ThemeSelection theme = new GUI_ThemeSelection(themeListe, joueurs, parent);
+        questions(theme.getThemeJoueur());
     }
 
-    public static void questions(TreeMap<String, ArrayList<String>> listeTheme){
+    public void questions(TreeMap<String, ArrayList<String>> listeTheme){
 
         int nbQuestion = 2; //Modification nécessaire quand on aura plus de questions
 
@@ -153,7 +154,7 @@ public class Phase2 implements Phase{
 
     }
 
-    private static void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
+    private void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
         JOptionPane.showMessageDialog(null, "Résultat :\n" +
                         joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
                         joueurs[1].getNom() + " " + joueurs[1].getScore() + " points en " + tempsReponses[1].toString() + "\n" +
@@ -164,20 +165,18 @@ public class Phase2 implements Phase{
 
 
 
-    private static void lancementPhase3(Chronometre[] tempsReponses, Joueur jElimine) {
+    private void lancementPhase3(Chronometre[] tempsReponses, Joueur jElimine) {
         displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
         int k=0;
-        Joueur[] listeJoueurPhase3 = new Joueur[2];
         for(int i=0;i<3;i++){
             if(!jElimine.getNom().equals(joueurs[i].getNom())){
-                listeJoueurPhase3[k] = joueurs[i];
+                vainqueurs[k] = joueurs[i];
                 k++;
             }
         }
-        ListeQuestions ListePhase3 = new ListeQuestions();
-        Phase3 phase3 = new Phase3(ListePhase3, listeJoueurPhase3);
-        phase3.phaseDeJeu();
-        //Phase 3 à lancer
     }
 
+    public Joueur[] getVainqueurs() {
+        return vainqueurs;
+    }
 }

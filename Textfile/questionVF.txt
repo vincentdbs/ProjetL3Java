@@ -228,9 +228,29 @@ Cinema
 La trilogie The Dark Knight a été réalisée par Nolan ?
 true
 
+1
+Cinema
+Tom Hanks a joué dans Forrest Gump ?
+true
+
+1
+Cinema
+Jean Dujardin a déjà eu le César du meilleur acteur ?
+false
+
 2
 Cinema
 Leonard DiCaprio a joué dans Inception ?
+true
+
+2
+Cinema
+Le cinéma a été inventé par des français ?
+true
+
+2
+Cinema
+La première Cérémonie des Césars a eu lieu en 1976 ?
 true
 
 3
@@ -238,19 +258,59 @@ Cinema
 Il ya 22 films Marvel  ?
 false
 
+3
+Cinema
+Luc Besson a réalisé la trilogie Le transporteur ?
+true
+
+3
+Cinema
+2012 a été réalisé par Roland Emmerich ?
+true
+
 1
 High-tech
 L'Iphone 1 est sorti en 2002 ?
 false
+
+1
+High-tech
+Le 'CPU' est le synonyme de carte graphique ?
+false
+
+1
+High-tech
+Un 'pourriel' est l'appellation française d'un spam ?
+true
 
 2
 High-tech
 La technologie RTX signifie ray-tracing ?
 true
 
+2
+High-tech
+Le câble reliant généralement l'écran à l'UC est appelé: 'câble VGA' ?
+true
+
+2
+High-tech
+La 'CG' est une mémoire de masse magnétique ?
+false
+
 3
 High-tech
 Le s20 est sorti en mars ?
+false
+
+3
+High-tech
+1Ko est égal à 2024 octects ?
+false
+
+3
+High-tech
+La mémoire morte est non nécessaire dans un pc ?
 false
 
 1
@@ -258,14 +318,44 @@ Musique
 Daft Punk est un groupe francais ?
 true
 
+1
+Musique
+Je t'aime est un des derniers titres de Katy Perry ?
+false
+
+1
+Musique
+L'octobasse peut avoir une taille de 4 mètres ?
+true
+
 2
 Musique
 Marshmello porte un casque ?
 true
 
+2
+Musique
+L'Orgue de la mer est une sculpture sonore localisée en Croatie ?
+true
+
+2
+Musique
+Le festival Iceland Airwaves se passe dans l'océan ?
+false
+
 3
 Musique
 Kanye West est un musicien ?
+false
+
+3
+Musique
+Il existe un festival de musique sous l'eau ?
+true
+
+3
+Musique
+Les premières traces de musiques remontent à plus de 150 000 ans ?
 false
 
 1
@@ -273,9 +363,29 @@ Divertissements
 Game of Thrones s'est arrêté à 9 saisons ?
 false
 
+1
+Divertissements
+Dans "Harry Potter", on accède au Chemin de Traverse dans les airs ?
+false
+
+1
+Divertissements
+Le film "Autant en emporte le vent" dure environ 4 heures ?
+true
+
 2
 Divertissements
 La série Breaking Bad est toujours en cours ?
+false
+
+2
+Divertissements
+Dans "Les Animaux fantastiques", le personnage principal s'appelle Nobert ?
+false
+
+2
+Divertissements
+Dans le film "Star Wars VII", le personnage principal s'appelle Film ?
 false
 
 3
@@ -283,17 +393,57 @@ Divertissements
 The Walking Dead possède 10 saisons ?
 true
 
+3
+Divertissements
+Le film "Malice et malice" est très connu ?
+false
+
+3
+Divertissements
+Le film "Harry Potter" est très connu ?
+true
+
 1
 Littérature
 La série GOT a été écrite par George RR Martin ?
 true
+
+1
+Littérature
+La 'Ballade des pendus' a été écrite par Villon ?
+true
+
+1
+Littérature
+Le 'Roman de Renart' a été écrit par Chrétien de Troyes ?
+false
 
 2
 Littérature
 La série Autre Monde a été écrite par Maxime Chattam ?
 true
 
+2
+Littérature
+Montaigne a écrit 'les Essais' ?
+true
+
+2
+Littérature
+Rabelais était un humaniste ?
+true
+
 3
 Littérature
 J.k Rowling n'a pas écrit Harry Potter ?
 false
+
+3
+Littérature
+Louise Labé était surnommée 'la nymphe ardente du Rhône' ?
+true
+
+3
+Littérature
+Corneille a écrit 'Cinna' ?
+true

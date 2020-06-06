@@ -23,9 +23,9 @@ public class GUI_AfficherQuestion extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initiate();
         getContentPane().add(placeAll(), BorderLayout.NORTH);
-        pack();
         setResizable(false);
         setLocationRelativeTo(null);
+        pack();
         setVisible(true);
     }
 
@@ -40,6 +40,7 @@ public class GUI_AfficherQuestion extends JFrame {
         jbNiveau3 = new JButton("3");
         addListenerOnButton(jbNiveau3);
         jbAll = new JButton("Tout");
+        addListenerOnButton(jbAll);
     }
 
     private JPanel placeAll(){
@@ -50,6 +51,7 @@ public class GUI_AfficherQuestion extends JFrame {
         panel.add(jbNiveau1);
         panel.add(jbNiveau2);
         panel.add(jbNiveau3);
+        panel.add(jbAll);
         return panel;
     }
 
@@ -62,6 +64,7 @@ public class GUI_AfficherQuestion extends JFrame {
                     getContentPane().remove(1);
                 }
                 JScrollPane scrollPane = new JScrollPane(placeList(theme, button.getText()), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setMaximumSize(new Dimension(600,400));
                 scrollPane.getVerticalScrollBar().setUnitIncrement(10);
                 getContentPane().add(scrollPane, BorderLayout.CENTER);
                 pack();
@@ -70,8 +73,8 @@ public class GUI_AfficherQuestion extends JFrame {
     }
 
     private JPanel placeList(String theme, String niveau){
-        List<Question> list = null;
-        if(niveau.equals("Tour")){
+        List<Question> list;
+        if(niveau.equals("Tout")){
             list = listeQuestions.getQuestionByTheme(theme);
         }else{
             list = listeQuestions.getQuestionByThemeLevel(theme, Integer.parseInt(niveau));
@@ -84,7 +87,7 @@ public class GUI_AfficherQuestion extends JFrame {
         cs.gridx = 0;
         cs.gridy = 0;
         for (Question<?> q: list) {
-            JTextArea textArea = new JTextArea(q.toString());
+            JTextArea textArea = new JTextArea(q.toString(), 4,10);
             textArea.setEditable(false);
             textArea.setBackground(panel.getBackground());
             panel.add(textArea, cs);

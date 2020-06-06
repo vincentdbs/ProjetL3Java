@@ -20,6 +20,7 @@ public class GUI_QCM extends GUI_Question {
         initiate(enonce, reponses, theme, joueur);
         getContentPane().add(placeAll());
         pack();
+        setLocationRelativeTo(parent);
         setVisible(true);
     }
 

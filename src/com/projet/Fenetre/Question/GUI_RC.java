@@ -23,6 +23,7 @@ public class GUI_RC extends GUI_Question {
         initiate(enonce, theme, joueur);
         getContentPane().add(placeAll());
         pack();
+        setLocationRelativeTo(parent);
         setVisible(true);
     }
 

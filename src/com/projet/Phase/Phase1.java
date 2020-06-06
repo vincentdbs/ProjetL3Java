@@ -116,9 +116,6 @@ public class Phase1 implements Phase {
                     break;
             }
         }
-        for (Chronometre c : tempsReponses) {
-            System.out.println(c.toString());
-        }
     }
 
     /**

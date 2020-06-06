@@ -149,5 +149,9 @@ public class Phase3 implements Phase {
             }
         }
     }
+
+    public Joueur getVainqueur() {
+        return vainqueur;
+    }
 }
 

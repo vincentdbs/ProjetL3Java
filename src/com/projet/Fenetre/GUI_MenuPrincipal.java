@@ -3,6 +3,8 @@ package com.projet.Fenetre;
 import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
 import com.projet.Phase.Phase1;
+import com.projet.Phase.Phase2;
+import com.projet.Phase.Phase3;
 import com.projet.Question.ListeQuestions;
 import com.projet.Themes;
 
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 public class GUI_MenuPrincipal extends JFrame {
     //todo placer les bouttons et implementer les fonctionnalités du sujet, respectivement Point n° 1,3,4,5,6,7,8 dans le sujet page 6
     private JButton btnTheme, btnQuestion, btnAjouteQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
+    private JButton btnGrandJeu;
     private ListeQuestions listeQuestions;
     private Themes themes;
 
@@ -42,16 +45,20 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart = new JButton("Jouer");
         btnTheme = new JButton("Afficher thèmes");
         btnAfficherJoueurs = new JButton("Afficher joueurs");
+        btnGrandJeu = new JButton("Grand Jeu");
         btnQuitter = new JButton("Quitter");
         addListenerStart();
         addListenerTheme();
         addListenerJoueur();
         addListenerQuitter();
+        addListenerGrandJeu();
+
     }
 
     private JPanel placeAll(){
         JPanel panel = new JPanel();
         panel.add(btnStart);
+        panel.add(btnGrandJeu);
         panel.add(btnTheme);
         panel.add(btnAfficherJoueurs);
         panel.add(btnQuitter);
@@ -62,8 +69,6 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
                 Phase1 phase1 = new Phase1(themes, listeQuestions, createEnsJoueur().getJoueurSelectionne(), GUI_MenuPrincipal.this);
                 phase1.phaseDeJeu();
             }
@@ -97,6 +102,32 @@ public class GUI_MenuPrincipal extends JFrame {
         });
     }
 
+    private void addListenerGrandJeu(){
+        btnGrandJeu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                EnsJoueurs ensJoueurs = new EnsJoueurs();
+//                Joueur[] vainqueurs = new Joueur[3];
+//                //lancement de 4 parties
+//                for (int i = 0; i < 3; i++) {
+//                    Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
+//                    phase1.phaseDeJeu();
+//                    Phase2 phase2 = new Phase2();
+//                    phase2.phaseDeJeu();
+//                    Phase3 phase3 = new Phase3();
+//                    phase3.phaseDeJeu();
+//                    vainqueurs[i] = phase3.getVainqueur();
+//                }
+//                //lancement d'une phase 2 puis 3 à partir des gagnants
+//                Phase2 phase2 = new Phase2();
+//                phase2.phaseDeJeu();
+//                Phase3 phase3 = new Phase3();
+//                phase3.phaseDeJeu();
+//                JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+    }
+
     private EnsJoueurs createEnsJoueur(){
         //creation de la liste des joueurs
         EnsJoueurs ensJoueurs = new EnsJoueurs();
@@ -106,5 +137,13 @@ public class GUI_MenuPrincipal extends JFrame {
             ensJoueurs.selectionnerJoueur();
         }
         return ensJoueurs;
+    }
+
+    private Joueur[] getFourJoueur(EnsJoueurs ensJoueurs){
+        //selection des 4 joueurs de la partie
+        for (int i = 0; i < 4; i++) {
+            ensJoueurs.selectionnerJoueur();
+        }
+        return ensJoueurs.getJoueurSelectionne();
     }
 }

@@ -1,37 +1,36 @@
 package com.projet;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Chronometre extends  Thread implements Comparable {
     private int milisecond = 0, second = 0, minute =0, hour =0;
     private boolean state = true;
+    private long debut, fin;
 
     public Chronometre(){
         super();
+        debut = System.currentTimeMillis(); //debut de la question
+        fin = System.currentTimeMillis(); //fin de la question
     }
 
     public void run(){
         while (state){
             try {
-                sleep(1);
-            } catch (InterruptedException e) {
+                sleep(10); //marge d'erreur de 10ms
+            }catch (InterruptedException e){
                 e.printStackTrace();
             }
-            milisecond++;
-            if(milisecond > 999){
-                milisecond = 0;
-                second++;
-                if(second > 59){
-                    second = 0;
-                    minute++;
-                    if(minute > 59){
-                        minute = 0;
-                        hour++;
-                    }
-                }
-            }
-
+            setAllTime();
         }
+    }
+
+    private void setAllTime(){
+        long diff = fin-debut; //calcul du temps écoulé + conversion ms => h:min:s:ms
+        milisecond = (int) (diff % 1000);
+        second = (int) (diff / 1000) % 60 ;
+        minute = (int) ((diff / (1000*60)) % 60);
+        hour   = (int) ((diff / (1000*60*60)) % 24);
     }
 
     public int getMilisecond() {

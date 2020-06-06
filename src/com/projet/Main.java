@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        //todo delete les tests des fonctions avant rendus
         //fonction d'initialisation des questions et joueurs
 
 //        Start start = new Start();
@@ -29,7 +30,6 @@ public class Main {
 //        testListeQuestion();
 //        testTheme();
 //        testJoueur();
-
         jeu();
     }
 

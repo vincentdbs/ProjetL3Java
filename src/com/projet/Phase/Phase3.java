@@ -20,6 +20,7 @@ public class Phase3 implements Phase {
 
     private Themes listeTroisThemes;
     private Joueur[] joueurs;
+    private Joueur vainqueur;
     private ListeQuestions listeQuestionsAll;
     private static List<Question> listeQuestions;
     private HashMap<String, List<Question>> listeQuestionsPhase = new HashMap<>();
@@ -141,6 +142,7 @@ public class Phase3 implements Phase {
 
         for(int i=0;i<2;i++){
             if(!jElimine.getNom().equals(joueurs[i].getNom())){
+                vainqueur = joueurs[i];
                 JOptionPane.showMessageDialog(null, "Résultat :\n" +
                                 "Le joueur gagnant est " +  joueurs[i].getNom() + " avec un total de " + joueurs[i].getScore() + " points \n"
                         , "Gagnant du jeu", JOptionPane.INFORMATION_MESSAGE);

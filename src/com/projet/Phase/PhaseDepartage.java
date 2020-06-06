@@ -86,6 +86,9 @@ public class PhaseDepartage implements Phase {
         }
     }
 
+    /**
+     * Affichage des questions pour chaque joueur à departager
+     */
     private void askQuestionToPlayer(int nbQuestion, int[] score, Joueur[] joueurADepartager){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
@@ -115,6 +118,9 @@ public class PhaseDepartage implements Phase {
         }
     }
 
+    /**
+     * Recuperation du tableau de joueur restant à departager ou de l'unique joueur éliminé ou le tableau original si que des bonnes réponses
+     */
     private Joueur[] whoLost(int[] score, Joueur[] joueurs){
         int nbLoser = 0;
         for (int i = 0; i < score.length; i++) {

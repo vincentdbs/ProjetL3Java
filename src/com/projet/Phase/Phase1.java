@@ -54,6 +54,9 @@ public class Phase1 implements Phase {
         }
     }
 
+    /**
+     * affichage du message de présentation des régles de la phase1
+     */
     private void displayMessageRules(){
         JOptionPane.showMessageDialog(null, "Phase 1 :\nQuestion de niveau 1." +
                 "\nChaque bonne réponse rapporte 2 points.\n" +
@@ -63,6 +66,10 @@ public class Phase1 implements Phase {
                 + joueurs[3].getNom(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    /**
+     * affichage du message de récapitulation des régles de la phase1
+     */
     private void displayMessageJoueurElimine(String elimine, Chronometre[] tempsReponses){
         JOptionPane.showMessageDialog(null, "Résultat :\n" +
                         joueurs[0].getNom() + " " + joueurs[0].getScore() + " points en " + tempsReponses[0].toString() + "\n" +
@@ -73,6 +80,10 @@ public class Phase1 implements Phase {
                 , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    /**
+     * Affichage des questions pour chaque joueur + remplissage du chronometre associé du joueur
+     */
     private void askQuestionToPlayer(Chronometre[] tempsReponses){
         /** Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
@@ -105,6 +116,9 @@ public class Phase1 implements Phase {
         }
     }
 
+    /**
+     * Lancement de la phase 2
+     */
     private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
         displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);
         int k=0;

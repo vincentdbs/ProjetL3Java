@@ -1,7 +1,7 @@
 package com.projet.Joueur;
 
 public class Joueur {
-    private static int indexJoueur = 100;
+    private static int indexJoueur = 100; //numero des joueurs commence à 100
     private String nom, etat; //etat = sélectionné, gagnant, super gagnant, éliminé ou en attente
     private int score, numero;
 
@@ -11,7 +11,7 @@ public class Joueur {
         this.etat = etat;
         this.score = score;
         this.numero = indexJoueur;
-        indexJoueur += 10;
+        indexJoueur += 10; //numero des joueurs de 10 en 10
     }
 
     public Joueur(String nom, String etat) {

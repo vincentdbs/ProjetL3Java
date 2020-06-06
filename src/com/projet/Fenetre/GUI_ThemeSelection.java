@@ -22,7 +22,7 @@ public class GUI_ThemeSelection extends JDialog{
     private int activeValid = 0;
 
 
-    private TreeMap<String, ArrayList<String>> themeJoueur = new TreeMap<>(); //Garder l'ordre des joueurs
+    private LinkedHashMap<String, ArrayList<String>> themeJoueur = new LinkedHashMap<>(); //Garder l'ordre des joueurs
 
 
 
@@ -178,7 +178,7 @@ public class GUI_ThemeSelection extends JDialog{
         return pan;
     }
 
-    public TreeMap<String, ArrayList<String>> getThemeJoueur() {
+    public LinkedHashMap<String, ArrayList<String>> getThemeJoueur() {
         return themeJoueur;
     }
 }

@@ -88,7 +88,7 @@ public class Phase2 implements Phase{
         questions(theme.getThemeJoueur());
     }
 
-    public void questions(TreeMap<String, ArrayList<String>> listeTheme){
+    public void questions(LinkedHashMap<String, ArrayList<String>> listeTheme){
 
         int nbQuestion = 2; //Modification nécessaire quand on aura plus de questions
 

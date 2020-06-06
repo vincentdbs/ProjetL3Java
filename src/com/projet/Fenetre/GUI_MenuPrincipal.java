@@ -31,7 +31,7 @@ public class GUI_MenuPrincipal extends JFrame {
 
 
 
-        setSize(300,200);
+        setSize(300,150);
         setTitle("Menu principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initiate();

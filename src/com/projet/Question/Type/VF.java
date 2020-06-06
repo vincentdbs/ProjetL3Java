@@ -27,6 +27,6 @@ public class VF {
 
     @Override
     public String toString(){
-        return getTexte() + "\ntrue\nfalse";
+        return getTexte() + "\nVrai\nFaux";
     }
 }

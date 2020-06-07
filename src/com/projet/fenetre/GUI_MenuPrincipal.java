@@ -29,9 +29,6 @@ public class GUI_MenuPrincipal extends JFrame {
         //creation des themes + selection du premier theme
         themes = new Themes();
 
-
-
-
         setSize(300,150);
         setTitle("Menu principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +52,6 @@ public class GUI_MenuPrincipal extends JFrame {
         addListenerQuitter();
         addListenerGrandJeu();
         addListenerAfficherQuestion();
-
     }
 
     private JPanel placeAll(){
@@ -73,12 +69,7 @@ public class GUI_MenuPrincipal extends JFrame {
         btnStart.addActionListener(e -> {
             EnsJoueurs ensJoueurs = new EnsJoueurs();
             ensJoueurs.creer();
-            Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
-            phase1.phaseDeJeu();
-            Phase2 phase2 = new Phase2(themes, listeQuestions, phase1.getVainqueurs());
-            phase2.phaseDeJeu();
-            Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
-            phase3.phaseDeJeu();
+            playAGame(ensJoueurs);
         });
     }
 
@@ -106,16 +97,10 @@ public class GUI_MenuPrincipal extends JFrame {
             //lancement de 4 parties
             for (int i = 0; i < 3; i++) {
                 JOptionPane.showMessageDialog(null, "Partie n°" + (i+1), "Partie n°" + (i+1), JOptionPane.INFORMATION_MESSAGE);
-                Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
-                phase1.phaseDeJeu();
-                Phase2 phase2 = new Phase2(themes, listeQuestions, phase1.getVainqueurs());
-                phase2.phaseDeJeu();
-                Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
-                phase3.phaseDeJeu();
-                vainqueurs[i] = phase3.getVainqueur();
+                vainqueurs[i] = playAGame(ensJoueurs);
             }
             JOptionPane.showMessageDialog(null, "Grande finale parmi les vainqueurs des 3 premières parties", "Grande Finale", JOptionPane.INFORMATION_MESSAGE);
-            //lancement d'une phase 2 puis 3 à partir des gagnants
+            //lancement d'une phase 2 à 3 thèmes puis phase 3 à partir des gagnants des parties précédentes
             Phase2GrandJeu phase2GrandJeu = new Phase2GrandJeu(themes, listeQuestions, vainqueurs);
             phase2GrandJeu.phaseDeJeu();
             Phase3 phase3 = new Phase3(listeQuestions, phase2GrandJeu.getVainqueurs());
@@ -149,5 +134,15 @@ public class GUI_MenuPrincipal extends JFrame {
             joueur[i] = ensJoueurs.getLastJoueurSelectionne();
         }
         return joueur;
+    }
+
+    private Joueur playAGame(EnsJoueurs ensJoueurs){
+        Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
+        phase1.phaseDeJeu();
+        Phase2 phase2 = new Phase2(themes, listeQuestions, phase1.getVainqueurs());
+        phase2.phaseDeJeu();
+        Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
+        phase3.phaseDeJeu();
+        return phase3.getVainqueur();
     }
 }

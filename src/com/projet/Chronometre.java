@@ -57,6 +57,7 @@ public class Chronometre extends  Thread implements Comparable {
     }
 
     public void add(Chronometre c){
+        //todo si plus de 1000ms => second+1 ...
         this.milisecond += c.milisecond;
         this.second += c.second;
         this.minute += c.minute;

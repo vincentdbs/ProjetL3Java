@@ -50,26 +50,16 @@ public class Themes {
         return getIndicateur();
     }
 
-    public int[] selectionnerCinqThemes(){
-        int[] indicateur = new int[5];
-        for (int i = 0; i < indicateur.length; i++) {
-            indicateur[i] = (int) (Math.random() * 10);
-
-        }
-
-        return indicateur;
-    }
-
-    public int[] selectionnerSixThemes(){
-        int[] indicateur = new int[6];
+    /**
+     * Methode selectionnant le nombre de thème passé en paramétre (methode SelectionnerCinqThemes du sujet)
+     */
+    public int[] selectionnerNTheme(int nbThemeToGet){
+        int[] indicateur = new int[nbThemeToGet];
         ArrayList<Integer> doublon = new ArrayList<>();
         int random;
 
-
         for (int i = 0; i < indicateur.length; i++) {
-
             boolean end = false;
-
             while(!end){
                 random = (int) (Math.random() *10);
                 if(!doublon.contains(random)){
@@ -78,33 +68,7 @@ public class Themes {
                     end = true;
                 }
             }
-
         }
-
-        return indicateur;
-    }
-
-    public int[] selectionnerTroisThemes(){
-        int[] indicateur = new int[3];
-        ArrayList<Integer> doublon = new ArrayList<>();
-        int random;
-
-
-        for (int i = 0; i < indicateur.length; i++) {
-
-            boolean end = false;
-
-            while(!end){
-                random = (int) (Math.random() *10);
-                if(!doublon.contains(random)){
-                    indicateur[i] = random;
-                    doublon.add(random);
-                    end = true;
-                }
-            }
-
-        }
-
         return indicateur;
     }
 

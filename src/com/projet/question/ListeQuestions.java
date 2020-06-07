@@ -86,6 +86,9 @@ public class ListeQuestions {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Recuperation des questions depuis les fichiers textes
+     */
     private void getAllQuestions(){
         getAllQcmFromFile();
         getAllVfFromFile();

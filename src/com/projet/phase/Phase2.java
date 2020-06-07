@@ -50,7 +50,7 @@ public class Phase2 implements Phase{
     }
 
     public String[] selectionThemes(Themes theme){
-        int[] indic = theme.selectionnerSixThemes();
+        int[] indic = theme.selectionnerNTheme(6);
         String[] sixThemes = new String[6];
         int k = 0;
         for(int i=0; i<6; i++){

@@ -49,7 +49,7 @@ public class Phase2GrandJeu implements Phase {
     }
 
     public String[] selectionThemes(Themes theme){
-        int[] indic = theme.selectionnerTroisThemes();
+        int[] indic = theme.selectionnerNTheme(3);
         String[] troisTheme = new String[3];
         int k = 0;
         for(int i=0; i<3; i++){

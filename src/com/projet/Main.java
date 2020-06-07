@@ -1,6 +1,6 @@
 package com.projet;
 
-import com.projet.Fenetre.*;
+import com.projet.fenetre.*;
 
 public class Main {
 

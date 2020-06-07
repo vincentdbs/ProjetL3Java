@@ -1,7 +1,7 @@
 package com.projet;
 
-import com.projet.Joueur.Joueur;
-import com.projet.Question.Question;
+import com.projet.joueur.Joueur;
+import com.projet.question.Question;
 
 import java.util.ArrayList;
 import java.util.Arrays;

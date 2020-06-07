@@ -92,7 +92,7 @@ public class Phase3 implements Phase {
     }
 
     private void askQuestionToPlayerPhase3(int nbQuestion, Chronometre[] tempsReponses, int j){
-        /** Modification direct de temps de réponse car shallow copy**/
+        /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
 

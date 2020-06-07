@@ -87,7 +87,7 @@ public class PhaseDepartage implements Phase {
      * Affichage des questions pour chaque joueur à departager
      */
     private void askQuestionToPlayer(int nbQuestion, int[] score, Joueur[] joueurADepartager){
-        /** Modification direct de temps de réponse car shallow copy**/
+        /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurADepartager.length ; i++) {
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);

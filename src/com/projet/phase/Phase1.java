@@ -87,7 +87,7 @@ public class Phase1 implements Phase {
      * Affichage des questions pour chaque joueur + remplissage du chronometre associé du joueur
      */
     private void askQuestionToPlayer(Chronometre[] tempsReponses){
-        /** Modification direct de temps de réponse car shallow copy**/
+        /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
             List<Question> listeQuestionsJoueuri = listeQuestionsAll.getQuestionByThemeLevel(theme.getArrayTheme()[theme.selectionnerNextTheme()], 1); //recuperation de la liste des questions de niveau 1 du théme donné

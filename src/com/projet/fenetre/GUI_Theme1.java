@@ -36,12 +36,7 @@ public class GUI_Theme1 extends JFrame {
         jlTheme = new JLabel();
         jlNomTheme = new JLabel();
         jbValider = new JButton("Retour");
-        jbValider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        jbValider.addActionListener(e -> dispose());
 
     }
 

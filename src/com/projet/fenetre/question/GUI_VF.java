@@ -63,24 +63,18 @@ public class GUI_VF extends GUI_Question {
     }
 
     public void addListenerTrue(){
-        jbVrai.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setAnswer("true");
-                stopChronometre();
-                dispose();
-            }
+        jbVrai.addActionListener(e -> {
+            setAnswer("true");
+            stopChronometre();
+            dispose();
         });
     }
 
     public void addListenerFalse(){
-        jbFaux.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setAnswer("false");
-                stopChronometre();
-                dispose();
-            }
+        jbFaux.addActionListener(e -> {
+            setAnswer("false");
+            stopChronometre();
+            dispose();
         });
     }
 }

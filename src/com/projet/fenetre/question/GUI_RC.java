@@ -69,13 +69,10 @@ public class GUI_RC extends GUI_Question {
     }
 
     private void addListenerValider(){
-        jbValider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setAnswer(jtfRep.getText());
-                stopChronometre();
-                dispose();
-            }
+        jbValider.addActionListener(e -> {
+            setAnswer(jtfRep.getText());
+            stopChronometre();
+            dispose();
         });
     }
 }

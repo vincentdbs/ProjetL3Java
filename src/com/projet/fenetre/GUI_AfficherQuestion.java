@@ -56,20 +56,17 @@ public class GUI_AfficherQuestion extends JFrame {
     }
 
     private void addListenerOnButton(JButton button){
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String theme = jcbTheme.getSelectedItem().toString();
-                if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
-                    getContentPane().remove(1);
-                }
-                //todo pb avec le JScrollPane si appui sur "Tout"
-                JScrollPane scrollPane = new JScrollPane(placeList(theme, button.getText()), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-//                scrollPane.setMaximumSize(new Dimension(600,400));
-                scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-                getContentPane().add(scrollPane, BorderLayout.CENTER);
-                pack();
+        button.addActionListener(e -> {
+            String theme = jcbTheme.getSelectedItem().toString();
+            if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+                getContentPane().remove(1);
             }
+            //todo pb avec le JScrollPane si appui sur "Tout"
+            JScrollPane scrollPane = new JScrollPane(placeList(theme, button.getText()), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+//                scrollPane.setMaximumSize(new Dimension(600,400));
+            scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            pack();
         });
     }
 

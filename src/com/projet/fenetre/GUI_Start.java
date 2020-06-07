@@ -55,12 +55,9 @@ public class GUI_Start extends JFrame {
     }
 
     private void AddOnCommencer(){
-        jbCommencer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
-                dispose();
-            }
+        jbCommencer.addActionListener(actionEvent -> {
+            GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
+            dispose();
         });
     }
 }

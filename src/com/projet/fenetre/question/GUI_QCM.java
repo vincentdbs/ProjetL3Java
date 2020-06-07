@@ -148,13 +148,10 @@ public class GUI_QCM extends GUI_Question {
 
 
     private void addListenerRep(JButton btn){
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setAnswer(String.valueOf(Integer.parseInt(btn.getText())-1));
-                stopChronometre();
-                dispose();
-            }
+        btn.addActionListener(e -> {
+            setAnswer(String.valueOf(Integer.parseInt(btn.getText())-1));
+            stopChronometre();
+            dispose();
         });
     }
 }

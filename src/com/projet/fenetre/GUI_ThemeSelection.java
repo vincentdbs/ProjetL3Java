@@ -61,16 +61,13 @@ public class GUI_ThemeSelection extends JDialog{
 
         jbValider = new JButton("Continuer");
         jbValider.setEnabled(false); //Tant que les joueurs n'ont pas sélectionné leurs thèmes, on ne peut pas continuer
-        jbValider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        jbValider.addActionListener(e -> {
 
 
 
 //               Phase2.questions(themeJoueur); //On lance la phase 2 avec la TreeMap contenant le nom du joueur avec les deux thèmes qu'il a choisi
-               dispose();
+           dispose();
 
-            }
         });
 
 

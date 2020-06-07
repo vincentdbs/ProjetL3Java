@@ -2,8 +2,6 @@ package com.projet.fenetre.question;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUI_QCM extends GUI_Question {
 
@@ -47,7 +45,6 @@ public class GUI_QCM extends GUI_Question {
 
     private JPanel placeAll(){
         JPanel pan = new JPanel(new GridBagLayout());
-        JPanel pan2 = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 30, 10, 30);
 
@@ -58,91 +55,35 @@ public class GUI_QCM extends GUI_Question {
         gbc.gridx++;
         pan.add(jlTheme, gbc);
 
-
-
         gbc.gridx = 0;
         gbc.gridy++;
 
-        Box proposition1 = Box.createHorizontalBox(); //On met le bouton et la proposition à côté
-        proposition1.add(jbRep1);
-        proposition1.add(Box.createRigidArea(new Dimension(20,0)));
-        proposition1.add(jlRep1);
-
-
-        proposition1.setMinimumSize(new Dimension(500,40));
         gbc.anchor = GridBagConstraints.LINE_START;//on fixe la box a gauche
-        pan.add(proposition1, gbc);
-
-
+        pan.add(createBox(jlRep1, jbRep1), gbc);
 
         gbc.gridx++;
         pan.add(jlJoueur, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy++;
 
+        pan.add(createBox(jlRep2, jbRep2), gbc);
 
         gbc.gridx = 0;
         gbc.gridy++;
 
-        Box proposition2 = Box.createHorizontalBox();
-        proposition2.add(jbRep2);
-        proposition2.add(Box.createRigidArea(new Dimension(20,0)));
-        proposition2.add(jlRep2);
-
-        proposition2.setMinimumSize(new Dimension(500,40));
-        gbc.anchor = GridBagConstraints.LINE_START;
-        pan.add(proposition2, gbc);
-
-
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-
-        Box proposition3 = Box.createHorizontalBox();
-        proposition3.add(jbRep3);
-        proposition3.add(Box.createRigidArea(new Dimension(20,0)));
-        proposition3.add(jlRep3);
-
-        proposition3.setMinimumSize(new Dimension(500,40));
-        gbc.anchor = GridBagConstraints.LINE_START;
-        pan.add(proposition3, gbc);
-
-//        gbc.gridx = 1;
-//        gbc.gridy = 0;
-//        pan.add(jlQuestion, gbc);
-//
-//        gbc.gridx = 2;
-//        gbc.gridy = 0;
-//        pan.add(jlTheme, gbc);
-//
-//        gbc.gridx = 2;
-//        gbc.gridy = 1;
-//        pan.add(jlJoueur, gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        pan.add(jlRep1, gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 2;
-//        pan.add(jlRep2, gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 3;
-//        pan.add(jlRep3, gbc);
-//
-//        gbc.gridx = 0;
-//        gbc.gridy = 4;
-//        pan.add(jbRep1, gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 4;
-//        pan.add(jbRep2, gbc);
-//
-//        gbc.gridx = 2;
-//        gbc.gridy = 4;
-//        pan.add(jbRep3, gbc);
+        pan.add(createBox(jlRep3, jbRep3), gbc);
 
         return pan;
+    }
+
+    private Box createBox(JLabel label, JButton button){
+        Box proposition = Box.createHorizontalBox();
+        proposition.add(button);
+        proposition.add(Box.createRigidArea(new Dimension(20,0)));
+        proposition.add(label);
+        proposition.setMinimumSize(new Dimension(500,40));
+        return proposition;
     }
 
 

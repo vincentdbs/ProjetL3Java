@@ -92,6 +92,9 @@ public class Phase2 implements Phase{
         int nbQuestion = 2; //Modification nécessaire quand on aura plus de questions
 
         Chronometre[]tempsReponses = new Chronometre[3];
+        for (int i = 0; i < tempsReponses.length ; i++) {
+            tempsReponses[i] = new Chronometre();
+        }
         ArrayList<String> theme = new ArrayList<>();
 
         //affichage des questions
@@ -119,21 +122,21 @@ public class Phase2 implements Phase{
                         if (q.saisir(qcm.getAnswer())){
                             joueurs[i].majScore(3);
                         }
-                        tempsReponses[i] = qcm.getChronometre();
+                        tempsReponses[i].add(qcm.getChronometre());
                         break;
                     case "VF":
                         GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),  theme.get(j), joueurs[i].getNom());
                         if (q.saisir(vf.getAnswer())){
                             joueurs[i].majScore(3);
                         }
-                        tempsReponses[i] = vf.getChronometre();
+                        tempsReponses[i].add(vf.getChronometre());
                         break;
                     case "RC":
                         GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom());
                         if (q.saisir(rc.getAnswer())){
                             joueurs[i].majScore(3);
                         }
-                        tempsReponses[i] = rc.getChronometre();
+                        tempsReponses[i].add(rc.getChronometre());
                         break;
                 }
             }

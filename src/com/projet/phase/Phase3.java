@@ -56,6 +56,9 @@ public class Phase3 implements Phase {
     @Override
     public void phaseDeJeu() {
         Chronometre[]tempsReponses = new Chronometre[2];
+        for (int i = 0; i < tempsReponses.length ; i++) {
+            tempsReponses[i] = new Chronometre();
+        }
         displayMessageRulesPhase3();
 
         for(int j=0;j<3;j++){
@@ -116,21 +119,21 @@ public class Phase3 implements Phase {
                     if (q.saisir(qcm.getAnswer())){
                         joueurs[i].majScore(5);
                     }
-                    tempsReponses[i] = qcm.getChronometre();
+                    tempsReponses[i].add(qcm.getChronometre());
                     break;
                 case "VF":
                     GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
                     if (q.saisir(vf.getAnswer())){
                         joueurs[i].majScore(5);
                     }
-                    tempsReponses[i] = vf.getChronometre();
+                    tempsReponses[i].add(vf.getChronometre());
                     break;
                 case "RC":
                     GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom());
                     if (q.saisir(rc.getAnswer())){
                         joueurs[i].majScore(5);
                     }
-                    tempsReponses[i] = rc.getChronometre();
+                    tempsReponses[i].add(rc.getChronometre());
                     break;
             }
         }

@@ -56,6 +56,13 @@ public class Chronometre extends  Thread implements Comparable {
         return hour + "h" + minute + "min" + second + "s" + milisecond + "ms";
     }
 
+    public void add(Chronometre c){
+        this.milisecond += c.milisecond;
+        this.second += c.second;
+        this.minute += c.minute;
+        this.hour += c.hour;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -23,21 +23,21 @@ public class Question<T> {
 
     public boolean saisir(String answer){
         switch (getEnonce().getClass().getName()){
-            case "com.projet.Question.Type.QCM":{
+            case "com.projet.question.type.QCM":{
                 QCM enonce = (QCM) getEnonce();
                 if(enonce.getBonneReponse() == Integer.parseInt(answer)){
                     return true;
                 }
                 break;
             }
-            case "com.projet.Question.Type.VF":{
+            case "com.projet.question.type.VF":{
                 VF enonce = (VF) getEnonce();
                 if(enonce.isReponse() == Boolean.parseBoolean(answer)){
                     return true;
                 }
                 break;
             }
-            case "com.projet.Question.Type.RC":{
+            case "com.projet.question.type.RC":{
                 RC enonce = (RC) getEnonce();
                 if(enonce.getBonneReponse().equals(answer)){
                     return true;

@@ -25,16 +25,11 @@ public class GUI_RC extends GUI_Question {
     }
 
     private void initiate(String enonce, String theme, String joueur){
-
-        jlQuestion = new JLabel(enonce);
-
         jtfRep = new JTextField(20);
-
-        jbValider = new JButton("Valider");
-
         jlTheme = new JLabel("Thème : " +theme);
         jlJoueur = new JLabel("Joueur : " + joueur);
-
+        jlQuestion = new JLabel(enonce);
+        jbValider = new JButton("Valider");
         addListenerValider();
     }
 
@@ -49,20 +44,16 @@ public class GUI_RC extends GUI_Question {
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
+        gbc.gridx++;
         pan.add(jlTheme, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy++;
         pan.add(jlJoueur, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 1;
         pan.add(jtfRep, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy++;
         pan.add(jbValider, gbc);
 
         return pan;

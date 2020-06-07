@@ -1,6 +1,7 @@
 package com.projet.Fenetre.Question;
 
 import com.projet.Chronometre;
+import com.projet.Fenetre.ConfirmExitPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ public class GUI_Question extends JDialog {
     public GUI_Question(Frame parent) {
         super(parent, true); //true pour que la fenetre bloque le programme tant qu'elle est affichée
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(ConfirmExitPage.exitWindow());
         setResizable(false);
         chronometre.start();
         answer = "";

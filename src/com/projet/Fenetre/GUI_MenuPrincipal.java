@@ -4,6 +4,7 @@ import com.projet.Joueur.EnsJoueurs;
 import com.projet.Joueur.Joueur;
 import com.projet.Phase.Phase1;
 import com.projet.Phase.Phase2;
+import com.projet.Phase.Phase2GrandJeu;
 import com.projet.Phase.Phase3;
 import com.projet.Question.ListeQuestions;
 import com.projet.Themes;
@@ -132,9 +133,9 @@ public class GUI_MenuPrincipal extends JFrame {
                 }
                 JOptionPane.showMessageDialog(null, "Grande finale parmi les vainqueurs des 3 premières parties", "Grande Finale", JOptionPane.INFORMATION_MESSAGE);
                 //lancement d'une phase 2 puis 3 à partir des gagnants
-                Phase2 phase2 = new Phase2(themes, listeQuestions, vainqueurs);
-                phase2.phaseDeJeu();
-                Phase3 phase3 = new Phase3(listeQuestions, phase2.getVainqueurs());
+                Phase2GrandJeu phase2GrandJeu = new Phase2GrandJeu(themes, listeQuestions, vainqueurs);
+                phase2GrandJeu.phaseDeJeu();
+                Phase3 phase3 = new Phase3(listeQuestions, phase2GrandJeu.getVainqueurs());
                 phase3.phaseDeJeu();
                 JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
             }

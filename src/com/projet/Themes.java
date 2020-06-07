@@ -86,6 +86,29 @@ public class Themes {
         return indicateur;
     }
 
+    public int[] selectionnerTroisThemes(){
+        int[] indicateur = new int[3];
+        ArrayList<Integer> doublon = new ArrayList<>();
+        int random;
+
+
+        for (int i = 0; i < indicateur.length; i++) {
+
+            boolean end = false;
+
+            while(end == false){
+                random = (int) (Math.random() *10);
+                if(!doublon.contains(random)){
+                    indicateur[i] = random;
+                    doublon.add(random);
+                    end = true;
+                }
+            }
+
+        }
+
+        return indicateur;
+    }
 
 
     public void afficher(){

@@ -11,7 +11,7 @@ public class GUI_Question extends JDialog {
     private String answer;
 
     public GUI_Question(Frame parent) {
-        super(parent, true);
+        super(parent, true); //true pour que la fenetre bloque le programme tant qu'elle est affichée
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setResizable(false);
         chronometre.start();

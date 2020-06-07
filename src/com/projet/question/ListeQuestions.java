@@ -51,20 +51,20 @@ public class ListeQuestions {
     public void afficherQuestionByLevel(int level){
         listeQuestion.stream()
                 .filter(question -> question.getNiveauDifficulte() == level)
-                .forEach(question -> question.afficher());
+                .forEach(Question::afficher);
     }
 
     public void afficherQuestionByTheme(String theme){
         listeQuestion.stream()
                 .filter(question -> question.getTheme().equals(theme))
-                .forEach(question -> question.afficher());
+                .forEach(Question::afficher);
     }
 
     public void afficherQuestionByThemeLevel(String theme, int level){
         listeQuestion.stream()
                 .filter(question -> question.getTheme().equals(theme))
                 .filter(question -> question.getNiveauDifficulte() == level)
-                .forEach(question -> question.afficher());
+                .forEach(Question::afficher);
     }
 
     public List<Question> getQuestionByLevel(int level){

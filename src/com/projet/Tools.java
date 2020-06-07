@@ -5,7 +5,6 @@ import com.projet.question.Question;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 
 public final class Tools {
     private Tools() {}

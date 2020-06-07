@@ -5,10 +5,10 @@ import java.awt.*;
 
 public class GUI_ChoixNom extends JFrame {
 
-    JLabel jlChoixNom;
-    JLabel jlNom1, jlNom2, jlNom3, jlNom4;
-    JTextField jtfNom1, jtfNom2, jtfNom3, jtfNom4;
-    JButton jbValider;
+    private JLabel jlChoixNom;
+    private JLabel jlNom1, jlNom2, jlNom3, jlNom4;
+    private JTextField jtfNom1, jtfNom2, jtfNom3, jtfNom4;
+    private JButton jbValider;
 
     public GUI_ChoixNom(){
 

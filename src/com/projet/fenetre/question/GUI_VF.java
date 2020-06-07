@@ -44,20 +44,17 @@ public class GUI_VF extends GUI_Question {
         gbc.gridy = 0;
         pan.add(jlQuestion, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy++;
         pan.add(jbVrai, gbc);
 
-        gbc.gridx = 1;
+        gbc.gridx++;
         gbc.gridy = 0;
         pan.add(jlTheme, gbc);
 
-        gbc.gridx = 2;
-        gbc.gridy = 0;
+        gbc.gridx++;
         pan.add(jlJoueur, gbc);
 
-        gbc.gridx = 2;
-        gbc.gridy = 1;
+        gbc.gridy++;
         pan.add(jbFaux, gbc);
         return pan;
     }

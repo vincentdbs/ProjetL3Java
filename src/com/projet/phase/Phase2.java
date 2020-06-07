@@ -89,7 +89,7 @@ public class Phase2 implements Phase{
 
     public void questions(LinkedHashMap<String, ArrayList<String>> listeTheme){
 
-        int nbQuestion = 2; //Modification nécessaire quand on aura plus de questions
+
 
         Chronometre[]tempsReponses = new Chronometre[3];
         for (int i = 0; i < tempsReponses.length ; i++) {
@@ -100,7 +100,7 @@ public class Phase2 implements Phase{
         //affichage des questions
         for(int j=0; j<2; j++){ //Deux tours dans la phase 2
             for (int i = 0; i < joueurs.length ; i++) {
-                int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
+
 
                 for (Map.Entry<String, List<Question>> parcours : listeQuestionstest.entrySet()) {
 
@@ -112,6 +112,12 @@ public class Phase2 implements Phase{
                     }
 
                 }
+
+
+                int nbQuestion = listeQuestions.size();
+
+                int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion); //On sélectionne la question parmi celles qui existent
+
 
 
 

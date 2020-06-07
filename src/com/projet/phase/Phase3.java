@@ -62,7 +62,7 @@ public class Phase3 implements Phase {
         displayMessageRulesPhase3();
 
         for(int j=0;j<3;j++){
-        askQuestionToPlayerPhase3(3, tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
+        askQuestionToPlayerPhase3(tempsReponses, j);} //Chaque joueur aura une question sur chaque thème. Le j permet de définir le thème actuel
 
         Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
         if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres
@@ -91,13 +91,13 @@ public class Phase3 implements Phase {
                 , "Résultat de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void askQuestionToPlayerPhase3(int nbQuestion, Chronometre[] tempsReponses, int j){
+    private void askQuestionToPlayerPhase3(Chronometre[] tempsReponses, int j){
         /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
 
 
-            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
+
 
 
             for (Map.Entry<String, List<Question>> parcours : listeQuestionsPhase.entrySet()) { //On sélectionne les questions du thème en cours : (Histoire puis Sciences puis Divertissements)
@@ -110,6 +110,10 @@ public class Phase3 implements Phase {
                 }
 
             }
+
+
+            int nbQuestion = listeQuestions.size();
+            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
 
 
             Question<?> q = listeQuestions.get(numQuestionSelected);

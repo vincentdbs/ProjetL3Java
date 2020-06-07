@@ -12,6 +12,13 @@ public class Chronometre extends  Thread implements Comparable {
         fin = System.currentTimeMillis(); //fin de la question
     }
 
+    public Chronometre(int milisecond, int second, int minute, int hour) {
+        this.milisecond = milisecond;
+        this.second = second;
+        this.minute = minute;
+        this.hour = hour;
+    }
+
     public void run(){
         while (state){
             try {
@@ -30,6 +37,13 @@ public class Chronometre extends  Thread implements Comparable {
         second = (int) (diff / 1000) % 60 ;
         minute = (int) ((diff / (1000*60)) % 60);
         hour   = (int) ((diff / (1000*60*60)) % 24);
+    }
+
+    private void setAllTime(long ms){
+        milisecond = (int) (ms % 1000);
+        second = (int) (ms / 1000) % 60 ;
+        minute = (int) ((ms / (1000*60)) % 60);
+        hour   = (int) ((ms / (1000*60*60)) % 24);
     }
 
     public int getMilisecond() {
@@ -57,11 +71,11 @@ public class Chronometre extends  Thread implements Comparable {
     }
 
     public void add(Chronometre c){
-        //todo si plus de 1000ms => second+1 ...
-        this.milisecond += c.milisecond;
-        this.second += c.second;
-        this.minute += c.minute;
-        this.hour += c.hour;
+        long ms = this.milisecond + c.milisecond; //reconstitution du temps en milliseconds
+        ms += ((this.second + c.second)*1000);
+        ms += ((this.minute + c.minute)*1000*60);
+        ms += ((this.hour + c.hour)*1000*60*60);
+        setAllTime(ms); //decompostion et stockage du temps en h:min:s:ms
     }
 
     @Override

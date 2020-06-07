@@ -2,9 +2,6 @@ package com.projet;
 
 import com.projet.Joueur.Joueur;
 import com.projet.Question.Question;
-import com.projet.Question.Type.QCM;
-import com.projet.Question.Type.RC;
-import com.projet.Question.Type.VF;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,29 +35,29 @@ public final class Tools {
      */
     public static Chronometre getLowestChronometer(Chronometre[] chronometres){
         return Arrays.stream(chronometres)
-                .min(new Comparator<Chronometre>() {
+                .min(new Comparator<>() {
                     @Override
                     public int compare(Chronometre o1, Chronometre o2) {
-                        if(o1.getHour() < o2.getHour()){
+                        if (o1.getHour() < o2.getHour()) {
                             return -1;
-                        }else if (o1.getHour() > o2.getHour()){
+                        } else if (o1.getHour() > o2.getHour()) {
                             return 1;
-                        }else{
-                            if (o1.getMinute() < o2.getMinute()){
-                                return  -1;
-                            }else if(o1.getMinute() > o2.getMinute()){
+                        } else {
+                            if (o1.getMinute() < o2.getMinute()) {
+                                return -1;
+                            } else if (o1.getMinute() > o2.getMinute()) {
                                 return 1;
-                            }else{
-                                if (o1.getSecond()< o2.getSecond()){
-                                    return  -1;
-                                }else if(o1.getSecond() > o2.getSecond()){
+                            } else {
+                                if (o1.getSecond() < o2.getSecond()) {
+                                    return -1;
+                                } else if (o1.getSecond() > o2.getSecond()) {
                                     return 1;
-                                }else{
-                                    if (o1.getMilisecond() < o2.getMilisecond()){
-                                        return  -1;
-                                    }else if(o1.getMilisecond()> o2.getMilisecond()){
+                                } else {
+                                    if (o1.getMilisecond() < o2.getMilisecond()) {
+                                        return -1;
+                                    } else if (o1.getMilisecond() > o2.getMilisecond()) {
                                         return 1;
-                                    }else{
+                                    } else {
                                         return 0;
                                     }
                                 }
@@ -76,29 +73,29 @@ public final class Tools {
      */
     public static Chronometre getGreatestChronometer(Chronometre[] chronometres){
         return Arrays.stream(chronometres)
-                .min(new Comparator<Chronometre>() {
+                .min(new Comparator<>() {
                     @Override
                     public int compare(Chronometre o1, Chronometre o2) {
-                        if(o1.getHour() < o2.getHour()){
+                        if (o1.getHour() < o2.getHour()) {
                             return 1;
-                        }else if (o1.getHour() > o2.getHour()){
+                        } else if (o1.getHour() > o2.getHour()) {
                             return -1;
-                        }else{
-                            if (o1.getMinute() < o2.getMinute()){
-                                return  11;
-                            }else if(o1.getMinute() > o2.getMinute()){
+                        } else {
+                            if (o1.getMinute() < o2.getMinute()) {
+                                return 11;
+                            } else if (o1.getMinute() > o2.getMinute()) {
                                 return -1;
-                            }else{
-                                if (o1.getSecond()< o2.getSecond()){
-                                    return  1;
-                                }else if(o1.getSecond() > o2.getSecond()){
+                            } else {
+                                if (o1.getSecond() < o2.getSecond()) {
+                                    return 1;
+                                } else if (o1.getSecond() > o2.getSecond()) {
                                     return -1;
-                                }else{
-                                    if (o1.getMilisecond() < o2.getMilisecond()){
-                                        return  1;
-                                    }else if(o1.getMilisecond()> o2.getMilisecond()){
+                                } else {
+                                    if (o1.getMilisecond() < o2.getMilisecond()) {
+                                        return 1;
+                                    } else if (o1.getMilisecond() > o2.getMilisecond()) {
                                         return -1;
-                                    }else{
+                                    } else {
                                         return 0;
                                     }
                                 }
@@ -139,7 +136,7 @@ public final class Tools {
         }
         //récupération des joueurs ayant le score le plus bas
         int finalScoreMin = scoreMin;
-        return (Joueur[]) Arrays.stream(joueurs)
+        return Arrays.stream(joueurs)
                 .filter(j -> j.getScore() == finalScoreMin)
                 .toArray(Joueur[]::new);
     }

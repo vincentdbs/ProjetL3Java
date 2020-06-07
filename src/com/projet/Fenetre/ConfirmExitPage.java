@@ -7,7 +7,7 @@ import java.awt.event.WindowListener;
 
 public class ConfirmExitPage {
     public static WindowListener exitWindow(){
-        WindowListener exitListener = new WindowAdapter() {
+        return new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int confirm = JOptionPane.showOptionDialog(
@@ -19,6 +19,5 @@ public class ConfirmExitPage {
                 }
             }
         };
-        return exitListener;
     }
 }

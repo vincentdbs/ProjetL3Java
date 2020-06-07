@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.lang.Thread.sleep;
-
 public class GUI_VF extends GUI_Question {
 
     private JLabel jlQuestion;

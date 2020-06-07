@@ -1,8 +1,6 @@
 package com.projet;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Themes {
     private String[] arrayTheme;
@@ -72,7 +70,7 @@ public class Themes {
 
             boolean end = false;
 
-            while(end == false){
+            while(!end){
                 random = (int) (Math.random() *10);
                 if(!doublon.contains(random)){
                     indicateur[i] = random;
@@ -96,7 +94,7 @@ public class Themes {
 
             boolean end = false;
 
-            while(end == false){
+            while(!end){
                 random = (int) (Math.random() *10);
                 if(!doublon.contains(random)){
                     indicateur[i] = random;
@@ -122,7 +120,6 @@ public class Themes {
 
     /**
      * getter/setter
-     * @return
      */
     public int getIndicateur() {
         return indicateur;

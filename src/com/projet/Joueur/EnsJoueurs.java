@@ -1,7 +1,6 @@
 package com.projet.Joueur;
 
 import java.util.Vector;
-import java.util.stream.Collectors;
 
 public class EnsJoueurs {
 
@@ -45,11 +44,10 @@ public class EnsJoueurs {
     }
 
     public Joueur[] getJoueurSelectionne(){
-        Joueur[] a = (Joueur[]) vectorJoueur
+        return vectorJoueur
                 .stream()
                 .filter(j -> j.getEtat().equals("sélectionné"))
                 .toArray(Joueur[]::new);
-        return a;
     }
 
     public Joueur getLastJoueurSelectionne(){

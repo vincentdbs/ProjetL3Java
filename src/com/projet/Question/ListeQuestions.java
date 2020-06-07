@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -57,7 +56,7 @@ public class ListeQuestions {
 
     public void afficherQuestionByTheme(String theme){
         listeQuestion.stream()
-                .filter(question -> question.getTheme() == theme)
+                .filter(question -> question.getTheme().equals(theme))
                 .forEach(question -> question.afficher());
     }
 

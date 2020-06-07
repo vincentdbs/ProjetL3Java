@@ -1,7 +1,5 @@
 package com.projet.Fenetre;
 
-import com.projet.Themes;
-
 import javax.swing.*;
 import java.awt.*;
 

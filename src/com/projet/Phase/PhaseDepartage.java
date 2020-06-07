@@ -1,6 +1,5 @@
 package com.projet.Phase;
 
-import com.projet.Chronometre;
 import com.projet.Fenetre.Question.GUI_QCM;
 import com.projet.Fenetre.Question.GUI_RC;
 import com.projet.Fenetre.Question.GUI_VF;
@@ -14,9 +13,7 @@ import com.projet.Themes;
 import com.projet.Tools;
 
 import javax.swing.*;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PhaseDepartage implements Phase {
     private Themes theme;
@@ -123,8 +120,8 @@ public class PhaseDepartage implements Phase {
      */
     private Joueur[] whoLost(int[] score, Joueur[] joueurs){
         int nbLoser = 0;
-        for (int i = 0; i < score.length; i++) {
-            if(score[i] == 0){
+        for (int value : score) {
+            if (value == 0) {
                 nbLoser++;
             }
         }
@@ -144,13 +141,13 @@ public class PhaseDepartage implements Phase {
     }
 
     private void displayMessageRules(){
-        String message = "Phase de départages \nLes joueurs jouent à tour de rôle sur des questions de niveau  " + level +
+        StringBuilder message = new StringBuilder("Phase de départages \nLes joueurs jouent à tour de rôle sur des questions de niveau  " + level +
                 "\nLe joueur éliminé est celui répondant mal lors d'un round (max 3)\n" +
-                "Ordre : ";
+                "Ordre : ");
         for (Joueur j: joueurs) {
-            message += j.getNom() + " ";
+            message.append(j.getNom()).append(" ");
         }
-        JOptionPane.showMessageDialog(null, message, "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, message.toString(), "Régle de la phase", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public Joueur getJoueurElimine() {

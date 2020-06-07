@@ -1,7 +1,6 @@
 package com.projet.Phase;
 
 import com.projet.Chronometre;
-import com.projet.Fenetre.GUI_Theme1;
 import com.projet.Fenetre.GUI_ThemeSelection;
 import com.projet.Fenetre.Question.GUI_QCM;
 import com.projet.Fenetre.Question.GUI_RC;
@@ -106,9 +105,7 @@ public class Phase2 implements Phase{
                     theme = listeTheme.get(listeTheme.keySet().toArray()[i]);
 
                     if(key.equals(theme.get(j))){
-
-                        List<Question> values = parcours.getValue();
-                        listeQuestions = values;
+                        listeQuestions  = parcours.getValue();
                     }
 
                 }

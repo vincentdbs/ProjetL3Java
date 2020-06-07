@@ -1,7 +1,6 @@
 package com.projet.Fenetre;
 
 import com.projet.Joueur.Joueur;
-import com.projet.Phase.Phase2;
 import com.projet.Themes;
 
 import javax.swing.*;

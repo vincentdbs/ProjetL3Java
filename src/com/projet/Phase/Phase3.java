@@ -102,8 +102,8 @@ public class Phase3 implements Phase {
                 String key = parcours.getKey();
                 if(key.equals(listeQuestionsPhase.keySet().toArray()[j])){
 
-                    List<Question> values = parcours.getValue();
-                    listeQuestions = values;
+
+                    listeQuestions = parcours.getValue();
                 }
 
             }

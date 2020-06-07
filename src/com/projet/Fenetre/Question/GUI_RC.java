@@ -1,7 +1,6 @@
 package com.projet.Fenetre.Question;
 
 import com.projet.Fenetre.Question.GUI_Question;
-import com.projet.Joueur.Joueur;
 
 import javax.swing.*;
 import java.awt.*;

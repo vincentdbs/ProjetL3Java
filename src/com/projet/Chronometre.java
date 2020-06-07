@@ -1,8 +1,5 @@
 package com.projet;
 
-import java.util.Date;
-import java.util.Objects;
-
 public class Chronometre extends  Thread implements Comparable {
     private int milisecond = 0, second = 0, minute =0, hour =0;
     private boolean state = true;
@@ -10,6 +7,7 @@ public class Chronometre extends  Thread implements Comparable {
 
     public Chronometre(){
         super();
+        //initialisation au temps actuel
         debut = System.currentTimeMillis(); //debut de la question
         fin = System.currentTimeMillis(); //fin de la question
     }
@@ -48,10 +46,6 @@ public class Chronometre extends  Thread implements Comparable {
 
     public int getHour() {
         return hour;
-    }
-
-    public int[] getTime(){
-        return new int[]{milisecond, second, minute, hour};
     }
 
     public void setState(boolean state) {

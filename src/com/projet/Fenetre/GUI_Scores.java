@@ -8,7 +8,7 @@ import java.awt.*;
 public class GUI_Scores extends JFrame {
 
     private String[] entete = {"Nom","Etat"};
-    private String[][] arrJoueur = {{"tristan","20"},{"etienne","10"}};
+    private String[][] arrJoueur;
     private JTable jtTable;
 
     public GUI_Scores(EnsJoueurs joueurs){

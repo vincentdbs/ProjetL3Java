@@ -15,8 +15,9 @@ import java.awt.event.ActionListener;
 
 public class GUI_MenuPrincipal extends JFrame {
     //todo placer les bouttons et implementer les fonctionnalités du sujet, respectivement Point n° 1,3,4 (à faire),5 (à faire),6,7,8 dans le sujet page 6
-    //  pour ajouter et supprimer => faire l'action correspondante et récrire dans le fichier
-    private JButton btnTheme, btnQuestion, btnAjouteQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
+    //  pour ajouter => ajouter la question au fichier correspondant
+    //  pour supprimer => ajouter des boutons supprimer à cote des question dans le GUI_AfficherQuestion + supprimer la question du fichier
+    private JButton btnTheme, btnQuestion, btnAjouterQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
     private JButton btnGrandJeu;
     private ListeQuestions listeQuestions;
     private Themes themes;
@@ -29,7 +30,7 @@ public class GUI_MenuPrincipal extends JFrame {
         //creation des themes + selection du premier theme
         themes = new Themes();
 
-        setSize(300,150);
+        setSize(300,170);
         setTitle("Menu principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initiate();
@@ -45,6 +46,7 @@ public class GUI_MenuPrincipal extends JFrame {
         btnQuestion = new JButton("Afficher questions");
         btnAfficherJoueurs = new JButton("Afficher joueurs");
         btnGrandJeu = new JButton("Grand Jeu");
+        btnAjouterQuestion = new JButton("Ajouter question");
         btnQuitter = new JButton("Quitter");
         addListenerStart();
         addListenerTheme();
@@ -52,6 +54,7 @@ public class GUI_MenuPrincipal extends JFrame {
         addListenerQuitter();
         addListenerGrandJeu();
         addListenerAfficherQuestion();
+        addListenerAjouterQuestion();
     }
 
     private JPanel placeAll(){
@@ -60,6 +63,7 @@ public class GUI_MenuPrincipal extends JFrame {
         panel.add(btnGrandJeu);
         panel.add(btnTheme);
         panel.add(btnQuestion);
+        panel.add(btnAjouterQuestion);
         panel.add(btnAfficherJoueurs);
         panel.add(btnQuitter);
         return panel;
@@ -112,6 +116,12 @@ public class GUI_MenuPrincipal extends JFrame {
     private void addListenerAfficherQuestion(){
         btnQuestion.addActionListener(e -> {
             GUI_AfficherQuestion gui_afficherQuestion = new GUI_AfficherQuestion();
+        });
+    }
+
+    private void addListenerAjouterQuestion(){
+        btnAjouterQuestion.addActionListener(e->{
+            GUI_AjouterQuestion gui_ajouterQuestion = new GUI_AjouterQuestion();
         });
     }
 

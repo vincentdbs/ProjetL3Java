@@ -137,7 +137,7 @@ public class ListeQuestions {
 
     private void getAllRcFromFile(){
         try {
-            Scanner scanner = new Scanner(new File("Textfile/questionReponse.txt"));
+            Scanner scanner = new Scanner(new File("Textfile/questionRC.txt"));
             do{
                 int niveau = scanner.nextInt();
                 scanner.nextLine();

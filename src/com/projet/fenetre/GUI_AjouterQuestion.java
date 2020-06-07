@@ -1,8 +1,5 @@
 package com.projet.fenetre;
 
-import com.projet.joueur.EnsJoueurs;
-import com.projet.question.ListeQuestions;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -206,7 +203,7 @@ public class GUI_AjouterQuestion extends JFrame {
                 String repCorrecte = jtfRepCorrecte.getText();
 
                 try {
-                    BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionReponse.txt", true)); // pour bien mettre les bonnes infos
+                    BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true)); // pour bien mettre les bonnes infos
                     ReponseFile.newLine();
                     ReponseFile.write(questionNiveau);
                     ReponseFile.newLine(); // retour ligne
@@ -271,6 +268,4 @@ public class GUI_AjouterQuestion extends JFrame {
             }
         });
     }
-
-
 }

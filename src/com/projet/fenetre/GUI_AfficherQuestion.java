@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GUI_AfficherQuestion extends JFrame {
     private JComboBox<String> jcbTheme;
-    private JButton jbNiveau1, jbNiveau2, jbNiveau3, jbAll;
+    private JButton jbNiveau1, jbNiveau2, jbNiveau3;
     private JLabel jlNiveau, jlTheme;
     private ListeQuestions listeQuestions;
 
@@ -39,8 +39,6 @@ public class GUI_AfficherQuestion extends JFrame {
         addListenerOnButton(jbNiveau2);
         jbNiveau3 = new JButton("3");
         addListenerOnButton(jbNiveau3);
-        jbAll = new JButton("Tout");
-        addListenerOnButton(jbAll);
     }
 
     private JPanel placeAll(){
@@ -51,7 +49,6 @@ public class GUI_AfficherQuestion extends JFrame {
         panel.add(jbNiveau1);
         panel.add(jbNiveau2);
         panel.add(jbNiveau3);
-        panel.add(jbAll);
         return panel;
     }
 
@@ -61,22 +58,15 @@ public class GUI_AfficherQuestion extends JFrame {
             if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
                 getContentPane().remove(1);
             }
-            //todo pb avec le JScrollPane si appui sur "Tout"
             JScrollPane scrollPane = new JScrollPane(placeList(theme, button.getText()), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-//                scrollPane.setMaximumSize(new Dimension(600,400));
             scrollPane.getVerticalScrollBar().setUnitIncrement(10);
-            getContentPane().add(scrollPane, BorderLayout.CENTER);
+            getContentPane().add(scrollPane);
             pack();
         });
     }
 
     private JPanel placeList(String theme, String niveau){
-        List<Question> list;
-        if(niveau.equals("Tout")){
-            list = listeQuestions.getQuestionByTheme(theme);
-        }else{
-            list = listeQuestions.getQuestionByThemeLevel(theme, Integer.parseInt(niveau));
-        }
+        List<Question> list =  listeQuestions.getQuestionByThemeLevel(theme, Integer.parseInt(niveau));
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints cs = new GridBagConstraints();

@@ -15,7 +15,8 @@ import java.awt.event.ActionListener;
 
 public class GUI_MenuPrincipal extends JFrame {
     //todo placer les bouttons et implementer les fonctionnalités du sujet, respectivement Point n° 1,3,4 (à faire),5 (à faire),6,7,8 dans le sujet page 6
-    //  pour ajouter et supprimer => faire l'action correspondante et récrire dans le fichier
+    //  pour ajouter => ajouter la question au fichier correspondant
+    //  pour supprimer => ajouter des boutons supprimer à cote des question dans le GUI_AfficherQuestion + supprimer la question du fichier
     private JButton btnTheme, btnQuestion, btnAjouteQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
     private JButton btnGrandJeu;
     private ListeQuestions listeQuestions;

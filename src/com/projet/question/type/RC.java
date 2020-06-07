@@ -1,4 +1,4 @@
-package com.projet.question.Type;
+package com.projet.question.type;
 
 public class RC {
     private String texte, bonneReponse;

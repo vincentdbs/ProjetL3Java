@@ -1,8 +1,8 @@
 package com.projet.question;
 
-import com.projet.question.Type.QCM;
-import com.projet.question.Type.RC;
-import com.projet.question.Type.VF;
+import com.projet.question.type.QCM;
+import com.projet.question.type.RC;
+import com.projet.question.type.VF;
 
 import java.io.File;
 import java.io.FileNotFoundException;

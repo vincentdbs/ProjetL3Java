@@ -6,9 +6,9 @@ import com.projet.fenetre.question.GUI_VF;
 import com.projet.joueur.Joueur;
 import com.projet.question.ListeQuestions;
 import com.projet.question.Question;
-import com.projet.question.Type.QCM;
-import com.projet.question.Type.RC;
-import com.projet.question.Type.VF;
+import com.projet.question.type.QCM;
+import com.projet.question.type.RC;
+import com.projet.question.type.VF;
 import com.projet.Themes;
 import com.projet.Tools;
 

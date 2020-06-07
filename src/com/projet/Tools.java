@@ -15,13 +15,13 @@ public final class Tools {
      */
     public static String getQuestionType(Question question){
         switch (question.getEnonce().getClass().getName()){
-            case "com.projet.Question.Type.QCM":{
+            case "com.projet.question.type.QCM":{
                 return "QCM";
             }
-            case "com.projet.Question.Type.VF":{
+            case "com.projet.question.type.VF":{
                 return "VF";
             }
-            case "com.projet.Question.Type.RC":{
+            case "com.projet.question.type.RC":{
                 return "RC";
             }
             default:
@@ -35,7 +35,7 @@ public final class Tools {
      */
     public static Chronometre getLowestChronometer(Chronometre[] chronometres){
         return Arrays.stream(chronometres)
-                .min(new Comparator<>() {
+                .min(new Comparator<Chronometre>() {
                     @Override
                     public int compare(Chronometre o1, Chronometre o2) {
                         if (o1.getHour() < o2.getHour()) {
@@ -73,7 +73,7 @@ public final class Tools {
      */
     public static Chronometre getGreatestChronometer(Chronometre[] chronometres){
         return Arrays.stream(chronometres)
-                .min(new Comparator<>() {
+                .min(new Comparator<Chronometre>() {
                     @Override
                     public int compare(Chronometre o1, Chronometre o2) {
                         if (o1.getHour() < o2.getHour()) {

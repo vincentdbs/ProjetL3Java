@@ -11,14 +11,15 @@ public class GUI_AjouterQuestion extends JFrame {
 
     private JLabel jlNiveau, jlTheme, jlQuestion, jlRep1, jlRep2, jlRep3, jlRepCorrecte;
     private JTextField jtfQuestion, jtfRep1, jtfRep2, jtfRep3, jtfRepCorrecte;
-    private JButton jbQcm, jbRepCourte, jbVf, jbRetour, jbValider;
+    private JButton jbQcm, jbRepCourte, jbVf, jbValider;
     private JComboBox<Integer> jcbBonneRepQCM, jcbNiveau;
     private JComboBox<String> jcbTheme, jcbVF;
     private String questionType;
 
+    //todo simplifier code + securisation des saisies
+
     public GUI_AjouterQuestion() {
 
-        setSize(500, 400);
         setTitle("Ajouter une question");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -28,7 +29,7 @@ public class GUI_AjouterQuestion extends JFrame {
 
         setResizable(false);
         setLocationRelativeTo(null);
-
+        pack();
         setVisible(true);
 
     }
@@ -53,13 +54,11 @@ public class GUI_AjouterQuestion extends JFrame {
         jbQcm = new JButton("QCM");
         jbRepCourte = new JButton("Réponse courte");
         jbVf = new JButton("Vrai/Faux");
-        jbRetour = new JButton("Retour");
         jbValider = new JButton("Valider");
 
         addListenerQCM();
         addListenerRC();
         addListenerVF();
-        addListenerOnRetour();
         addListenerValider();
 
     }
@@ -144,6 +143,8 @@ public class GUI_AjouterQuestion extends JFrame {
             getContentPane().remove(1);
         }
         getContentPane().add(panel, BorderLayout.CENTER);
+        setSize(450, 350);
+
         setVisible(true);
     }
 
@@ -179,6 +180,8 @@ public class GUI_AjouterQuestion extends JFrame {
             getContentPane().remove(1);
         }
         getContentPane().add(panel, BorderLayout.CENTER);
+        setSize(450, 250);
+
         setVisible(true);
     }
 
@@ -214,6 +217,8 @@ public class GUI_AjouterQuestion extends JFrame {
             getContentPane().remove(1);
         }
         getContentPane().add(panel, BorderLayout.CENTER);
+        setSize(450, 250);
+
         setVisible(true);
     }
 
@@ -301,16 +306,6 @@ public class GUI_AjouterQuestion extends JFrame {
         } catch (Exception e) {
             System.out.print("erreur");
         }
-    }
-
-    private void addListenerOnRetour(){
-        jbRetour.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
-                dispose();
-            }
-        });
     }
 
     private void clearAll(){

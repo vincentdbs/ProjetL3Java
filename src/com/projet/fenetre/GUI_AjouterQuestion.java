@@ -17,6 +17,7 @@ public class GUI_AjouterQuestion extends JFrame {
     private String questionType;
 
     //todo simplifier code + securisation des saisies
+    //todo changer jcbBonneRepQcm int en String Reponse 1 ...
 
     public GUI_AjouterQuestion() {
 
@@ -69,6 +70,38 @@ public class GUI_AjouterQuestion extends JFrame {
         pan.add(jbRepCourte);
         pan.add(jbVf);
         return pan;
+    }
+
+    private void addListenerValider(){
+        jbValider.addActionListener(e->{
+            switch (questionType){
+                case "RC":
+                    if (dataValidRC()){
+                        ajouterRCouVf("RC", jtfRepCorrecte.getText());
+                    }else {
+                        displayErrorMessage();
+                    }
+                    break;
+                case "VF":
+                    if (dataValidVF()){
+                        ajouterRCouVf("VF", jtfRepCorrecte.getText());
+                    }else {
+                        displayErrorMessage();
+                    }
+                    break;
+                case "QCM":
+                    if (dataValidQCM()){
+                        ajouterQCM();
+                    }else {
+                        displayErrorMessage();
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Veuillez choisir un type de question !", "Erreur", JOptionPane.ERROR_MESSAGE); //cas impossible
+                    break;
+            }
+            clearAll();
+        });
     }
 
     private void addListenerQCM() {
@@ -222,26 +255,6 @@ public class GUI_AjouterQuestion extends JFrame {
         setVisible(true);
     }
 
-    private void addListenerValider(){
-        jbValider.addActionListener(e->{
-            switch (questionType){
-                case "RC":
-                    ajouterRCouVf("RC", jtfRepCorrecte.getText());
-                    break;
-                case "VF":
-                    ajouterRCouVf("VF", jcbVF.getSelectedItem().toString());
-                    break;
-                case "QCM":
-                    ajouterQCM();
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Veuillez choisir un type de question !", "Erreur", JOptionPane.ERROR_MESSAGE); //cas impossible
-                    break;
-            }
-            clearAll();
-        });
-    }
-
     private void ajouterQCM(){
 
         String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
@@ -306,6 +319,40 @@ public class GUI_AjouterQuestion extends JFrame {
         } catch (Exception e) {
             System.out.print("erreur");
         }
+    }
+
+    private boolean dataValidRC(){
+        if(jtfQuestion.getText().isEmpty()){
+            return false;
+        }
+        if(jtfRepCorrecte.getText().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+    private boolean dataValidVF(){
+        return !jtfQuestion.getText().isEmpty();
+    }
+
+    private boolean dataValidQCM(){
+        if(jtfQuestion.getText().isEmpty()){
+            return false;
+        }
+        if(jtfRep1.getText().isEmpty()){
+            return false;
+        }
+        if(jtfRep2.getText().isEmpty()){
+            return false;
+        }
+        if(jtfRep3.getText().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+    private void displayErrorMessage(){
+        JOptionPane.showMessageDialog(null, "Remplissez tout les champs !" ,"Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private void clearAll(){

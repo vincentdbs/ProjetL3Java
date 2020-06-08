@@ -22,7 +22,8 @@ public class Phase2GrandJeu implements Phase {
     private ListeQuestions listeQuestionsAll;
     private Themes themeActuel;
     private HashMap<String, ArrayList<String>> ThemeParParticipant;
-    private List<Question> listeQuestions;
+    private List<
+            Question> listeQuestions;
     private HashMap<String, List<Question>> listeQuestionstest = new HashMap<>();
     private Joueur[] joueurs;
     private Joueur[] vainqueurs;

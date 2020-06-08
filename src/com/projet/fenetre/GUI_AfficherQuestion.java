@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GUI_AfficherQuestion extends JFrame {
     private JComboBox<String> jcbTheme;
-    private JButton jbNiveau1, jbNiveau2, jbNiveau3;
+    private JButton jbNiveau1, jbNiveau2, jbNiveau3, jbRetour;
     private JLabel jlNiveau, jlTheme;
     private ListeQuestions listeQuestions;
 
@@ -39,6 +39,8 @@ public class GUI_AfficherQuestion extends JFrame {
         addListenerOnButton(jbNiveau2);
         jbNiveau3 = new JButton("3");
         addListenerOnButton(jbNiveau3);
+        jbRetour = new JButton("Retour");
+        jbRetour.addActionListener(e -> dispose());
     }
 
     private JPanel placeAll(){
@@ -49,6 +51,7 @@ public class GUI_AfficherQuestion extends JFrame {
         panel.add(jbNiveau1);
         panel.add(jbNiveau2);
         panel.add(jbNiveau3);
+        panel.add(jbRetour);
         return panel;
     }
 

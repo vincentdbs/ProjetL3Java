@@ -10,6 +10,7 @@ import com.projet.question.ListeQuestions;
 import com.projet.Themes;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +31,7 @@ public class GUI_MenuPrincipal extends JFrame {
         //creation des themes + selection du premier theme
         themes = new Themes();
 
-        setSize(300,170);
+        setSize(350,200);
         setTitle("Menu principal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initiate();
@@ -42,12 +43,29 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void initiate(){
         btnStart = new JButton("Jouer");
+        sizeButton(btnStart);
+
         btnTheme = new JButton("Afficher thèmes");
+        sizeButton(btnTheme);
+
         btnQuestion = new JButton("Afficher questions");
+        sizeButton(btnQuestion);
+
         btnAfficherJoueurs = new JButton("Afficher joueurs");
+        sizeButton(btnAfficherJoueurs);
+
         btnGrandJeu = new JButton("Grand Jeu");
+        sizeButton(btnGrandJeu);
+
         btnAjouterQuestion = new JButton("Ajouter question");
+        sizeButton(btnAjouterQuestion);
+
+        btnSupprimerQuestion = new JButton("Supprimer question");
+        sizeButton(btnSupprimerQuestion);
+
         btnQuitter = new JButton("Quitter");
+        sizeButton(btnQuitter);
+
         addListenerStart();
         addListenerTheme();
         addListenerJoueur();
@@ -57,6 +75,10 @@ public class GUI_MenuPrincipal extends JFrame {
         addListenerAjouterQuestion();
     }
 
+    private void sizeButton(JButton bouton){
+        bouton.setPreferredSize(new Dimension(150,30));
+    }
+
     private JPanel placeAll(){
         JPanel panel = new JPanel();
         panel.add(btnStart);
@@ -64,6 +86,7 @@ public class GUI_MenuPrincipal extends JFrame {
         panel.add(btnTheme);
         panel.add(btnQuestion);
         panel.add(btnAjouterQuestion);
+        panel.add(btnSupprimerQuestion);
         panel.add(btnAfficherJoueurs);
         panel.add(btnQuitter);
         return panel;

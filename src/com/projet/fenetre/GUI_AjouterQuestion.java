@@ -9,7 +9,7 @@ public class GUI_AjouterQuestion extends JFrame {
 
     private JLabel jlNiveau, jlTheme, jlQuestion, jlRep1, jlRep2, jlRep3, jlRepCorrecte;
     private JTextField jtfQuestion, jtfRep1, jtfRep2, jtfRep3, jtfRepCorrecte;
-    private JButton jbQcm, jbRepCourte, jbVf, jbValider;
+    private JButton jbQcm, jbRepCourte, jbVf, jbValider, jbRetour;
     private JComboBox<Integer> jcbNiveau;
     private JComboBox<String> jcbTheme, jcbVF, jcbBonneRepQCM;
     private String questionType;
@@ -58,6 +58,9 @@ public class GUI_AjouterQuestion extends JFrame {
         addListenerVF();
         addListenerValider();
 
+        jbRetour = new JButton("Retour");
+        jbRetour.addActionListener(e->dispose());
+
     }
 
     /**
@@ -68,6 +71,7 @@ public class GUI_AjouterQuestion extends JFrame {
         pan.add(jbQcm);
         pan.add(jbRepCourte);
         pan.add(jbVf);
+        pan.add(jbRetour);
         return pan;
     }
 

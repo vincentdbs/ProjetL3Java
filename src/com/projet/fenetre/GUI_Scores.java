@@ -10,6 +10,7 @@ public class GUI_Scores extends JFrame {
     private String[] entete = {"Nom","Etat"};
     private String[][] arrJoueur;
     private JTable jtTable;
+    private JButton jbRetour;
 
     public GUI_Scores(EnsJoueurs joueurs){
 
@@ -36,6 +37,9 @@ public class GUI_Scores extends JFrame {
             arrJoueur[i][1] = joueurs.getVectorJoueur().get(i).getEtat();
         }
         jtTable = new JTable(arrJoueur, entete);
+
+        jbRetour = new JButton("Retour");
+        jbRetour.addActionListener(e-> dispose());
     }
 
 
@@ -46,6 +50,9 @@ public class GUI_Scores extends JFrame {
         gbc.insets = new Insets(20, 20, 20, 20);
 
         pan.add(new JScrollPane(jtTable), gbc);
+
+        gbc.gridy = 1;
+        pan.add(jbRetour, gbc);
 
         return pan;
     }

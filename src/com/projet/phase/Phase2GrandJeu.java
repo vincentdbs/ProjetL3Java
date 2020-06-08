@@ -97,49 +97,48 @@ public class Phase2GrandJeu implements Phase {
         ArrayList<String> theme = new ArrayList<>();
 
         //affichage des questions
-        for(int j=0; j<1; j++){ //todo delete le for
-            for (int i = 0; i < joueurs.length ; i++) {
-                int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
+        for (int i = 0; i < joueurs.length ; i++) {
+            int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
 
-                for (Map.Entry<String, List<Question>> parcours : listeQuestionstest.entrySet()) {
+            for (Map.Entry<String, List<Question>> parcours : listeQuestionstest.entrySet()) {
 
-                    String key = parcours.getKey();
-                    theme = listeTheme.get(listeTheme.keySet().toArray()[i]);
+                String key = parcours.getKey();
+                theme = listeTheme.get(listeTheme.keySet().toArray()[i]);
 
-                    if(key.equals(theme.get(j))){
-                        listeQuestions = parcours.getValue();
+                if(key.equals(theme.get(0))){
+                    listeQuestions = parcours.getValue();
+                }
+
+            }
+
+
+
+            Question<?> q = listeQuestions.get(numQuestionSelected);
+            switch (Tools.getQuestionType(q)){
+                case "QCM" :
+                    GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), theme.get(0), joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
+                    if (q.saisir(qcm.getAnswer())){
+                        joueurs[i].majScore(3);
                     }
-
-                }
-
-
-
-                Question<?> q = listeQuestions.get(numQuestionSelected);
-                switch (Tools.getQuestionType(q)){
-                    case "QCM" :
-                        GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
-                        if (q.saisir(qcm.getAnswer())){
-                            joueurs[i].majScore(3);
-                        }
-                        tempsReponses[i].add(qcm.getChronometre());
-                        break;
-                    case "VF":
-                        GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),  theme.get(j), joueurs[i].getNom());
-                        if (q.saisir(vf.getAnswer())){
-                            joueurs[i].majScore(3);
-                        }
-                        tempsReponses[i].add(vf.getChronometre());
-                        break;
-                    case "RC":
-                        GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom());
-                        if (q.saisir(rc.getAnswer())){
-                            joueurs[i].majScore(3);
-                        }
-                        tempsReponses[i].add(rc.getChronometre());
-                        break;
-                }
+                    tempsReponses[i].add(qcm.getChronometre());
+                    break;
+                case "VF":
+                    GUI_VF vf = new GUI_VF(parent, ((VF) q.getEnonce()).getTexte(),  theme.get(0), joueurs[i].getNom());
+                    if (q.saisir(vf.getAnswer())){
+                        joueurs[i].majScore(3);
+                    }
+                    tempsReponses[i].add(vf.getChronometre());
+                    break;
+                case "RC":
+                    GUI_RC rc = new GUI_RC(parent,((RC) q.getEnonce()).getTexte(), theme.get(0), joueurs[i].getNom());
+                    if (q.saisir(rc.getAnswer())){
+                        joueurs[i].majScore(3);
+                    }
+                    tempsReponses[i].add(rc.getChronometre());
+                    break;
             }
         }
+
 
         Joueur[] joueurElimine = Tools.getJoueurElimine(tempsReponses, joueurs);
         if(joueurElimine.length == 1){ //si un seul joueur => phase suivante avec les 3 autres

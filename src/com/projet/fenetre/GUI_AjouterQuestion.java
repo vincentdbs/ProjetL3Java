@@ -10,9 +10,8 @@ import java.io.FileWriter;
 public class GUI_AjouterQuestion extends JFrame {
 
     private JLabel jlNiveau;
-    private JTextField jtfNiveau;
     private JLabel jlTheme;
-    private String[] theme = {"Sport","Histoire","Géographie","Art","Sciences","Cinema","High-tech","Musique","Divertissements","Littérature"};
+    private String[] theme = {"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Littérature"};
     private JComboBox jcbTheme;
     private JLabel jlQuestion;
     private JTextField jtfQuestion;
@@ -20,29 +19,31 @@ public class GUI_AjouterQuestion extends JFrame {
     private JTextField jtfRep1, jtfRep2, jtfRep3;
     private JLabel jlRepCorrecte;
     private JTextField jtfRepCorrecte;
-    private JButton jbQcm, jbRepCourte, jbVf, jbRetour;
+    private JButton jbQcm, jbRepCourte, jbVf, jbRetour, jbValider;
+    private JComboBox<Integer> jcbBonneRepQCM, jcbNiveau;
+    private String questionType;
 
-    public GUI_AjouterQuestion(){
+    public GUI_AjouterQuestion() {
 
-        setSize(300,200);
+        setSize(500, 400);
         setTitle("Ajouter une question");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         initiate();
-        getContentPane().add(placeAll());
+        getContentPane().add(placeTypeQuestion(), BorderLayout.NORTH);
 
         setResizable(false);
         setLocationRelativeTo(null);
 
-        pack();
         setVisible(true);
 
     }
 
-    private void initiate(){
+    private void initiate() {
+        jcbBonneRepQCM = new JComboBox<>(new Integer[]{1, 2, 3});
+        jcbNiveau = new JComboBox<>(new Integer[]{1, 2, 3});
         jlNiveau = new JLabel("Niveau ");
-        jtfNiveau = new JTextField(20);
         jlTheme = new JLabel("Thème ");
         jcbTheme = new JComboBox(theme);
         jlQuestion = new JLabel("Question ");
@@ -57,206 +58,277 @@ public class GUI_AjouterQuestion extends JFrame {
         jtfRepCorrecte = new JTextField(20);
         jbQcm = new JButton("QCM");
         jbRepCourte = new JButton("Réponse courte");
-        jbVf = new JButton("Vrai Faux");
+        jbVf = new JButton("Vrai/Faux");
         jbRetour = new JButton("Retour");
+        jbValider = new JButton("Valider");
 
-        addListenerOnQcm();
-        addListenerOnRepCourte();
-        addListenerOnVf();
+        addListenerQCM();
+        addListenerRC();
+        addListenerVF();
         addListenerOnRetour();
+        addListenerValider();
 
     }
 
-
-
-    private JPanel placeAll(){
-        JPanel pan = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(20, 20, 20, 20);
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        pan.add(jlNiveau,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        pan.add(jtfNiveau,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        pan.add(jlTheme,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        pan.add(jcbTheme,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        pan.add(jlQuestion,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        pan.add(jtfQuestion,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        pan.add(jlRep1,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        pan.add(jtfRep1,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        pan.add(jlRep2,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        pan.add(jtfRep2,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        pan.add(jlRep3,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        pan.add(jtfRep3,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        pan.add(jlRepCorrecte,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 6;
-        pan.add(jtfRepCorrecte,gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 7;
-        pan.add(jbQcm,gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 7;
-        pan.add(jbRepCourte,gbc);
-
-        gbc.gridx = 2;
-        gbc.gridy = 7;
-        pan.add(jbVf,gbc);
-
-        gbc.gridx = 2;
-        gbc.gridy = 8;
-        pan.add(jbRetour,gbc);
-
+    private JPanel placeTypeQuestion() {
+        JPanel pan = new JPanel();
+        pan.add(jbQcm);
+        pan.add(jbRepCourte);
+        pan.add(jbVf);
         return pan;
     }
 
-    private void addListenerOnQcm(){
-        jbQcm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                GUI_AjouterQuestion ajouterQuestion = new GUI_AjouterQuestion();
+    private void addListenerQCM() {
+        jbQcm.addActionListener(e -> {
+            questionType = "QCM";
+            placeQCM();
+        });
+    }
 
-                String questionNiveau = jtfNiveau.getText();
-                String questionTheme = jcbTheme.getSelectedItem().toString();
-                String question = jtfQuestion.getText();
-                String rep1 = jtfRep1.getText();
-                String rep2 = jtfRep2.getText();
-                String rep3 = jtfRep3.getText();
-                String repCorrecte = jtfRepCorrecte.getText();
+    private void addListenerRC() {
+        jbRepCourte.addActionListener(e -> {
+            questionType = "RC";
+            placeRC();
+        });
+    }
 
-                try {
-                    BufferedWriter QcmFile = new BufferedWriter(new FileWriter("Textfile/questionQCM.txt", true)); // pour bien mettre les bonnes infos
-                    QcmFile.newLine();
-                    QcmFile.write(questionNiveau);
-                    QcmFile.newLine(); // retour ligne
-                    QcmFile.write(questionTheme);
-                    QcmFile.newLine();
-                    QcmFile.write(question);
-                    QcmFile.newLine();
-                    QcmFile.write(rep1);
-                    QcmFile.newLine();
-                    QcmFile.write(rep2);
-                    QcmFile.newLine();
-                    QcmFile.write(rep3);
-                    QcmFile.newLine();
-                    QcmFile.write(repCorrecte);
-                    QcmFile.newLine();
+    private void addListenerVF() {
+        questionType = "VF";
+        jbVf.addActionListener(e -> {
+            placeVF();
+        });
+    }
 
-                    QcmFile.close();
+    private void placeQCM(){
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints cs = new GridBagConstraints();
+        cs.fill = GridBagConstraints.HORIZONTAL;
+        cs.insets = new Insets(5,5,5,5);
+        cs.gridx = 0;
+        cs.gridy = 0;
+        panel.add(jlQuestion ,cs);
+        cs.gridx++;
+        panel.add(jtfQuestion, cs);
+        cs.gridy++;
+        cs.gridx = 0;
+        panel.add(jlRep1 ,cs);
+        cs.gridx++;
+        panel.add(jtfRep1 , cs);
+        cs.gridy++;
+        cs.gridx = 0;
+        panel.add(jlRep2 ,cs);
+        cs.gridx++;
+        panel.add(jtfRep2 , cs);
+        cs.gridy++;
+        cs.gridx = 0;
+        panel.add(jlRep3 ,cs);
+        cs.gridx++;
+        panel.add(jtfRep3 , cs);
+        cs.gridx=0;
+        cs.gridy++;
+        panel.add(jlRepCorrecte, cs);
+        cs.gridx++;
+        panel.add(jcbBonneRepQCM, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlNiveau, cs);
+        cs.gridx++;
+        panel.add(jcbNiveau, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlTheme, cs);
+        cs.gridx++;
+        panel.add(jcbTheme,cs);
 
-                } catch (Exception e) {
-                    System.out.print("erreur");
-                }
-                dispose();
+        cs.gridy++;
+        panel.add(jbValider, cs);
+        if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+            getContentPane().remove(1);
+        }
+        getContentPane().add(panel, BorderLayout.CENTER);
+        setVisible(true);
+    }
+
+    private void placeRC(){
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints cs = new GridBagConstraints();
+        cs.fill = GridBagConstraints.HORIZONTAL;
+        cs.insets = new Insets(5,5,5,5);
+        cs.gridx = 0;
+        cs.gridy = 0;
+        panel.add(jlQuestion ,cs);
+        cs.gridx++;
+        panel.add(jtfQuestion, cs);
+        cs.gridx=0;
+        cs.gridy++;
+        panel.add(jlRepCorrecte, cs);
+        cs.gridx++;
+        panel.add(jtfRepCorrecte, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlNiveau, cs);
+        cs.gridx++;
+        panel.add(jcbNiveau, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlTheme, cs);
+        cs.gridx++;
+        panel.add(jcbTheme,cs);
+
+        cs.gridy++;
+        panel.add(jbValider, cs);
+        if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+            getContentPane().remove(1);
+        }
+        getContentPane().add(panel, BorderLayout.CENTER);
+        setVisible(true);
+    }
+
+    private void placeVF(){
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints cs = new GridBagConstraints();
+        cs.fill = GridBagConstraints.HORIZONTAL;
+        cs.insets = new Insets(5,5,5,5);
+        cs.gridx = 0;
+        cs.gridy = 0;
+        panel.add(jlQuestion ,cs);
+        cs.gridx++;
+        panel.add(jtfQuestion, cs);
+        cs.gridx=0;
+        cs.gridy++;
+        panel.add(jlRepCorrecte, cs);
+        cs.gridx++;
+        panel.add(jtfRepCorrecte, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlNiveau, cs);
+        cs.gridx++;
+        panel.add(jcbNiveau, cs);
+        cs.gridx = 0;
+        cs.gridy++;
+        panel.add(jlTheme, cs);
+        cs.gridx++;
+        panel.add(jcbTheme,cs);
+
+        cs.gridy++;
+        panel.add(jbValider, cs);
+        if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+            getContentPane().remove(1);
+        }
+        getContentPane().add(panel, BorderLayout.CENTER);
+        setVisible(true);
+    }
+
+    private void addListenerValider(){
+        jbValider.addActionListener(e->{
+            switch (questionType){
+                case "RC":
+                    ajouterRC();
+                    break;
+                case "VF":
+                    ajouterVF();
+                    break;
+                case "QCM":
+                    ajouterQCM();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Veuillez choisir un type de question !", "Erreur", JOptionPane.ERROR_MESSAGE); //cas impossible
+                    break;
             }
         });
     }
 
-    private void addListenerOnRepCourte(){
-        jbRepCourte.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                GUI_AjouterQuestion ajouterQuestion = new GUI_AjouterQuestion();
+    private void ajouterQCM(){
 
-                String questionNiveau = jtfNiveau.getText();
-                String questionTheme = jcbTheme.getSelectedItem().toString();
-                String question = jtfQuestion.getText();
-                String repCorrecte = jtfRepCorrecte.getText();
+        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
+        String questionTheme = jcbTheme.getSelectedItem().toString();
+        String question = jtfQuestion.getText();
+        String rep1 = jtfRep1.getText();
+        String rep2 = jtfRep2.getText();
+        String rep3 = jtfRep3.getText();
+        String repCorrecte =  String.valueOf(jcbBonneRepQCM.getSelectedIndex());
 
-                try {
-                    BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true)); // pour bien mettre les bonnes infos
-                    ReponseFile.newLine();
-                    ReponseFile.write(questionNiveau);
-                    ReponseFile.newLine(); // retour ligne
-                    ReponseFile.write(questionTheme);
-                    ReponseFile.newLine();
-                    ReponseFile.write(question);
-                    ReponseFile.newLine();
-                    ReponseFile.write(repCorrecte);
-                    ReponseFile.newLine();
+        try {
+            BufferedWriter QcmFile = new BufferedWriter(new FileWriter("Textfile/questionQCM.txt", true)); // pour bien mettre les bonnes infos
+            QcmFile.newLine();
+            QcmFile.write(questionNiveau);
+            QcmFile.newLine(); // retour ligne
+            QcmFile.write(questionTheme);
+            QcmFile.newLine();
+            QcmFile.write(question);
+            QcmFile.newLine();
+            QcmFile.write(rep1);
+            QcmFile.newLine();
+            QcmFile.write(rep2);
+            QcmFile.newLine();
+            QcmFile.write(rep3);
+            QcmFile.newLine();
+            QcmFile.write(repCorrecte);
+            QcmFile.newLine();
 
-                    ReponseFile.close();
+            QcmFile.close();
 
-                } catch (Exception e) {
-                    System.out.print("erreur");
-                }
-
-                dispose();
-            }
-        });
+        } catch (Exception e) {
+            System.out.print("erreur");
+        }
+        dispose();
     }
 
-    private void addListenerOnVf(){
-        jbVf.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                GUI_AjouterQuestion ajouterQuestion = new GUI_AjouterQuestion();
+    private void ajouterRC(){
 
-                String questionNiveau = jtfNiveau.getText();
-                String questionTheme = jcbTheme.getSelectedItem().toString();
-                String question = jtfQuestion.getText();
-                String repCorrecte = jtfRepCorrecte.getText();
+        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
+        String questionTheme = jcbTheme.getSelectedItem().toString();
+        String question = jtfQuestion.getText();
+        String repCorrecte = jtfRepCorrecte.getText();
 
-                try {
-                    BufferedWriter VfFile = new BufferedWriter(new FileWriter("Textfile/questionVF.txt", true)); // pour bien mettre les bonnes infos
-                    VfFile.newLine();
-                    VfFile.write(questionNiveau);
-                    VfFile.newLine(); // retour ligne
-                    VfFile.write(questionTheme);
-                    VfFile.newLine();
-                    VfFile.write(question);
-                    VfFile.newLine();
-                    VfFile.write(repCorrecte);
-                    VfFile.newLine();
+        try {
+            BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true)); // pour bien mettre les bonnes infos
+            ReponseFile.newLine();
+            ReponseFile.write(questionNiveau);
+            ReponseFile.newLine(); // retour ligne
+            ReponseFile.write(questionTheme);
+            ReponseFile.newLine();
+            ReponseFile.write(question);
+            ReponseFile.newLine();
+            ReponseFile.write(repCorrecte);
+            ReponseFile.newLine();
 
-                    VfFile.close();
+            ReponseFile.close();
 
-                } catch (Exception e) {
-                    System.out.print("erreur");
-                }
+        } catch (Exception e) {
+            System.out.print("erreur");
+        }
 
-                dispose();
-            }
-        });
+        dispose();
+
+    }
+
+    private void ajouterVF(){
+        String questionNiveau = jcbNiveau.getSelectedItem().toString();
+        String questionTheme = jcbTheme.getSelectedItem().toString();
+        String question = jtfQuestion.getText();
+        String repCorrecte = jtfRepCorrecte.getText();
+
+        try {
+            BufferedWriter VfFile = new BufferedWriter(new FileWriter("Textfile/questionVF.txt", true)); // pour bien mettre les bonnes infos
+            VfFile.newLine();
+            VfFile.write(questionNiveau);
+            VfFile.newLine(); // retour ligne
+            VfFile.write(questionTheme);
+            VfFile.newLine();
+            VfFile.write(question);
+            VfFile.newLine();
+            VfFile.write(repCorrecte);
+            VfFile.newLine();
+
+            VfFile.close();
+
+        } catch (Exception e) {
+            System.out.print("erreur");
+        }
+
+        dispose();
+
     }
 
     private void addListenerOnRetour(){

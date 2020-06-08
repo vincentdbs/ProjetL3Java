@@ -9,18 +9,11 @@ import java.io.FileWriter;
 
 public class GUI_AjouterQuestion extends JFrame {
 
-    private JLabel jlNiveau;
-    private JLabel jlTheme;
-    private String[] theme = {"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Littérature"};
-    private JComboBox jcbTheme;
-    private JLabel jlQuestion;
-    private JTextField jtfQuestion;
-    private JLabel jlRep1, jlRep2, jlRep3;
-    private JTextField jtfRep1, jtfRep2, jtfRep3;
-    private JLabel jlRepCorrecte;
-    private JTextField jtfRepCorrecte;
+    private JLabel jlNiveau, jlTheme, jlQuestion, jlRep1, jlRep2, jlRep3, jlRepCorrecte;
+    private JTextField jtfQuestion, jtfRep1, jtfRep2, jtfRep3, jtfRepCorrecte;
     private JButton jbQcm, jbRepCourte, jbVf, jbRetour, jbValider;
     private JComboBox<Integer> jcbBonneRepQCM, jcbNiveau;
+    private JComboBox<String> jcbTheme, jcbVF;
     private String questionType;
 
     public GUI_AjouterQuestion() {
@@ -43,9 +36,10 @@ public class GUI_AjouterQuestion extends JFrame {
     private void initiate() {
         jcbBonneRepQCM = new JComboBox<>(new Integer[]{1, 2, 3});
         jcbNiveau = new JComboBox<>(new Integer[]{1, 2, 3});
+        jcbTheme = new JComboBox<>(new String[]{"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Littérature"});
+        jcbVF = new JComboBox<>(new String[]{"Vrai", "Faux"});
         jlNiveau = new JLabel("Niveau ");
         jlTheme = new JLabel("Thème ");
-        jcbTheme = new JComboBox(theme);
         jlQuestion = new JLabel("Question ");
         jtfQuestion = new JTextField(20);
         jlRep1 = new JLabel("Réponse 1 ");
@@ -80,6 +74,7 @@ public class GUI_AjouterQuestion extends JFrame {
 
     private void addListenerQCM() {
         jbQcm.addActionListener(e -> {
+            clearAll();
             questionType = "QCM";
             placeQCM();
         });
@@ -87,6 +82,7 @@ public class GUI_AjouterQuestion extends JFrame {
 
     private void addListenerRC() {
         jbRepCourte.addActionListener(e -> {
+            clearAll();
             questionType = "RC";
             placeRC();
         });
@@ -95,6 +91,8 @@ public class GUI_AjouterQuestion extends JFrame {
     private void addListenerVF() {
         questionType = "VF";
         jbVf.addActionListener(e -> {
+            clearAll();
+            questionType = "VF";
             placeVF();
         });
     }
@@ -198,7 +196,7 @@ public class GUI_AjouterQuestion extends JFrame {
         cs.gridy++;
         panel.add(jlRepCorrecte, cs);
         cs.gridx++;
-        panel.add(jtfRepCorrecte, cs);
+        panel.add(jcbVF, cs);
         cs.gridx = 0;
         cs.gridy++;
         panel.add(jlNiveau, cs);
@@ -223,10 +221,10 @@ public class GUI_AjouterQuestion extends JFrame {
         jbValider.addActionListener(e->{
             switch (questionType){
                 case "RC":
-                    ajouterRC();
+                    ajouterRCouVf("RC", jtfRepCorrecte.getText());
                     break;
                 case "VF":
-                    ajouterVF();
+                    ajouterRCouVf("VF", jcbVF.getSelectedItem().toString());
                     break;
                 case "QCM":
                     ajouterQCM();
@@ -235,6 +233,7 @@ public class GUI_AjouterQuestion extends JFrame {
                     JOptionPane.showMessageDialog(null, "Veuillez choisir un type de question !", "Erreur", JOptionPane.ERROR_MESSAGE); //cas impossible
                     break;
             }
+            clearAll();
         });
     }
 
@@ -270,19 +269,23 @@ public class GUI_AjouterQuestion extends JFrame {
 
         } catch (Exception e) {
             System.out.print("erreur");
-        }
-        dispose();
+        }dispose();
     }
 
-    private void ajouterRC(){
-
+    private void ajouterRCouVf(String type, String goodAnswer){
         String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
         String questionTheme = jcbTheme.getSelectedItem().toString();
         String question = jtfQuestion.getText();
-        String repCorrecte = jtfRepCorrecte.getText();
+        if(type.equals("VF")){
+            if (goodAnswer.equals("Vrai")){
+                goodAnswer = "true";
+            }else {
+                goodAnswer = "false";
+            }
+        }
 
         try {
-            BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true)); // pour bien mettre les bonnes infos
+            BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/question" + type + ".txt", true)); // pour bien mettre les bonnes infos
             ReponseFile.newLine();
             ReponseFile.write(questionNiveau);
             ReponseFile.newLine(); // retour ligne
@@ -290,7 +293,7 @@ public class GUI_AjouterQuestion extends JFrame {
             ReponseFile.newLine();
             ReponseFile.write(question);
             ReponseFile.newLine();
-            ReponseFile.write(repCorrecte);
+            ReponseFile.write(goodAnswer);
             ReponseFile.newLine();
 
             ReponseFile.close();
@@ -298,37 +301,6 @@ public class GUI_AjouterQuestion extends JFrame {
         } catch (Exception e) {
             System.out.print("erreur");
         }
-
-        dispose();
-
-    }
-
-    private void ajouterVF(){
-        String questionNiveau = jcbNiveau.getSelectedItem().toString();
-        String questionTheme = jcbTheme.getSelectedItem().toString();
-        String question = jtfQuestion.getText();
-        String repCorrecte = jtfRepCorrecte.getText();
-
-        try {
-            BufferedWriter VfFile = new BufferedWriter(new FileWriter("Textfile/questionVF.txt", true)); // pour bien mettre les bonnes infos
-            VfFile.newLine();
-            VfFile.write(questionNiveau);
-            VfFile.newLine(); // retour ligne
-            VfFile.write(questionTheme);
-            VfFile.newLine();
-            VfFile.write(question);
-            VfFile.newLine();
-            VfFile.write(repCorrecte);
-            VfFile.newLine();
-
-            VfFile.close();
-
-        } catch (Exception e) {
-            System.out.print("erreur");
-        }
-
-        dispose();
-
     }
 
     private void addListenerOnRetour(){
@@ -339,5 +311,18 @@ public class GUI_AjouterQuestion extends JFrame {
                 dispose();
             }
         });
+    }
+
+    private void clearAll(){
+        jtfQuestion.setText("");
+        jtfRep1.setText("");
+        jtfRep2.setText("");
+        jtfRep3.setText("");
+        jtfRepCorrecte.setText("");
+        jcbNiveau.setSelectedIndex(0);
+        jcbVF.setSelectedIndex(0);
+        jcbBonneRepQCM.setSelectedIndex(0);
+        jcbTheme.setSelectedIndex(0);
+
     }
 }

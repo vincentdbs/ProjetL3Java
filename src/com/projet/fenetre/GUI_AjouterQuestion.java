@@ -2,8 +2,6 @@ package com.projet.fenetre;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
@@ -12,12 +10,10 @@ public class GUI_AjouterQuestion extends JFrame {
     private JLabel jlNiveau, jlTheme, jlQuestion, jlRep1, jlRep2, jlRep3, jlRepCorrecte;
     private JTextField jtfQuestion, jtfRep1, jtfRep2, jtfRep3, jtfRepCorrecte;
     private JButton jbQcm, jbRepCourte, jbVf, jbValider;
-    private JComboBox<Integer> jcbBonneRepQCM, jcbNiveau;
-    private JComboBox<String> jcbTheme, jcbVF;
+    private JComboBox<Integer> jcbNiveau;
+    private JComboBox<String> jcbTheme, jcbVF, jcbBonneRepQCM;
     private String questionType;
 
-    //todo simplifier code + securisation des saisies
-    //todo changer jcbBonneRepQcm int en String Reponse 1 ...
 
     public GUI_AjouterQuestion() {
 
@@ -36,7 +32,7 @@ public class GUI_AjouterQuestion extends JFrame {
     }
 
     private void initiate() {
-        jcbBonneRepQCM = new JComboBox<>(new Integer[]{1, 2, 3});
+        jcbBonneRepQCM = new JComboBox<>(new String[]{"Réponse 1", "Réponse 2", "Réponse 3"});
         jcbNiveau = new JComboBox<>(new Integer[]{1, 2, 3});
         jcbTheme = new JComboBox<>(new String[]{"Sport", "Histoire", "Géographie", "Art", "Sciences", "Cinema", "High-tech", "Musique", "Divertissements", "Littérature"});
         jcbVF = new JComboBox<>(new String[]{"Vrai", "Faux"});
@@ -64,6 +60,9 @@ public class GUI_AjouterQuestion extends JFrame {
 
     }
 
+    /**
+     * Place les bouttons du type de questions
+     */
     private JPanel placeTypeQuestion() {
         JPanel pan = new JPanel();
         pan.add(jbQcm);
@@ -72,6 +71,9 @@ public class GUI_AjouterQuestion extends JFrame {
         return pan;
     }
 
+    /**
+     * Listener sur les bouttons de type de questions et valider
+     */
     private void addListenerValider(){
         jbValider.addActionListener(e->{
             switch (questionType){
@@ -108,7 +110,7 @@ public class GUI_AjouterQuestion extends JFrame {
         jbQcm.addActionListener(e -> {
             clearAll();
             questionType = "QCM";
-            placeQCM();
+            placeFormQuestion();
         });
     }
 
@@ -116,20 +118,22 @@ public class GUI_AjouterQuestion extends JFrame {
         jbRepCourte.addActionListener(e -> {
             clearAll();
             questionType = "RC";
-            placeRC();
+            placeFormQuestion();
         });
     }
 
     private void addListenerVF() {
-        questionType = "VF";
         jbVf.addActionListener(e -> {
             clearAll();
             questionType = "VF";
-            placeVF();
+            placeFormQuestion();
         });
     }
 
-    private void placeQCM(){
+    /**
+     * Place le panneau du formulaire des question en fonction du type de question à ajouter
+     */
+    private void placeFormQuestion(){
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints cs = new GridBagConstraints();
         cs.fill = GridBagConstraints.HORIZONTAL;
@@ -141,24 +145,44 @@ public class GUI_AjouterQuestion extends JFrame {
         panel.add(jtfQuestion, cs);
         cs.gridy++;
         cs.gridx = 0;
-        panel.add(jlRep1 ,cs);
-        cs.gridx++;
-        panel.add(jtfRep1 , cs);
-        cs.gridy++;
-        cs.gridx = 0;
-        panel.add(jlRep2 ,cs);
-        cs.gridx++;
-        panel.add(jtfRep2 , cs);
-        cs.gridy++;
-        cs.gridx = 0;
-        panel.add(jlRep3 ,cs);
-        cs.gridx++;
-        panel.add(jtfRep3 , cs);
-        cs.gridx=0;
-        cs.gridy++;
-        panel.add(jlRepCorrecte, cs);
-        cs.gridx++;
-        panel.add(jcbBonneRepQCM, cs);
+        switch (questionType){
+            case "VF":
+                cs.gridx=0;
+                cs.gridy++;
+                panel.add(jlRepCorrecte, cs);
+                cs.gridx++;
+                panel.add(jcbVF, cs);
+                break;
+            case "RC":
+                cs.gridx=0;
+                cs.gridy++;
+                panel.add(jlRepCorrecte, cs);
+                cs.gridx++;
+                panel.add(jtfRepCorrecte, cs);
+                break;
+            case "QCM":
+                panel.add(jlRep1 ,cs);
+                cs.gridx++;
+                panel.add(jtfRep1 , cs);
+                cs.gridy++;
+                cs.gridx = 0;
+                panel.add(jlRep2 ,cs);
+                cs.gridx++;
+                panel.add(jtfRep2 , cs);
+                cs.gridy++;
+                cs.gridx = 0;
+                panel.add(jlRep3 ,cs);
+                cs.gridx++;
+                panel.add(jtfRep3 , cs);
+                cs.gridx=0;
+                cs.gridy++;
+                panel.add(jlRepCorrecte, cs);
+                cs.gridx++;
+                panel.add(jcbBonneRepQCM, cs);
+                break;
+            default:
+                break;
+        }
         cs.gridx = 0;
         cs.gridy++;
         panel.add(jlNiveau, cs);
@@ -177,84 +201,12 @@ public class GUI_AjouterQuestion extends JFrame {
         }
         getContentPane().add(panel, BorderLayout.CENTER);
         setSize(450, 350);
-
         setVisible(true);
     }
 
-    private void placeRC(){
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-        cs.fill = GridBagConstraints.HORIZONTAL;
-        cs.insets = new Insets(5,5,5,5);
-        cs.gridx = 0;
-        cs.gridy = 0;
-        panel.add(jlQuestion ,cs);
-        cs.gridx++;
-        panel.add(jtfQuestion, cs);
-        cs.gridx=0;
-        cs.gridy++;
-        panel.add(jlRepCorrecte, cs);
-        cs.gridx++;
-        panel.add(jtfRepCorrecte, cs);
-        cs.gridx = 0;
-        cs.gridy++;
-        panel.add(jlNiveau, cs);
-        cs.gridx++;
-        panel.add(jcbNiveau, cs);
-        cs.gridx = 0;
-        cs.gridy++;
-        panel.add(jlTheme, cs);
-        cs.gridx++;
-        panel.add(jcbTheme,cs);
-
-        cs.gridy++;
-        panel.add(jbValider, cs);
-        if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
-            getContentPane().remove(1);
-        }
-        getContentPane().add(panel, BorderLayout.CENTER);
-        setSize(450, 250);
-
-        setVisible(true);
-    }
-
-    private void placeVF(){
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints cs = new GridBagConstraints();
-        cs.fill = GridBagConstraints.HORIZONTAL;
-        cs.insets = new Insets(5,5,5,5);
-        cs.gridx = 0;
-        cs.gridy = 0;
-        panel.add(jlQuestion ,cs);
-        cs.gridx++;
-        panel.add(jtfQuestion, cs);
-        cs.gridx=0;
-        cs.gridy++;
-        panel.add(jlRepCorrecte, cs);
-        cs.gridx++;
-        panel.add(jcbVF, cs);
-        cs.gridx = 0;
-        cs.gridy++;
-        panel.add(jlNiveau, cs);
-        cs.gridx++;
-        panel.add(jcbNiveau, cs);
-        cs.gridx = 0;
-        cs.gridy++;
-        panel.add(jlTheme, cs);
-        cs.gridx++;
-        panel.add(jcbTheme,cs);
-
-        cs.gridy++;
-        panel.add(jbValider, cs);
-        if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
-            getContentPane().remove(1);
-        }
-        getContentPane().add(panel, BorderLayout.CENTER);
-        setSize(450, 250);
-
-        setVisible(true);
-    }
-
+    /**
+     * Ajoute la question dans le fichier correspondant
+     */
     private void ajouterQCM(){
 
         String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
@@ -284,17 +236,17 @@ public class GUI_AjouterQuestion extends JFrame {
             QcmFile.newLine();
 
             QcmFile.close();
-
+            JOptionPane.showMessageDialog(null, "La question a bien été ajoutée" ,"Succès", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.out.print("erreur");
-        }dispose();
+        }
     }
 
     private void ajouterRCouVf(String type, String goodAnswer){
         String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
         String questionTheme = jcbTheme.getSelectedItem().toString();
         String question = jtfQuestion.getText();
-        if(type.equals("VF")){
+        if(type.equals("VF")){ //transformation du vrai/faux en true/false pour le stockage
             if (goodAnswer.equals("Vrai")){
                 goodAnswer = "true";
             }else {
@@ -315,12 +267,15 @@ public class GUI_AjouterQuestion extends JFrame {
             ReponseFile.newLine();
 
             ReponseFile.close();
-
+            JOptionPane.showMessageDialog(null, "La question a bien été ajoutée" ,"Succès", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.out.print("erreur");
         }
     }
 
+    /**
+     * Verification des données saisies
+     */
     private boolean dataValidRC(){
         if(jtfQuestion.getText().isEmpty()){
             return false;
@@ -351,10 +306,16 @@ public class GUI_AjouterQuestion extends JFrame {
         return true;
     }
 
+    /**
+     * Affichae du message d'erreur en cas de mauvaise saisies
+     */
     private void displayErrorMessage(){
         JOptionPane.showMessageDialog(null, "Remplissez tout les champs !" ,"Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Remise à 0 des champs de texte
+     */
     private void clearAll(){
         jtfQuestion.setText("");
         jtfRep1.setText("");

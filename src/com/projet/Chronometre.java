@@ -1,22 +1,22 @@
 package com.projet;
 
 public class Chronometre extends  Thread implements Comparable {
-    private int milisecond = 0, second = 0, minute =0, hour =0;
-    private boolean state = true;
+    private int milisecond, second, minute, hour;
+    private boolean state;
     private long debut, fin;
+
+
 
     public Chronometre(){
         super();
         //initialisation au temps actuel
         debut = System.currentTimeMillis(); //debut de la question
         fin = System.currentTimeMillis(); //fin de la question
-    }
-
-    public Chronometre(int milisecond, int second, int minute, int hour) {
-        this.milisecond = milisecond;
-        this.second = second;
-        this.minute = minute;
-        this.hour = hour;
+        milisecond = 0;
+        second = 0;
+        minute = 0;
+        hour = 0;
+        state = true;
     }
 
     public void run(){

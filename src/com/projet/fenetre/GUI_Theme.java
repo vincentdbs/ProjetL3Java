@@ -5,12 +5,12 @@ import com.projet.Themes;
 import javax.swing.*;
 import java.awt.*;
 
-public class GUI_Theme1 extends JFrame {
+public class GUI_Theme extends JFrame {
 
     private JLabel jlTheme, jlNomTheme, jlIntro;
     private JButton jbValider;
 
-    public GUI_Theme1(Themes themes){
+    public GUI_Theme(Themes themes){
 
         setSize(300,200);
         setTitle("Thème");

@@ -54,6 +54,9 @@ public class Themes {
      * Methode selectionnant le nombre de thème passé en paramétre (methode SelectionnerCinqThemes du sujet)
      */
     public int[] selectionnerNTheme(int nbThemeToGet){
+        if (nbThemeToGet > 10){ //sécurisation si le choix est plus grand que le nombre de thème disponible
+            nbThemeToGet = 10;
+        }
         int[] indicateur = new int[nbThemeToGet];
         ArrayList<Integer> doublon = new ArrayList<>();
         int random;

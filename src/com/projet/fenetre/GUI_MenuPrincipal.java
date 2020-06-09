@@ -93,7 +93,7 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void addListenerTheme(){
         btnTheme.addActionListener(e -> {
-            GUI_Theme1 theme = new GUI_Theme1(themes);
+            GUI_Theme theme = new GUI_Theme(themes);
         });
     }
 

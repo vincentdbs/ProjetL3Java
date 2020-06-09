@@ -216,13 +216,6 @@ public class GUI_AjouterQuestion extends JFrame {
         setVisible(true);
     }
 
-    private void ajouterQuestion(Question question){
-        ListeQuestions q = ListeQuestions.deserialize();
-        question.setId(q.getListeQuestion().size());
-        q.ajouterQuestion(question);
-//        q.serialize();
-    }
-
     private QCM createQuestionQCM(){
         String question = jtfQuestion.getText();
         String rep1 = jtfRep1.getText();
@@ -242,79 +235,15 @@ public class GUI_AjouterQuestion extends JFrame {
     }
 
     private RC createQuestionRC(String goodAnswer){
-        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
-        String questionTheme = jcbTheme.getSelectedItem().toString();
         String question = jtfQuestion.getText();
         return new RC(question, goodAnswer);
     }
 
-    /**
-     * Ajoute la question dans le fichier correspondant
-     */
-    private void ajouterQCM(){
-
-        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
-        String questionTheme = jcbTheme.getSelectedItem().toString();
-        String question = jtfQuestion.getText();
-        String rep1 = jtfRep1.getText();
-        String rep2 = jtfRep2.getText();
-        String rep3 = jtfRep3.getText();
-        String repCorrecte =  String.valueOf(jcbBonneRepQCM.getSelectedIndex());
-
-        try {
-            BufferedWriter QcmFile = new BufferedWriter(new FileWriter("Textfile/questionQCM.txt", true)); // pour bien mettre les bonnes infos
-            QcmFile.newLine();
-            QcmFile.write(questionNiveau);
-            QcmFile.newLine(); // retour ligne
-            QcmFile.write(questionTheme);
-            QcmFile.newLine();
-            QcmFile.write(question);
-            QcmFile.newLine();
-            QcmFile.write(rep1);
-            QcmFile.newLine();
-            QcmFile.write(rep2);
-            QcmFile.newLine();
-            QcmFile.write(rep3);
-            QcmFile.newLine();
-            QcmFile.write(repCorrecte);
-            QcmFile.newLine();
-
-            QcmFile.close();
-            JOptionPane.showMessageDialog(null, "La question a bien été ajoutée" ,"Succès", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.print("erreur");
-        }
-    }
-
-    private void ajouterRCouVf(String type, String goodAnswer){
-        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
-        String questionTheme = jcbTheme.getSelectedItem().toString();
-        String question = jtfQuestion.getText();
-        if(type.equals("VF")){ //transformation du vrai/faux en true/false pour le stockage
-            if (goodAnswer.equals("Vrai")){
-                goodAnswer = "true";
-            }else {
-                goodAnswer = "false";
-            }
-        }
-
-        try {
-            BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/question" + type + ".txt", true)); // pour bien mettre les bonnes infos
-            ReponseFile.newLine();
-            ReponseFile.write(questionNiveau);
-            ReponseFile.newLine(); // retour ligne
-            ReponseFile.write(questionTheme);
-            ReponseFile.newLine();
-            ReponseFile.write(question);
-            ReponseFile.newLine();
-            ReponseFile.write(goodAnswer);
-            ReponseFile.newLine();
-
-            ReponseFile.close();
-            JOptionPane.showMessageDialog(null, "La question a bien été ajoutée" ,"Succès", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            System.out.print("erreur");
-        }
+    private void ajouterQuestion(Question question){
+        ListeQuestions q = ListeQuestions.deserialize();
+        question.setId(q.getListeQuestion().size());
+        q.ajouterQuestion(question);
+        q.serialize();
     }
 
     /**

@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GUI_AfficherQuestion extends JFrame {
@@ -110,133 +112,143 @@ public class GUI_AfficherQuestion extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                for (Question<?> q : list) {
-                    if (q.getId() == index) {
-                        list.remove(q);
+                List<Question> list1 = listeQuestions.getListeQuestion();
+
+//                for (Question<?> q : list1) {
+//                    if (q.getId() == index) {
+//                        list1.remove(q);
+//                    }
+//                }
+
+                for (Iterator<Question> iterator = list1.iterator(); iterator.hasNext();) {
+                    Question value = iterator.next();
+                    if (value.getId() == index) {
+                        iterator.remove();
                     }
                 }
 
-                for (Question<?> q : list) {
-                    System.out.println(q.getId());
-                    System.out.println(q.getNiveauDifficulte());
-                    System.out.println(q.getTheme());
-                    System.out.println(q.getEnonce());
-                }
-                        try {
-                            PrintWriter writer = new PrintWriter("Textfile/questionQCM.txt");
-                            writer.print("");
-                            writer.close();
-
-                        } catch (Exception e) {
-                            System.out.print("erreur");
-                        }
-
-                        try {
-                            PrintWriter writer = new PrintWriter("Textfile/questionRC.txt");
-                            writer.print("");
-                            writer.close();
-
-                        } catch (Exception e) {
-                            System.out.print("erreur");
-                        }
-
-                        try {
-                            PrintWriter writer = new PrintWriter("Textfile/questionVF.txt");
-                            writer.print("");
-                            writer.close();
-
-                        } catch (Exception e) {
-                            System.out.print("erreur");
-                        }
-
-//                        for (Question<?> question : list) {
-//                            int niveau = question.getNiveauDifficulte();
-//                            String theme = question.getTheme();
-//
-//                            switch (Tools.getQuestionType(question)){
-//                                case "QCM" :
-//
-//                                    int br =((QCM) question.getEnonce()).getBonneReponse();
-//                                    String[] rep = ((QCM) question.getEnonce()).getReponses();
-//                                    String quest = ((QCM) question.getEnonce()).getTexte();
-//
-//                                    try {
-//                                        BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionQCM.txt", true));
-//                                        ReponseFile.write(String.valueOf(niveau));
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(theme);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(quest);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(rep[0]);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(rep[1]);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(rep[2]);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(String.valueOf(br));
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.newLine();
-//
-//                                        ReponseFile.close();
-//
-//                                    } catch (Exception e) {
-//                                        System.out.print("erreur");
-//                                    }
-//
-//                                    break;
-//
-//                                case "RC":
-//
-//                                    String br2 =((RC) question.getEnonce()).getBonneReponse();
-//                                    String quest2 = ((RC) question.getEnonce()).getTexte();
-//
-//                                    try {
-//                                        BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true));
-//                                        ReponseFile.write(String.valueOf(niveau));
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(theme);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(quest2);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(br2);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.newLine();
-//
-//                                        ReponseFile.close();
-//
-//                                    } catch (Exception e) {
-//                                        System.out.print("erreur");
-//                                    }
-//
-//                                    break;
-//
-//                                case "VF":
-//
-//                                    Boolean br3 =((VF) question.getEnonce()).isReponse();
-//                                    String quest3 = ((VF) question.getEnonce()).getTexte();
-//
-//                                    try {
-//                                        BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionVF.txt", true));
-//                                        ReponseFile.write(String.valueOf(niveau));
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(theme);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(quest3);
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.write(String.valueOf(br3));
-//                                        ReponseFile.newLine();
-//                                        ReponseFile.newLine();
-//
-//                                        ReponseFile.close();
-//
-//                                    } catch (Exception e) {
-//                                        System.out.print("erreur");
-//                                    }
-//
-//                                    break;
-//                            }
+//                for (Question<?> q : list1) {
+//                    System.out.println(q.getId());
+//                    System.out.println(q.getNiveauDifficulte());
+//                    System.out.println(q.getTheme());
+//                    System.out.println(q.getEnonce());
 //                }
+
+                try {
+                    PrintWriter writer = new PrintWriter("Textfile/questionQCM.txt");
+                    writer.print("");
+                    writer.close();
+
+                } catch (Exception e) {
+                    System.out.print("erreur");
+                }
+
+                try {
+                    PrintWriter writer = new PrintWriter("Textfile/questionRC.txt");
+                    writer.print("");
+                    writer.close();
+
+                } catch (Exception e) {
+                    System.out.print("erreur");
+                }
+
+                try {
+                    PrintWriter writer = new PrintWriter("Textfile/questionVF.txt");
+                    writer.print("");
+                    writer.close();
+
+                } catch (Exception e) {
+                    System.out.print("erreur");
+                }
+
+                for (Question<?> question : list1) {
+                    int niveau = question.getNiveauDifficulte();
+                    String theme = question.getTheme();
+
+                    switch (Tools.getQuestionType(question)){
+                        case "QCM" :
+
+                            int br =((QCM) question.getEnonce()).getBonneReponse();
+                            String[] rep = ((QCM) question.getEnonce()).getReponses();
+                            String quest = ((QCM) question.getEnonce()).getTexte();
+
+                            try {
+                                BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionQCM.txt", true));
+                                ReponseFile.write(String.valueOf(niveau));
+                                ReponseFile.newLine();
+                                ReponseFile.write(theme);
+                                ReponseFile.newLine();
+                                ReponseFile.write(quest);
+                                ReponseFile.newLine();
+                                ReponseFile.write(rep[0]);
+                                ReponseFile.newLine();
+                                ReponseFile.write(rep[1]);
+                                ReponseFile.newLine();
+                                ReponseFile.write(rep[2]);
+                                ReponseFile.newLine();
+                                ReponseFile.write(String.valueOf(br));
+                                ReponseFile.newLine();
+                                ReponseFile.newLine();
+
+                                ReponseFile.close();
+
+                            } catch (Exception e) {
+                                System.out.print("erreur");
+                            }
+
+                            break;
+
+                        case "RC":
+
+                            String br2 =((RC) question.getEnonce()).getBonneReponse();
+                            String quest2 = ((RC) question.getEnonce()).getTexte();
+
+                            try {
+                                BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionRC.txt", true));
+                                ReponseFile.write(String.valueOf(niveau));
+                                ReponseFile.newLine();
+                                ReponseFile.write(theme);
+                                ReponseFile.newLine();
+                                ReponseFile.write(quest2);
+                                ReponseFile.newLine();
+                                ReponseFile.write(br2);
+                                ReponseFile.newLine();
+                                ReponseFile.newLine();
+
+                                ReponseFile.close();
+
+                            } catch (Exception e) {
+                                System.out.print("erreur");
+                            }
+
+                            break;
+
+                        case "VF":
+
+                            Boolean br3 =((VF) question.getEnonce()).isReponse();
+                            String quest3 = ((VF) question.getEnonce()).getTexte();
+
+                            try {
+                                BufferedWriter ReponseFile = new BufferedWriter(new FileWriter("Textfile/questionVF.txt", true));
+                                ReponseFile.write(String.valueOf(niveau));
+                                ReponseFile.newLine();
+                                ReponseFile.write(theme);
+                                ReponseFile.newLine();
+                                ReponseFile.write(quest3);
+                                ReponseFile.newLine();
+                                ReponseFile.write(String.valueOf(br3));
+                                ReponseFile.newLine();
+                                ReponseFile.newLine();
+
+                                ReponseFile.close();
+
+                            } catch (Exception e) {
+                                System.out.print("erreur");
+                            }
+
+                            break;
+                    }
+                }
             }
         });
     }

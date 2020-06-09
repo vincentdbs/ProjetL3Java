@@ -1,10 +1,5 @@
 1
 Sport
-Micheal Phelps est le plus titrer aux JO ?
-true
-
-1
-Sport
 Un match de football dure 90 minutes ?
 true
 

@@ -91,5 +91,7 @@ public class Question<T> implements Serializable {
         this.theme = theme;
     }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }

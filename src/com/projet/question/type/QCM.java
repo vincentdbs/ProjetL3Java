@@ -7,7 +7,7 @@ public class QCM implements Serializable {
     private int bonneReponse;
     private String texte;
 
-    public QCM(String texte, int bonneReponse,  String[] reponses) {
+    public QCM(String texte, int bonneReponse,  String... reponses) {
         this.reponses = reponses;
         this.bonneReponse = bonneReponse;
         this.texte = texte;

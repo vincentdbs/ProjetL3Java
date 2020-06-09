@@ -1,5 +1,11 @@
 package com.projet.fenetre;
 
+import com.projet.question.ListeQuestions;
+import com.projet.question.Question;
+import com.projet.question.type.QCM;
+import com.projet.question.type.RC;
+import com.projet.question.type.VF;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedWriter;
@@ -80,24 +86,26 @@ public class GUI_AjouterQuestion extends JFrame {
      */
     private void addListenerValider(){
         jbValider.addActionListener(e->{
+            int questionNiveau = jcbNiveau.getSelectedIndex()+1;
+            String questionTheme = jcbTheme.getSelectedItem().toString();
             switch (questionType){
                 case "RC":
                     if (dataValidRC()){
-                        ajouterRCouVf("RC", jtfRepCorrecte.getText());
+                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionRC(jtfRepCorrecte.getText())));
                     }else {
                         displayErrorMessage();
                     }
                     break;
                 case "VF":
                     if (dataValidVF()){
-                        ajouterRCouVf("VF", jtfRepCorrecte.getText());
+                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionVF(jtfRepCorrecte.getText())));
                     }else {
                         displayErrorMessage();
                     }
                     break;
                 case "QCM":
                     if (dataValidQCM()){
-                        ajouterQCM();
+                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionQCM()));
                     }else {
                         displayErrorMessage();
                     }
@@ -206,6 +214,38 @@ public class GUI_AjouterQuestion extends JFrame {
         getContentPane().add(panel, BorderLayout.CENTER);
         setSize(450, 350);
         setVisible(true);
+    }
+
+    private void ajouterQuestion(Question question){
+        ListeQuestions q = ListeQuestions.deserialize();
+        question.setId(q.getListeQuestion().size());
+        q.ajouterQuestion(question);
+//        q.serialize();
+    }
+
+    private QCM createQuestionQCM(){
+        String question = jtfQuestion.getText();
+        String rep1 = jtfRep1.getText();
+        String rep2 = jtfRep2.getText();
+        String rep3 = jtfRep3.getText();
+        int repCorrecte =  jcbBonneRepQCM.getSelectedIndex();
+        return new QCM(question, repCorrecte, rep1,rep2,rep3);
+    }
+
+    private VF createQuestionVF(String goodAnswer){
+        String question = jtfQuestion.getText();
+        if (goodAnswer.equals("Vrai")){
+            return new VF(question, true);
+        }else {
+            return new VF(question, false);
+        }
+    }
+
+    private RC createQuestionRC(String goodAnswer){
+        String questionNiveau = String.valueOf (jcbNiveau.getSelectedIndex()+1);
+        String questionTheme = jcbTheme.getSelectedItem().toString();
+        String question = jtfQuestion.getText();
+        return new RC(question, goodAnswer);
     }
 
     /**

@@ -41,7 +41,7 @@ public class ListeQuestions implements Serializable {
     public void serialize() {
         ObjectOutputStream out;
         try {
-            out = new ObjectOutputStream(new FileOutputStream("Textfile/questions.txt"));
+            out = new ObjectOutputStream(new FileOutputStream("Textfile/questions.ser"));
             out.writeObject(this);
             out.close();
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class ListeQuestions implements Serializable {
     }
 
     public static ListeQuestions deserialize() {
-        File file = new File("Textfile/questions.txt");
+        File file = new File("Textfile/questions.ser");
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

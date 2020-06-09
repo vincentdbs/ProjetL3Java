@@ -15,9 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI_MenuPrincipal extends JFrame {
-    //todo placer les bouttons et implementer les fonctionnalités du sujet, respectivement Point n° 1,3,4 (à faire),5 (à faire),6,7,8 dans le sujet page 6
-    //  pour supprimer => ajouter des boutons supprimer à cote des question dans le GUI_AfficherQuestion + supprimer la question du fichier
-    private JButton btnTheme, btnQuestion, btnAjouterQuestion, btnSupprimerQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
+    private JButton btnTheme, btnQuestion, btnAjouterQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
     private JButton btnGrandJeu;
     private ListeQuestions listeQuestions;
     private Themes themes;
@@ -59,9 +57,6 @@ public class GUI_MenuPrincipal extends JFrame {
         btnAjouterQuestion = new JButton("Ajouter question");
         sizeButton(btnAjouterQuestion);
 
-        btnSupprimerQuestion = new JButton("Supprimer question");
-        sizeButton(btnSupprimerQuestion);
-
         btnQuitter = new JButton("Quitter");
         sizeButton(btnQuitter);
 
@@ -84,9 +79,8 @@ public class GUI_MenuPrincipal extends JFrame {
         panel.add(btnGrandJeu);
         panel.add(btnTheme);
         panel.add(btnQuestion);
-        panel.add(btnAjouterQuestion);
-        panel.add(btnSupprimerQuestion);
         panel.add(btnAfficherJoueurs);
+        panel.add(btnAjouterQuestion);
         panel.add(btnQuitter);
         return panel;
     }

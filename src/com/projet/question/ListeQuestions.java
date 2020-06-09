@@ -63,7 +63,7 @@ public class ListeQuestions implements Serializable {
         }
     }
 
-    public void ajouterQuestion(Question question){
+    public void ajouterQuestion(Question<?> question){
         listeQuestion.add(question);
     }
 

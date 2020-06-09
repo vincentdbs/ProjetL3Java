@@ -27,7 +27,7 @@ public class GUI_AfficherQuestion extends JFrame {
     private JButton jbSupprimer;
 
     public GUI_AfficherQuestion(){
-        listeQuestions = new ListeQuestions();
+        listeQuestions = ListeQuestions.deserialize();
         setSize(600,400);
         setTitle("Afficher questions");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -96,7 +96,7 @@ public class GUI_AfficherQuestion extends JFrame {
             panel.add(textArea, cs);
             jbSupprimer = new JButton("Supprimer");
             panel.add(jbSupprimer, gbc);
-            addListenerOnSupprimer(q.getId(), list, theme, niveau);
+            addListenerOnSupprimer(q, theme, niveau);
             cs.gridy++;
             gbc.gridy++;
 
@@ -105,6 +105,22 @@ public class GUI_AfficherQuestion extends JFrame {
             //todo
         }
         return panel;
+    }
+
+    private void addListenerOnSupprimer(Question question, String theme, String niveau){
+        jbSupprimer.addActionListener(actionEvent -> {
+            listeQuestions.supprimerQuestion(question);
+            listeQuestions.serialize();
+
+            if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+                getContentPane().remove(1);
+            }
+            JScrollPane scrollPane = new JScrollPane(placeList(theme, niveau), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+            getContentPane().add(scrollPane);
+            pack();
+
+        });
     }
 
     private void addListenerOnSupprimer(int index, List<Question> list, String theme, String niveau){

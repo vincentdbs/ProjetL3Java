@@ -9,14 +9,6 @@ public class Main {
         //lancement du menu principal
         GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
 
-
-//        long debut = System.currentTimeMillis();
-//        ListeQuestions listeQuestions = new ListeQuestions();
-//        System.out.println(System.currentTimeMillis()-debut);
-//        listeQuestions.serialize();
-//        debut = System.currentTimeMillis();
-//        ListeQuestions listeQuestions1 = ListeQuestions.deserialize();
-//        System.out.println(System.currentTimeMillis()-debut);
     }
 
 }

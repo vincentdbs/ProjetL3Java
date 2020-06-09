@@ -1,6 +1,7 @@
 package com.projet;
 
 import com.projet.joueur.Joueur;
+import com.projet.question.ListeQuestions;
 import com.projet.question.Question;
 
 import java.util.ArrayList;
@@ -117,6 +118,9 @@ public final class Tools {
                 .toArray(Joueur[]::new);
     }
 
+    /**
+     * Get joueur avec le plus bas score
+     */
     public static int getLowestScore(Joueur[] joueurs){
         int scoreMin = joueurs[0].getScore();
         for (int i = 1; i < joueurs.length; i++) {
@@ -127,6 +131,9 @@ public final class Tools {
         return scoreMin;
     }
 
+    /**
+     * Recupere les joueurs pour la phase suivante à partir des chronos et des scores
+     */
     public static Joueur[] getJoueurElimine(Chronometre[] chrono, Joueur[] joueurs){
         ArrayList<Joueur> list = new ArrayList<>();
         Chronometre highestChrono = new Chronometre();
@@ -161,6 +168,14 @@ public final class Tools {
         }
 
         return list.toArray(new Joueur[list.size()]);
+    }
+
+    /**
+     * Serialize la classe ListeQuestion à partir des fichiers textes de questions
+     */
+    public static void serializationListeQuestion(){
+        ListeQuestions listeQuestions = new ListeQuestions();
+        listeQuestions.serialize();
     }
 
 }

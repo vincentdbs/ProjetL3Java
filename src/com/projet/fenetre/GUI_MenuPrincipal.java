@@ -23,7 +23,7 @@ public class GUI_MenuPrincipal extends JFrame {
 
     public GUI_MenuPrincipal() {
         //creation de la liste des questions du jeu
-        listeQuestions = new ListeQuestions();
+        listeQuestions = ListeQuestions.deserialize();
 
         //creation des themes + selection du premier theme
         themes = new Themes();

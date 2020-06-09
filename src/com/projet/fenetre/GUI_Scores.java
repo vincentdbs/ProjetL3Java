@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class GUI_Scores extends JFrame {
 
-    private String[] entete = {"Nom","Etat"};
-    private String[][] arrJoueur;
     private JTable jtTable;
     private JButton jbRetour;
 
@@ -31,8 +29,9 @@ public class GUI_Scores extends JFrame {
     }
 
     private void initiate(EnsJoueurs joueurs){
-        arrJoueur = new String[joueurs.getVectorJoueur().size()][2];
-        for (int i = 0 ; i < arrJoueur.length ; i++){
+        String[][] arrJoueur = new String[joueurs.getVectorJoueur().size()][2];
+        String[] entete = {"Nom","Etat"};
+        for (int i = 0; i < arrJoueur.length ; i++){
             arrJoueur[i][0] = joueurs.getVectorJoueur().get(i).getNom();
             arrJoueur[i][1] = joueurs.getVectorJoueur().get(i).getEtat();
         }

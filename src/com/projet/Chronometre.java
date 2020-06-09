@@ -3,9 +3,8 @@ package com.projet;
 public class Chronometre extends  Thread implements Comparable {
     private int milisecond, second, minute, hour;
     private boolean state;
-    private long debut, fin;
-
-
+    private final long debut;
+    private long fin;
 
     public Chronometre(){
         super();

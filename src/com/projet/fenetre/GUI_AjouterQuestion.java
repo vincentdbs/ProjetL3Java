@@ -91,21 +91,21 @@ public class GUI_AjouterQuestion extends JFrame {
             switch (questionType){
                 case "RC":
                     if (dataValidRC()){
-                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionRC(jtfRepCorrecte.getText())));
+                        ajouterQuestion(new Question<>(questionNiveau, questionTheme, createQuestionRC(jtfRepCorrecte.getText())));
                     }else {
                         displayErrorMessage();
                     }
                     break;
                 case "VF":
                     if (dataValidVF()){
-                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionVF(jtfRepCorrecte.getText())));
+                        ajouterQuestion(new Question<>(questionNiveau, questionTheme, createQuestionVF(jtfRepCorrecte.getText())));
                     }else {
                         displayErrorMessage();
                     }
                     break;
                 case "QCM":
                     if (dataValidQCM()){
-                        ajouterQuestion(new Question(questionNiveau, questionTheme, createQuestionQCM()));
+                        ajouterQuestion(new Question<>(questionNiveau, questionTheme, createQuestionQCM()));
                     }else {
                         displayErrorMessage();
                     }
@@ -259,10 +259,7 @@ public class GUI_AjouterQuestion extends JFrame {
         if(jtfQuestion.getText().isEmpty()){
             return false;
         }
-        if(jtfRepCorrecte.getText().isEmpty()){
-            return false;
-        }
-        return true;
+        return !jtfRepCorrecte.getText().isEmpty();
     }
 
     private boolean dataValidVF(){
@@ -279,10 +276,7 @@ public class GUI_AjouterQuestion extends JFrame {
         if(jtfRep2.getText().isEmpty()){
             return false;
         }
-        if(jtfRep3.getText().isEmpty()){
-            return false;
-        }
-        return true;
+        return !jtfRep3.getText().isEmpty();
     }
 
     /**

@@ -4,14 +4,13 @@ import com.projet.question.type.QCM;
 import com.projet.question.type.RC;
 import com.projet.question.type.VF;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ListeQuestions {
+public class ListeQuestions implements Serializable {
     private LinkedList<Question> listeQuestion;
     private int indicateur;
 
@@ -39,6 +38,30 @@ public class ListeQuestions {
         }
     }
 
+    public void serialize() {
+        ObjectOutputStream out;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream("Textfile/questions.txt"));
+            out.writeObject(this);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ListeQuestions deserialize() {
+        File file = new File("Textfile/questions.txt");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            ListeQuestions liste = (ListeQuestions) objectInputStream.readObject();
+            objectInputStream.close();
+            return liste;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void ajouterQuestion(Question question){
         listeQuestion.add(question);
@@ -154,6 +177,7 @@ public class ListeQuestions {
             System.out.println("erreur de lecture");
         }
     }
+
 
     /**
      * Getter et setter

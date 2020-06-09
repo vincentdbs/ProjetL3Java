@@ -1,6 +1,8 @@
 package com.projet.question.type;
 
-public class QCM {
+import java.io.Serializable;
+
+public class QCM implements Serializable {
     private String[] reponses;
     private int bonneReponse;
     private String texte;

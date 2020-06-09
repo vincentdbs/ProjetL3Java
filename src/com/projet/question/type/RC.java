@@ -1,6 +1,8 @@
 package com.projet.question.type;
 
-public class RC {
+import java.io.Serializable;
+
+public class RC implements Serializable {
     private String texte, bonneReponse;
 
     public RC(String texte, String bonneReponse) {

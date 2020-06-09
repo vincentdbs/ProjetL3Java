@@ -4,7 +4,9 @@ import com.projet.question.type.QCM;
 import com.projet.question.type.RC;
 import com.projet.question.type.VF;
 
-public class Question<T> {
+import java.io.Serializable;
+
+public class Question<T> implements Serializable {
     private static int numero = 0;
     private int id;
     private String theme;

@@ -1,6 +1,8 @@
 package com.projet.question.type;
 
-public class VF {
+import java.io.Serializable;
+
+public class VF implements Serializable {
     private String texte;
     private boolean reponse;
 

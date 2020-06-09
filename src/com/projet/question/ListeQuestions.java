@@ -114,7 +114,7 @@ public class ListeQuestions implements Serializable {
     }
 
     /**
-     * Recuperation des questions depuis les fichiers textes
+     * Recuperation des questions depuis les fichiers textes (utilisé en cas de reserialization de la classe)
      */
     private void getAllQuestions(){
         getAllQcmFromFile();

@@ -1,22 +1,11 @@
 package com.projet.fenetre;
 
-import com.projet.Tools;
 import com.projet.question.ListeQuestions;
 import com.projet.question.Question;
 import com.projet.Themes;
-import com.projet.question.type.QCM;
-import com.projet.question.type.RC;
-import com.projet.question.type.VF;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class GUI_AfficherQuestion extends JFrame {

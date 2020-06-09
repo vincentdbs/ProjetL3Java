@@ -17,24 +17,12 @@ public class QCM implements Serializable {
         return reponses;
     }
 
-    public void setReponses(String[] reponses) {
-        this.reponses = reponses;
-    }
-
     public int getBonneReponse() {
         return bonneReponse;
     }
 
-    public void setBonneReponse(int bonneReponse) {
-        this.bonneReponse = bonneReponse;
-    }
-
     public String getTexte() {
         return texte;
-    }
-
-    public void setTexte(String texte) {
-        this.texte = texte;
     }
 
     @Override

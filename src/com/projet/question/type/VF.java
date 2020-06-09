@@ -15,16 +15,8 @@ public class VF implements Serializable {
         return texte;
     }
 
-    public void setTexte(String texte) {
-        this.texte = texte;
-    }
-
     public boolean isReponse() {
         return reponse;
-    }
-
-    public void setReponse(boolean reponse) {
-        this.reponse = reponse;
     }
 
     @Override

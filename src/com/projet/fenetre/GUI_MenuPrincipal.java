@@ -11,8 +11,6 @@ import com.projet.Themes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUI_MenuPrincipal extends JFrame {
     private JButton btnTheme, btnQuestion, btnAjouterQuestion, btnAfficherJoueurs, btnStart, btnQuitter;

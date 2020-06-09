@@ -189,16 +189,4 @@ public class ListeQuestions implements Serializable {
     public LinkedList<Question> getListeQuestion() {
         return listeQuestion;
     }
-
-    public void setListeQuestion(LinkedList<Question> listeQuestion) {
-        this.listeQuestion = listeQuestion;
-    }
-
-    public int getIndicateur() {
-        return indicateur;
-    }
-
-    public void setIndicateur(int indicateur) {
-        this.indicateur = indicateur;
-    }
 }

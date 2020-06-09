@@ -14,16 +14,8 @@ public class RC implements Serializable {
         return texte;
     }
 
-    public void setTexte(String texte) {
-        this.texte = texte;
-    }
-
     public String getBonneReponse() {
         return bonneReponse;
-    }
-
-    public void setBonneReponse(String bonneReponse) {
-        this.bonneReponse = bonneReponse;
     }
 
     @Override

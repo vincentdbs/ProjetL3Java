@@ -21,8 +21,6 @@ public class Phase2 implements Phase{
 
     private Themes themeListe;
     private ListeQuestions listeQuestionsAll;
-    private Themes themeActuel;
-    private HashMap<String, ArrayList<String>> ThemeParParticipant;
     private List<Question> listeQuestions;
     private HashMap<String, List<Question>> listeQuestionstest = new HashMap<>();
     private Joueur[] joueurs;
@@ -41,7 +39,7 @@ public class Phase2 implements Phase{
         this.vainqueurs = new Joueur[2];
         this.joueurs = joueurs;
         this.parent = null;
-    }
+    }   
 
 
     @Override

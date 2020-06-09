@@ -8,8 +8,6 @@ import com.projet.question.type.VF;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 public class GUI_AjouterQuestion extends JFrame {
 

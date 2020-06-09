@@ -61,7 +61,4 @@ public class EnsJoueurs {
         return vectorJoueur;
     }
 
-    public void setVectorJoueur(Vector<Joueur> vectorJoueur) {
-        this.vectorJoueur = vectorJoueur;
-    }
 }

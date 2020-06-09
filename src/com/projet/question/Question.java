@@ -59,28 +59,12 @@ public class Question<T> implements Serializable {
         return "Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + enonce.toString();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public static int getNumero() {
-        return numero;
-    }
-
     public int getNiveauDifficulte() {
         return niveauDifficulte;
     }
 
-    public void setNiveauDifficulte(int niveauDifficulte) {
-        this.niveauDifficulte = niveauDifficulte;
-    }
-
     public T getEnonce() {
         return enonce;
-    }
-
-    public void setEnonce(T enonce) {
-        this.enonce = enonce;
     }
 
     public String getTheme() {

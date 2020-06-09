@@ -1,5 +1,6 @@
 package com.projet.fenetre;
 
+import com.projet.Tools;
 import com.projet.question.ListeQuestions;
 import com.projet.question.Question;
 import com.projet.Themes;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class GUI_AfficherQuestion extends JFrame {
     private JComboBox<String> jcbTheme;
-    private JButton jbNiveau1, jbNiveau2, jbNiveau3;
+    private JButton jbNiveau1, jbNiveau2, jbNiveau3, jbReset;
     private JLabel jlNiveau, jlTheme;
     private ListeQuestions listeQuestions;
     private JButton jbSupprimer;
@@ -38,6 +39,8 @@ public class GUI_AfficherQuestion extends JFrame {
         addListenerOnButton(jbNiveau2);
         jbNiveau3 = new JButton("3");
         addListenerOnButton(jbNiveau3);
+        jbReset = new JButton("Reset");
+        addListenerOnReset();
         jbSupprimer = new JButton("Supprimer");
 
     }
@@ -50,6 +53,7 @@ public class GUI_AfficherQuestion extends JFrame {
         panel.add(jbNiveau1);
         panel.add(jbNiveau2);
         panel.add(jbNiveau3);
+        panel.add(jbReset);
         return panel;
     }
 
@@ -110,4 +114,17 @@ public class GUI_AfficherQuestion extends JFrame {
 
         });
     }
+
+    private void addListenerOnReset(){
+        jbReset.addActionListener(e->{
+            Tools.serializationListeQuestion();
+            listeQuestions = ListeQuestions.deserialize();
+            if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+                getContentPane().remove(1);
+            }
+            pack();
+            JOptionPane.showMessageDialog(null,"Les questions ont été réinitialisées à leur état d'origine", "Questions par défaut", JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+
 }

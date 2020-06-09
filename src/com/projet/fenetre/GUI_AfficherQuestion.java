@@ -104,6 +104,7 @@ public class GUI_AfficherQuestion extends JFrame {
             //serialization de la nouvelle liste
             listeQuestions.serialize();
 
+
             if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
                 getContentPane().remove(1);
             }
@@ -117,13 +118,18 @@ public class GUI_AfficherQuestion extends JFrame {
 
     private void addListenerOnReset(){
         jbReset.addActionListener(e->{
-            Tools.serializationListeQuestion();
-            listeQuestions = ListeQuestions.deserialize();
-            if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
-                getContentPane().remove(1);
+            int confirm = JOptionPane.showOptionDialog(
+                    null, "La liste de question reviendra à son état d'origine",
+                    "Validation", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if (confirm == 0) {
+                Tools.serializationListeQuestion();
+                listeQuestions = ListeQuestions.deserialize();
+                if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
+                    getContentPane().remove(1);
+                }
+                pack();
             }
-            pack();
-            JOptionPane.showMessageDialog(null,"Les questions ont été réinitialisées à leur état d'origine", "Questions par défaut", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 

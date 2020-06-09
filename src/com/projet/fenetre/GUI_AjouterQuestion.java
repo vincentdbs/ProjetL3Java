@@ -248,6 +248,7 @@ public class GUI_AjouterQuestion extends JFrame {
         q.ajouterQuestion(question);
         //serialization du fichier
         q.serialize();
+        JOptionPane.showMessageDialog(null, "La question a bien été ajoutée", "Ajout", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

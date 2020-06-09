@@ -71,6 +71,10 @@ public class ListeQuestions implements Serializable {
         listeQuestion.remove(index);
     }
 
+    public void supprimerQuestion(Question<?> question){
+        listeQuestion.remove(question);
+    }
+
     public void afficherQuestionByLevel(int level){
         listeQuestion.stream()
                 .filter(question -> question.getNiveauDifficulte() == level)

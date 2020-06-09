@@ -6,11 +6,13 @@ import com.projet.question.type.VF;
 
 public class Question<T> {
     private static int numero = 0;
+    private int id;
     private String theme;
     private int niveauDifficulte;
     private T enonce;
 
     public Question(int niveauDifficulte, String theme, T enonce) {
+        this.id = numero;
         this.niveauDifficulte = niveauDifficulte;
         this.enonce = enonce;
         this.theme = theme;
@@ -53,6 +55,10 @@ public class Question<T> {
     @Override
     public String toString(){
         return "Thème : " + getTheme() + " | Niveau " + getNiveauDifficulte() + "\n" + enonce.toString();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public static int getNumero() {

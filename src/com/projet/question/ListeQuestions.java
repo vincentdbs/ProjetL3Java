@@ -111,6 +111,7 @@ public class ListeQuestions {
                 QCM qcm = new QCM(texte, goodAnswer, answers);
                 listeQuestion.add(new Question<>(niveau, theme, qcm));
                 scanner.nextLine();
+                scanner.nextLine();
             }while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");
@@ -128,6 +129,7 @@ public class ListeQuestions {
                 boolean goodAnswer = Boolean.parseBoolean(scanner.nextLine());
                 VF vf = new VF(texte, goodAnswer);
                 listeQuestion.add(new Question<>(niveau, theme, vf));
+                scanner.nextLine();
             } while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");
@@ -146,6 +148,7 @@ public class ListeQuestions {
                 String goodAnswer = scanner.nextLine();
                 RC rc = new RC(texte, goodAnswer);
                 listeQuestion.add(new Question<>(niveau, theme, rc));
+                scanner.nextLine();
             } while (scanner.hasNextLine());
         } catch (FileNotFoundException e) {
             System.out.println("erreur de lecture");

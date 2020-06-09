@@ -5,14 +5,14 @@ import java.awt.*;
 
 public class GUI_ChoixTheme extends JDialog {
     private JLabel jlChoix;
-    private JComboBox jcbListTheme;
+    private JComboBox<String> jcbListTheme;
     private JButton btnValider;
 
     public GUI_ChoixTheme(Frame owner, String[] themes) {
         super(owner, true);
         jlChoix = new JLabel("Choisissez un thème");
         btnValider = new JButton("Valider");
-        jcbListTheme = new JComboBox(themes);
+        jcbListTheme = new JComboBox<>(themes);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         getContentPane().add(placeComponent());

@@ -106,7 +106,9 @@ public class GUI_AfficherQuestion extends JFrame {
 
     private void addListenerOnSupprimer(Question question, String theme, String niveau){
         jbSupprimer.addActionListener(actionEvent -> {
+            //suppression de la question dans la liste
             listeQuestions.supprimerQuestion(question);
+            //serialization de la nouvelle liste
             listeQuestions.serialize();
 
             if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent

@@ -9,7 +9,6 @@ public class Main {
         //lancement du menu principal
         GUI_MenuPrincipal menuPrincipal = new GUI_MenuPrincipal();
 
-//        Tools.serializationListeQuestion();
     }
 
 }

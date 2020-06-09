@@ -216,6 +216,9 @@ public class GUI_AjouterQuestion extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Creation des questions pour l'ajout à la liste
+     */
     private QCM createQuestionQCM(){
         String question = jtfQuestion.getText();
         String rep1 = jtfRep1.getText();
@@ -239,10 +242,13 @@ public class GUI_AjouterQuestion extends JFrame {
         return new RC(question, goodAnswer);
     }
 
-    private void ajouterQuestion(Question question){
+    private void ajouterQuestion(Question<?> question){
+        //recuperation de la liste
         ListeQuestions q = ListeQuestions.deserialize();
         question.setId(q.getListeQuestion().size());
+        //ajout de la question à la liste
         q.ajouterQuestion(question);
+        //serialization du fichier
         q.serialize();
     }
 

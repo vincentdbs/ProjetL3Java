@@ -28,14 +28,11 @@ public class Phase2 implements Phase{
     private JFrame parent;
 
     public Phase2(Themes theme, ListeQuestions listeQuestions, Joueur[] joueurs) {
-
-
         this.themeListe = new Themes(selectionThemes(theme));
         listeQuestionsAll = listeQuestions;
         for(int i=0; i<6; i++){
         listeQuestionstest.put(themeListe.getArrayTheme()[i], listeQuestions.getQuestionByThemeLevel(themeListe.getArrayTheme()[i], 2));
         }
-
         this.vainqueurs = new Joueur[2];
         this.joueurs = joueurs;
         this.parent = null;
@@ -43,9 +40,7 @@ public class Phase2 implements Phase{
 
 
     @Override
-    public void selectionnerJoueur() {
-
-    }
+    public void selectionnerJoueur() {}
 
     public String[] selectionThemes(Themes theme){
         int[] indic = theme.selectionnerNTheme(6);
@@ -59,16 +54,13 @@ public class Phase2 implements Phase{
                 }
             }
         }
-
         return sixThemes;
     }
 
     @Override
     public void phaseDeJeu() {
-
         messagePhase2();
         choixThemesJoueur();
-
     }
 
     public void messagePhase2(){
@@ -86,9 +78,6 @@ public class Phase2 implements Phase{
     }
 
     public void questions(LinkedHashMap<String, ArrayList<String>> listeTheme){
-
-
-
         Chronometre[]tempsReponses = new Chronometre[3];
         for (int i = 0; i < tempsReponses.length ; i++) {
             tempsReponses[i] = new Chronometre();
@@ -98,29 +87,17 @@ public class Phase2 implements Phase{
         //affichage des questions
         for(int j=0; j<2; j++){ //Deux tours dans la phase 2
             for (int i = 0; i < joueurs.length ; i++) {
-
-
                 for (Map.Entry<String, List<Question>> parcours : listeQuestionstest.entrySet()) {
-
                     String key = parcours.getKey();
                     theme = listeTheme.get(listeTheme.keySet().toArray()[i]);
-
                     if(key.equals(theme.get(j))){
                         listeQuestions  = parcours.getValue();
                     }
-
                 }
-
-
                 int nbQuestion = listeQuestions.size();
-
                 int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion); //On sélectionne la question parmi celles qui existent
-
-
-
-
                 Question<?> q = listeQuestions.get(numQuestionSelected);
-                switch (Tools.getQuestionType(q)){
+                switch (Tools.getQuestionType(q)){//introspection pour pouvoir lancer la bonne fenêtre avec le bon type de question
                     case "QCM" :
                         GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(), theme.get(j), joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                         if (q.saisir(qcm.getAnswer())){

@@ -32,11 +32,8 @@ public class PhaseDepartage implements Phase {
         this.parent = parent;
     }
 
-
     @Override
-    public void selectionnerJoueur() {
-
-    }
+    public void selectionnerJoueur() {}
 
     @Override
     public void phaseDeJeu() {
@@ -77,7 +74,7 @@ public class PhaseDepartage implements Phase {
     private void askQuestionToPlayer(int nbQuestion, int[] score, Joueur[] joueurADepartager){
         /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
-        for (int i = 0; i < joueurADepartager.length ; i++) {
+        for (int i = 0; i < joueurADepartager.length ; i++) {//introspection pour pouvoir lancer la bonne fenêtre avec le bon type de question
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
             Question<?> q = listeQuestionsPhase.get(numQuestionSelected);
             switch (Tools.getQuestionType(q)){

@@ -89,10 +89,10 @@ public class Phase1 implements Phase {
     private void askQuestionToPlayer(Chronometre[] tempsReponses){
         /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
-        for (int i = 0; i < joueurs.length ; i++) {
+        for (int i = 0; i < joueurs.length ; i++) {//poser une question pour chaque joueur
             List<Question> listeQuestionsJoueuri = listeQuestionsAll.getQuestionByThemeLevel(theme.getArrayTheme()[theme.selectionnerNextTheme()], 1); //recuperation de la liste des questions de niveau 1 du théme donné
             Question<?> q = listeQuestionsJoueuri.get((int) ((Math.random() * listeQuestionsJoueuri.size())%listeQuestionsJoueuri.size())); //récupération d'une question aléatoirement parmi les questions
-            switch (Tools.getQuestionType(q)){
+            switch (Tools.getQuestionType(q)){//introspection pour pouvoir lancer la bonne fenêtre avec le bon type de question
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),theme.getArrayTheme()[theme.getIndicateur()], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (q.saisir(qcm.getAnswer())){
@@ -119,7 +119,7 @@ public class Phase1 implements Phase {
     }
 
     /**
-     * Lancement de la phase 2
+     * Récuperation des joueurs de la phase 2
      */
     private void lancementPhase2(Chronometre[] tempsReponses, Joueur jElimine) {
         displayMessageJoueurElimine(jElimine.getNom(), tempsReponses);

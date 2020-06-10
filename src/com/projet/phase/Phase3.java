@@ -28,7 +28,6 @@ public class Phase3 implements Phase {
     private JFrame parent = null;
 
     public Phase3(ListeQuestions listeQuestions, Joueur[] tabJoueurs){
-
         this.listeTroisThemes = new Themes(selectionThemesPhase3()); //On stocke les trois thèmes qu'on a choisi
         this.joueurs = tabJoueurs;
         this.listeQuestionsAll = listeQuestions;
@@ -44,14 +43,11 @@ public class Phase3 implements Phase {
         troisThemes[0] = "Histoire";
         troisThemes[1] = "Sciences";
         troisThemes[2] = "Divertissements";
-
         return troisThemes;
     }
 
     @Override
-    public void selectionnerJoueur() {
-
-    }
+    public void selectionnerJoueur() { }
 
     @Override
     public void phaseDeJeu() {
@@ -95,29 +91,18 @@ public class Phase3 implements Phase {
         /* Modification direct de temps de réponse car shallow copy**/
         //affichage des questions
         for (int i = 0; i < joueurs.length ; i++) {
-
-
-
-
-
             for (Map.Entry<String, List<Question>> parcours : listeQuestionsPhase.entrySet()) { //On sélectionne les questions du thème en cours : (Histoire puis Sciences puis Divertissements)
-
                 String key = parcours.getKey();
                 if(key.equals(listeQuestionsPhase.keySet().toArray()[j])){
-
-
                     listeQuestions = parcours.getValue();
                 }
-
             }
-
 
             int nbQuestion = listeQuestions.size();
             int numQuestionSelected = (int) ((Math.random() * nbQuestion)%nbQuestion);
-
-
             Question<?> q = listeQuestions.get(numQuestionSelected);
-            switch (Tools.getQuestionType(q)){
+
+            switch (Tools.getQuestionType(q)){//introspection pour pouvoir lancer la bonne fenêtre avec le bon type de question
                 case "QCM" :
                     GUI_QCM qcm = new GUI_QCM(parent,((QCM) q.getEnonce()).getTexte(),listeTroisThemes.getArrayTheme()[j], joueurs[i].getNom(), ((QCM) q.getEnonce()).getReponses());
                     if (q.saisir(qcm.getAnswer())){
@@ -145,7 +130,6 @@ public class Phase3 implements Phase {
 
     private void annonceGagnant(Chronometre[] tempsReponses, Joueur jElimine){
         displayMessageJoueurEliminePhase3(jElimine.getNom(), tempsReponses);
-
         for(int i=0;i<2;i++){
             if(!jElimine.getNom().equals(joueurs[i].getNom())){
                 vainqueur = joueurs[i];

@@ -40,7 +40,9 @@ public class ListeQuestions implements Serializable {
         }
     }
 
-
+    /**
+     * Serialization de la classe
+     */
     public void serialize() {
         ObjectOutputStream out;
         try {
@@ -52,6 +54,10 @@ public class ListeQuestions implements Serializable {
         }
     }
 
+    /**
+     * Deserialize le fichier .ser en renvoyant la liste de question
+     * Si le fichier a été modifié => creation de la lsite à partir des fichier textes
+     */
     public static ListeQuestions deserialize() {
         File file = new File("Textfile/questions.ser");
         try {
@@ -69,18 +75,32 @@ public class ListeQuestions implements Serializable {
         }
     }
 
+    /**
+     * Ajout d'une question à la liste
+     */
     public void ajouterQuestion(Question<?> question){
         listeQuestion.add(question);
     }
 
+
+    /**
+     * Supprimer une question de la liste à partir de l'index
+     */
     public void supprimerQuestion(int index){
         listeQuestion.remove(index);
     }
 
+
+    /**
+     * Supprimer une question de la liste à partir d'une question
+     */
     public void supprimerQuestion(Question<?> question){
         listeQuestion.remove(question);
     }
 
+    /**
+     * Affichage d'une partie de la liste en fonction du theme et/ou du niveau
+     */
     public void afficherQuestionByLevel(int level){
         listeQuestion.stream()
                 .filter(question -> question.getNiveauDifficulte() == level)
@@ -119,12 +139,16 @@ public class ListeQuestions implements Serializable {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * La liste contient-elle assez de question pour jouer une partie
+     * @return
+     */
     public static boolean isThereEnoughQuestion(){
         ListeQuestions listeQuestions = ListeQuestions.deserialize();
         Themes themes = new Themes();
         for (String t : themes.getArrayTheme()) {
             for (int n = 1 ; n <= 3 ; n++) {
-                if (listeQuestions.getQuestionByThemeLevel(t, n).size() < (5-n)){
+                if (listeQuestions.getQuestionByThemeLevel(t, n).size() < (5-n)){ //une question par joueur pour une phase donnée
                     JOptionPane.showMessageDialog(null,"Il n'y a pas assez de question dans le thème " + t + " de niveau " + n +" pour jouer une partie.\n" +
                             "Ajoutez des questions ou remettez les paramètres par défaut", "Pas assez de question", JOptionPane.INFORMATION_MESSAGE);
                     return false;

@@ -35,6 +35,9 @@ public class GUI_AjouterQuestion extends JFrame {
 
     }
 
+    /**
+     * Initialise les composants
+     */
     private void initiate() {
         jcbBonneRepQCM = new JComboBox<>(new String[]{"Réponse 1", "Réponse 2", "Réponse 3"});
         jcbNiveau = new JComboBox<>(new Integer[]{1, 2, 3});

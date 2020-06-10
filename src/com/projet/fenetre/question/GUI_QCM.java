@@ -22,6 +22,9 @@ public class GUI_QCM extends GUI_Question {
         setVisible(true);
     }
 
+    /**
+     * Initalisation des composants
+     */
     private void initiate(String enonce, String[] reponses, String theme, String joueur){
 
         jlQuestion = new JLabel(enonce);
@@ -43,6 +46,9 @@ public class GUI_QCM extends GUI_Question {
 
     }
 
+    /**
+     * Placement des composants
+     */
     private JPanel placeAll(){
         JPanel pan = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -85,8 +91,6 @@ public class GUI_QCM extends GUI_Question {
         proposition.setMinimumSize(new Dimension(500,40));
         return proposition;
     }
-
-
 
     private void addListenerRep(JButton btn){
         btn.addActionListener(e -> {

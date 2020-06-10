@@ -83,6 +83,9 @@ public class GUI_MenuPrincipal extends JFrame {
         return panel;
     }
 
+    /**
+     * Listener des bouttons
+     */
     private void addListenerStart(){
         btnStart.addActionListener(e -> {
             if(ListeQuestions.isThereEnoughQuestion()){
@@ -164,6 +167,9 @@ public class GUI_MenuPrincipal extends JFrame {
         return joueur;
     }
 
+    /**
+     * Deroulement d'une partie classique
+     */
     private Joueur playAGame(EnsJoueurs ensJoueurs){
         Phase1 phase1 = new Phase1(themes, listeQuestions, getFourJoueur(ensJoueurs), GUI_MenuPrincipal.this);
         phase1.phaseDeJeu();

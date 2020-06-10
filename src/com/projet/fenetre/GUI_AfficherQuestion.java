@@ -29,6 +29,9 @@ public class GUI_AfficherQuestion extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Initialise les composants
+     */
     private void initiate(){
         jcbTheme = new JComboBox<>(new Themes().getArrayTheme());
         jlNiveau = new JLabel("Choix du niveau");
@@ -45,6 +48,9 @@ public class GUI_AfficherQuestion extends JFrame {
 
     }
 
+    /**
+     * Initialise les composants
+     */
     private JPanel placeAll(){
         JPanel panel = new JPanel();
         panel.add(jlTheme);
@@ -70,6 +76,9 @@ public class GUI_AfficherQuestion extends JFrame {
         });
     }
 
+    /**
+     * Place sur la fenetre la liste des questions selon les critères choisis
+     */
     private JPanel placeList(String theme, String niveau){
         List<Question> list =  listeQuestions.getQuestionByThemeLevel(theme, Integer.parseInt(niveau));
 
@@ -97,14 +106,15 @@ public class GUI_AfficherQuestion extends JFrame {
         return panel;
     }
 
+    /**
+     * Supprime la question choisie
+     */
     private void addListenerOnSupprimer(Question question, String theme, String niveau){
         jbSupprimer.addActionListener(actionEvent -> {
             //suppression de la question dans la liste
             listeQuestions.supprimerQuestion(question);
             //serialization de la nouvelle liste
             listeQuestions.serialize();
-
-
             if (getContentPane().getComponentCount() > 1){ //suppresion du panneau précédent
                 getContentPane().remove(1);
             }

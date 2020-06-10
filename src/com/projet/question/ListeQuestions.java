@@ -126,7 +126,7 @@ public class ListeQuestions implements Serializable {
             for (int n = 1 ; n <= 3 ; n++) {
                 if (listeQuestions.getQuestionByThemeLevel(t, n).size() < (5-n)){
                     JOptionPane.showMessageDialog(null,"Il n'y a pas assez de question dans le thème " + t + " de niveau " + n +" pour jouer une partie.\n" +
-                            "Ajouter des questions ou remettez les paramètres par défaut");
+                            "Ajoutez des questions ou remettez les paramètres par défaut", "Pas assez de question", JOptionPane.INFORMATION_MESSAGE);
                     return false;
                 }
             }

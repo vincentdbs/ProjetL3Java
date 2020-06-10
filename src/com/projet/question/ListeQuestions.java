@@ -4,6 +4,7 @@ import com.projet.question.type.QCM;
 import com.projet.question.type.RC;
 import com.projet.question.type.VF;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ListeQuestions implements Serializable {
         }
     }
 
+
     public void serialize() {
         ObjectOutputStream out;
         try {
@@ -58,8 +60,11 @@ public class ListeQuestions implements Serializable {
             objectInputStream.close();
             return liste;
         } catch(Exception e) {
-            e.printStackTrace();
-            return null;
+            //si erreur => récupération d'une liste de question depuis les fichiers originaux
+            JOptionPane.showMessageDialog(null, "Attention votre liste de question n'a pu être récupérée !\n La liste contient les questions par défaut.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            ListeQuestions l = new ListeQuestions();
+            l.serialize();
+            return l;
         }
     }
 

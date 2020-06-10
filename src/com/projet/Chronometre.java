@@ -26,18 +26,24 @@ public class Chronometre extends  Thread implements Comparable<Chronometre> {
                 e.printStackTrace();
             }
             fin = System.currentTimeMillis();
-            setAllTime();
+            setAllTime(); //decompte du temps écoulé
         }
     }
 
+    /**
+     * calcul du temps écoulé + conversion ms à partir de la différence début/fin => h:min:s:ms
+     */
     private void setAllTime(){
-        long diff = fin-debut; //calcul du temps écoulé + conversion ms => h:min:s:ms
+        long diff = fin-debut;
         milisecond = (int) (diff % 1000);
         second = (int) (diff / 1000) % 60 ;
         minute = (int) ((diff / (1000*60)) % 60);
         hour   = (int) ((diff / (1000*60*60)) % 24);
     }
 
+    /**
+     * calcul du temps écoulé + conversion ms à partir du temps en ms passé en paramtre => h:min:s:ms
+     */
     private void setAllTime(long ms){
         milisecond = (int) (ms % 1000);
         second = (int) (ms / 1000) % 60 ;
@@ -45,6 +51,9 @@ public class Chronometre extends  Thread implements Comparable<Chronometre> {
         hour   = (int) ((ms / (1000*60*60)) % 24);
     }
 
+    /**
+     * Getter et setter
+     */
     public int getMilisecond() {
         return milisecond;
     }
@@ -69,6 +78,9 @@ public class Chronometre extends  Thread implements Comparable<Chronometre> {
         return hour + "h" + minute + "min" + second + "s" + milisecond + "ms";
     }
 
+    /**
+     * Ajout d'un chronométre à un autre
+     */
     public void add(Chronometre c){
         long ms = this.milisecond + c.milisecond; //reconstitution du temps en milliseconds
         ms += ((this.second + c.second)*1000);

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public final class Tools {
+    /**
+     * Classe utilitaire
+     */
     private Tools() {}
 
     /**
@@ -144,11 +147,8 @@ public final class Tools {
 
         //Il faut récupérer le plus grand chrono parmi les joueurs qui ont le plus petit score
         for(int i=0; i<joueurs.length; i++){
-
             if(joueurs[i].getScore() == lowestScore){
-
                listeChrono.add(chrono[i]); //On ajoute à la liste des chronos à comparer tous ceux des joueurs qui ont le plus petit score
-
             }
 
         }
@@ -160,13 +160,11 @@ public final class Tools {
 
         highestChrono = getGreatestChronometer(chronoComparer);
 
-
         for (int i = 0; i < joueurs.length ; i++) { //ajout des joueurs dont le score est le plus bas et le chrono le plus haut
             if((chrono[i].equals(highestChrono)) && (joueurs[i].getScore() == lowestScore)){
                 list.add(joueurs[i]);
             }
         }
-
         return list.toArray(new Joueur[list.size()]);
     }
 

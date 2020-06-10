@@ -23,7 +23,6 @@ public class Themes {
         arrayTheme[index] = newTheme;
     }
 
-
     /**
      * Remplacement du oldTheme donné par newTheme
      */
@@ -82,8 +81,6 @@ public class Themes {
         }
         System.out.println("\nIndicateur = " + getIndicateur());
     }
-
-
 
     /**
      * getter/setter

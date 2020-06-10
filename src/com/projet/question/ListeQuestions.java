@@ -1,5 +1,6 @@
 package com.projet.question;
 
+import com.projet.Themes;
 import com.projet.question.type.QCM;
 import com.projet.question.type.RC;
 import com.projet.question.type.VF;
@@ -116,6 +117,21 @@ public class ListeQuestions implements Serializable {
                 .filter(question -> question.getTheme().equals(theme))
                 .filter(question -> question.getNiveauDifficulte() == level)
                 .collect(Collectors.toList());
+    }
+
+    public static boolean isThereEnoughQuestion(){
+        ListeQuestions listeQuestions = ListeQuestions.deserialize();
+        Themes themes = new Themes();
+        for (String t : themes.getArrayTheme()) {
+            for (int n = 1 ; n <= 3 ; n++) {
+                if (listeQuestions.getQuestionByThemeLevel(t, n).size() < (5-n)){
+                    JOptionPane.showMessageDialog(null,"Il n'y a pas assez de question dans le thème " + t + " de niveau " + n +" pour jouer une partie.\n" +
+                            "Ajouter des questions ou remettez les paramètres par défaut");
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

@@ -85,9 +85,11 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void addListenerStart(){
         btnStart.addActionListener(e -> {
-            EnsJoueurs ensJoueurs = new EnsJoueurs();
-            ensJoueurs.creer();
-            playAGame(ensJoueurs);
+            if(ListeQuestions.isThereEnoughQuestion()){
+                EnsJoueurs ensJoueurs = new EnsJoueurs();
+                ensJoueurs.creer();
+                playAGame(ensJoueurs);
+            }
         });
     }
 
@@ -109,21 +111,23 @@ public class GUI_MenuPrincipal extends JFrame {
 
     private void addListenerGrandJeu(){
         btnGrandJeu.addActionListener(e -> {
-            EnsJoueurs ensJoueurs = new EnsJoueurs();
-            ensJoueurs.creer();
-            Joueur[] vainqueurs = new Joueur[3];
-            //lancement de 4 parties
-            for (int i = 0; i < 3; i++) {
-                JOptionPane.showMessageDialog(null, "Partie n°" + (i+1), "Partie n°" + (i+1), JOptionPane.INFORMATION_MESSAGE);
-                vainqueurs[i] = playAGame(ensJoueurs);
+            if (ListeQuestions.isThereEnoughQuestion()){
+                EnsJoueurs ensJoueurs = new EnsJoueurs();
+                ensJoueurs.creer();
+                Joueur[] vainqueurs = new Joueur[3];
+                //lancement de 4 parties
+                for (int i = 0; i < 3; i++) {
+                    JOptionPane.showMessageDialog(null, "Partie n°" + (i+1), "Partie n°" + (i+1), JOptionPane.INFORMATION_MESSAGE);
+                    vainqueurs[i] = playAGame(ensJoueurs);
+                }
+                JOptionPane.showMessageDialog(null, "Grande finale parmi les vainqueurs des 3 premières parties", "Grande Finale", JOptionPane.INFORMATION_MESSAGE);
+                //lancement d'une phase 2 à 3 thèmes puis phase 3 à partir des gagnants des parties précédentes
+                Phase2GrandJeu phase2GrandJeu = new Phase2GrandJeu(themes, listeQuestions, vainqueurs);
+                phase2GrandJeu.phaseDeJeu();
+                Phase3 phase3 = new Phase3(listeQuestions, phase2GrandJeu.getVainqueurs());
+                phase3.phaseDeJeu();
+                JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
             }
-            JOptionPane.showMessageDialog(null, "Grande finale parmi les vainqueurs des 3 premières parties", "Grande Finale", JOptionPane.INFORMATION_MESSAGE);
-            //lancement d'une phase 2 à 3 thèmes puis phase 3 à partir des gagnants des parties précédentes
-            Phase2GrandJeu phase2GrandJeu = new Phase2GrandJeu(themes, listeQuestions, vainqueurs);
-            phase2GrandJeu.phaseDeJeu();
-            Phase3 phase3 = new Phase3(listeQuestions, phase2GrandJeu.getVainqueurs());
-            phase3.phaseDeJeu();
-            JOptionPane.showMessageDialog(null, "Le gagnant du grand Jeu est " + phase3.getVainqueur().getNom(),"Grand Gagnant" , JOptionPane.INFORMATION_MESSAGE);
         });
     }
 

@@ -76,7 +76,7 @@ public class Phase3 implements Phase {
     }
 
     private void displayMessageRulesPhase3(){
-        JOptionPane.showMessageDialog(null, "Phase 1 \nLes joueurs jouent à tour de rôle sur les thèmes suivants : Histoire, Divertissements, Sciences"
+        JOptionPane.showMessageDialog(null, "Phase 3 \nLes joueurs jouent à tour de rôle sur les thèmes suivants : Histoire, Divertissements, Sciences"
                 +
                 "\nChaque bonne réponse rapporte 5 points.\n" +
                 "Ordre : " + joueurs[0].getNom() + ", "

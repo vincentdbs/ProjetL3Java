@@ -2,6 +2,10 @@ package com.projet;
 
 import java.util.ArrayList;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class Themes {
     private String[] arrayTheme;
     private int indicateur;

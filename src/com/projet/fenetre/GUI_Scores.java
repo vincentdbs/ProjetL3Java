@@ -5,6 +5,10 @@ import com.projet.joueur.EnsJoueurs;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_Scores extends JFrame {
 
     private JTable jtTable;

@@ -1,5 +1,9 @@
 package com.projet;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class Chronometre extends  Thread implements Comparable<Chronometre> {
     private int milisecond, second, minute, hour;
     private boolean state;

@@ -5,6 +5,10 @@ import com.projet.Themes;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_Theme extends JFrame {
 
     private JLabel jlTheme, jlNomTheme, jlIntro;

@@ -9,6 +9,10 @@ import com.projet.question.type.VF;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_AjouterQuestion extends JFrame {
 
     private JLabel jlNiveau, jlTheme, jlQuestion, jlRep1, jlRep2, jlRep3, jlRepCorrecte;

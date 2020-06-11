@@ -6,6 +6,10 @@ import com.projet.question.type.VF;
 
 import java.io.Serializable;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class Question<T> implements Serializable {
     private static int numero = 0;
     private int id;

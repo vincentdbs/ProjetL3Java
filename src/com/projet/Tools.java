@@ -7,6 +7,10 @@ import com.projet.question.Question;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public final class Tools {
     /**
      * Classe utilitaire

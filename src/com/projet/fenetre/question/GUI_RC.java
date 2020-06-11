@@ -3,6 +3,10 @@ package com.projet.fenetre.question;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_RC extends GUI_Question {
 
     private JLabel jlQuestion;

@@ -16,6 +16,11 @@ import com.projet.Tools;
 import javax.swing.*;
 import java.util.*;
 
+
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class Phase1 implements Phase {
     private Themes theme;
     private ListeQuestions listeQuestionsAll;

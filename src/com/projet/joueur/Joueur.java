@@ -1,5 +1,9 @@
 package com.projet.joueur;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class Joueur {
     private static int indexJoueur = 100; //numero des joueurs commence à 100
     private String nom, etat; //etat = sélectionné, gagnant, super gagnant, éliminé ou en attente

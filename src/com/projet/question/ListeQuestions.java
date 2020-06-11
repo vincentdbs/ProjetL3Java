@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class ListeQuestions implements Serializable {
     private LinkedList<Question> listeQuestion;
     private int indicateur;

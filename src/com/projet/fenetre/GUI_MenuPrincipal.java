@@ -12,6 +12,10 @@ import com.projet.Themes;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_MenuPrincipal extends JFrame {
     private JButton btnTheme, btnQuestion, btnAjouterQuestion, btnAfficherJoueurs, btnStart, btnQuitter;
     private JButton btnGrandJeu;

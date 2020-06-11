@@ -13,9 +13,12 @@ import com.projet.question.type.RC;
 import com.projet.question.type.VF;
 import com.projet.Themes;
 import com.projet.Tools;
-
 import javax.swing.*;
 import java.util.*;
+
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
 
 public class Phase2 implements Phase{
 

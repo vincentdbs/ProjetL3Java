@@ -3,6 +3,10 @@ package com.projet.fenetre;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_ChoixTheme extends JDialog {
     private JLabel jlChoix;
     private JComboBox<String> jcbListTheme;

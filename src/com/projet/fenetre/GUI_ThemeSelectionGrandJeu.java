@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class GUI_ThemeSelectionGrandJeu extends JDialog {
 
     private JLabel jlTheme, jlIntro, jlJoueur;

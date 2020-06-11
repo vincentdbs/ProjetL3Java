@@ -2,6 +2,10 @@ package com.projet.question.type;
 
 import java.io.Serializable;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class VF implements Serializable {
     private String texte;
     private boolean reponse;

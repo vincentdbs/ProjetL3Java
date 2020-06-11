@@ -15,6 +15,10 @@ import com.projet.Tools;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class PhaseDepartage implements Phase {
     private Themes theme;
     private List<Question> listeQuestionsPhase;

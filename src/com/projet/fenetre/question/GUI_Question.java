@@ -2,9 +2,12 @@ package com.projet.fenetre.question;
 
 import com.projet.Chronometre;
 import com.projet.fenetre.ConfirmExitPage;
-
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
 
 public class GUI_Question extends JDialog {
 

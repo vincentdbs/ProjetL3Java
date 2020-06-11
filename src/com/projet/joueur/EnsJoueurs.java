@@ -2,6 +2,10 @@ package com.projet.joueur;
 
 import java.util.Vector;
 
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
+
 public class EnsJoueurs {
 
     private Vector<Joueur> vectorJoueur;

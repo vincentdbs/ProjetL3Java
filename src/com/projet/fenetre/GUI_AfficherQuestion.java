@@ -4,10 +4,13 @@ import com.projet.Tools;
 import com.projet.question.ListeQuestions;
 import com.projet.question.Question;
 import com.projet.Themes;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+
+/**
+ * DORFFER - DUBOIS - ESTEBAN - GOMEZ CASTELLON - MATHIEN
+ */
 
 public class GUI_AfficherQuestion extends JFrame {
     private JComboBox<String> jcbTheme;
